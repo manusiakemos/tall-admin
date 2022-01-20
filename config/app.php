@@ -2,7 +2,7 @@
 
 return [
 
-    'enabled_setting' => false,
+    'enabled_setting' => env('ENABLED_SETTING', false),
 
     'name' => env('APP_NAME', 'Laravel'),
 

@@ -21,7 +21,7 @@ class CreateSettingTable extends Migration
                 ->nullable();
             $table->string('setting_input', 190)
                 ->nullable();
-            $table->string('setting_value', 190)
+            $table->text('setting_value')
                 ->nullable();
             $table->boolean('setting_removable')
                 ->default(1);

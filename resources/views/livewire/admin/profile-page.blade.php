@@ -28,7 +28,7 @@
                     </x-input.form-group>
 
                     <div class="py-3 flex">
-                        <button class="btn bg-blue-500 text-white ml-auto hover:bg-blue-600 dark:bg-yellow-400 dark:text-gray-700"
+                        <button class="btn bg-indigo-500 text-white ml-auto hover:bg-indigo-600 dark:bg-yellow-400 dark:text-gray-700"
                                 type="submit">
                             Save Changes
                         </button>
@@ -42,7 +42,7 @@
                         <x-input.filepond wire:model="image"></x-input.filepond>
                     </x-input.form-group>
                     <div class="py-3 flex">
-                        <button class="btn bg-blue-500 text-white ml-auto hover:bg-blue-600 dark:bg-yellow-400 dark:text-gray-700"
+                        <button class="btn bg-indigo-500 text-white ml-auto hover:bg-indigo-600 dark:bg-yellow-400 dark:text-gray-700"
                                 type="submit">
                             Save
                             Changes
@@ -66,7 +66,7 @@
                     </x-input.form-group>
 
                     <div class="py-3 flex">
-                        <button class="btn bg-blue-500 text-white ml-auto hover:bg-blue-600 dark:bg-yellow-400 dark:text-gray-700"
+                        <button class="btn bg-indigo-500 text-white ml-auto hover:bg-indigo-600 dark:bg-yellow-400 dark:text-gray-700"
                                 type="submit">
                             Save Changes</button>
                     </div>

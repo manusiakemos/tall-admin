@@ -58,7 +58,7 @@ class Select extends Component
 
         if ($this->select2) {
             $this->options = $x->toArray();
-            return view('components.input.select2');
+            return view('components.input.select');
         } else {
             $this->options = $x->toArray();
             return view('components.input.custom-select2');

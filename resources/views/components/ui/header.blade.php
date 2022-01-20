@@ -23,7 +23,7 @@
 
         {{--        <x-ui.notifications-bar></x-ui.notifications-bar>--}}
 
-        <div class="invisible md:visible">
+        <div class="hidden md:block">
             <x-ui.darkmode/>
         </div>
 

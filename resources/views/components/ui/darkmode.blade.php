@@ -15,7 +15,7 @@
                    rounded-xl px-6 py-3
                    h-auto w-auto
                    text-gray-300 dark:text-gray-100
-                   bg-gray-900 dark:bg-blue-600 z-50">
+                   bg-blue-600 dark:bg-gray-900 z-50">
             <ul class="w-full h-full">
                 <li x-on:click="theme = 'light'; theme_icon = 'light' ;showDarkMode = !showDarkMode"
                     class="flex items-center justify-start cursor-pointer hover:text-yellow-400">

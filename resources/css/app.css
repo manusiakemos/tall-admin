@@ -12,15 +12,17 @@
     }
 
     .nav-item{
-        @apply items-center text-gray-100 py-4 pl-3;
+        @apply items-center text-gray-100 py-4 px-3;
     }
 
     .nav-active{
-        @apply hover:text-blue-400 lg:rounded-l-full sm:rounded text-blue-500 dark:text-yellow-400 bg-gray-200 dark:bg-gray-900;
+        @apply hover:text-blue-400 rounded-2xl shadow-lg
+                shadow-blue-400/30 dark:shadow-gray-700/30 mx-4
+                text-blue-500 dark:text-yellow-400 bg-gray-200 dark:bg-gray-700;
     }
 
     .heading{
-        @apply uppercase text-lg font-bold dark:text-gray-400 text-gray-700 font-sans tracking-wide;
+        @apply uppercase text-lg font-semibold dark:text-gray-400 text-gray-700 font-sans tracking-wide;
     }
 
     label{

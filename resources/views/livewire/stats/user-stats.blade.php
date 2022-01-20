@@ -1,5 +1,5 @@
 <div class="grid lg:grid-cols-1 gap-4">
-    <x-ui.card class="w-full p-3 mt-3 bg-gray-100 dark:bg-black"  style="height: 400px;">
+    <x-ui.card class="w-full p-3 mt-3 bg-gray-100 dark:bg-gray-300"  style="height: 400px;">
         <div class="z-50">
             <ul class="flex">
                 @foreach($rolesOptions as $role)

@@ -24,7 +24,7 @@
                        value="value"/>
                </x-input.form-group>
 
-               <x-input.form-group class="form-group" label="birthplace" key="birthplace"
+<!--               <x-input.form-group class="form-group" label="birthplace" key="birthplace"
                                    model="user.birthplace">
                    <x-input.text id="birthplace" wire:model.defer="user.birthplace"/>
                </x-input.form-group>
@@ -32,10 +32,10 @@
                <x-input.form-group class="form-group" label="birthdate" key="birthdate"
                                    model="user.birthdate">
                    <x-input.text type="date" id="birthdate" wire:model.defer="user.birthdate"/>
-               </x-input.form-group>
+               </x-input.form-group>-->
            </div>
 
-           <x-input.form-group class="form-group" label="address" key="address" model="user.address">
+<!--           <x-input.form-group class="form-group" label="address" key="address" model="user.address">
                <x-input.textarea id="address"
                                  wire:key="userAddress"
                                  wire:model.defer="user.address"></x-input.textarea>
@@ -49,12 +49,12 @@
 
            <x-input.form-group class="form-group" label="Active" key="role" model="user.active">
                <x-input.radio method="bool" wire:model.defer="user.active"></x-input.radio>
-           </x-input.form-group>
+           </x-input.form-group>-->
 
-           <x-input.form-group class="form-group" label="Avatar" key="avatar" model="image">
+<!--           <x-input.form-group class="form-group" label="Avatar" key="avatar" model="image">
                <x-input.filepond data-event-name="setAvatar" wire:key="setAvatar"
                                  wire:model="image"></x-input.filepond>
-           </x-input.form-group>
+           </x-input.form-group>-->
 
            <div class="md:flex place-content-end py-4">
                <x-ui.button
@@ -62,8 +62,7 @@
                    class="bg-red-500 hover:bg-red-400 text-white hover:bg-blue-400">
                    Tutup
                </x-ui.button>
-               <x-ui.button type="submit" class="bg-indigo-500 hover:bg-indigo-400 text-white hover:bg-blue-400"
-                            wire:click="save">
+               <x-ui.button type="submit" class="bg-indigo-500 hover:bg-indigo-400 text-white hover:bg-blue-400">
                    {{$updateMode ? "Simpan Perubahan" : "Simpan"}}
                </x-ui.button>
            </div>

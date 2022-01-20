@@ -23,6 +23,6 @@ mix.js('resources/js/app.js', 'public/js')
     ])
     .sass('resources/sass/base.scss', 'public/css');
 
-mix.browserSync('127.0.0.1:8000').options({
-    reloadDelay: 1000,
-});
+// mix.browserSync('tall-admin.test').options({
+//     reloadDelay: 1000,
+// });

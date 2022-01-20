@@ -2,10 +2,16 @@
 
 <!-- custom-select2 -->
 <div class="relative w-full"
+     wire:ignore.self
      wire:key="{!! $attributes->get('id') !!}"
      x-on:click.outside="show = false"
      x-on:click.away="show = false"
      x-init="console.log('init select2');
+        $watch('show', (value)=>{
+            if (value == false && !selected){
+                search = '';
+            }
+        });
         $watch('search', (value)=>{
             {{--jika pencarian '' maka wire:model ''--}}
          if (value == ''){
@@ -77,10 +83,9 @@
 
     <ul x-show="show"
         x-transition
-        :class="filteredOptions.length > 3 ? 'h-40' : 'h-'+filteredOptions.length * 10"
         class="absolute inset-0 top-10 bg-gray-100 dark:bg-black z-50
-                cursor-pointer rounded-md
-                overflow-visible overflow-y-scroll overflow-x-hidden">
+                cursor-pointer rounded-md min-h-[80px] max-h-[400px]
+                overflow-y-scroll overflow-x-hidden">
         <template x-for="item in filteredOptions">
             <li class="text-xs text-gray-700 dark:text-gray-300 border-b border-gray-300 dark:border-gray-700
                        hover:bg-gray-100 dark:hover:bg-gray-900 shadow-sm z-20 p-3"

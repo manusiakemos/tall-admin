@@ -13,13 +13,7 @@
     @endif
 
     @stack("stylesBefore")
-    @include("includes._google-fonts")
-    {{--3rd party css on base css--}}
-    <link rel="stylesheet" href="{{ asset('css/base.css') }}">
-    {{--app tailwind css on app.css--}}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    {{--uicon--}}
-    <link rel="stylesheet" href="{{ asset('vendor/uicons/css/uicons-regular-rounded.css') }}">
+    @include("includes._styles")
 
     @livewireStyles
 
@@ -35,23 +29,12 @@
 
 
 </head>
-<body class="bg-gray-200 dark:bg-gray-900 dark:text-gray-400 text-gray-100 flex text-sm" x-data="{showSidebar : true}">
+<body class="bg-gray-200 dark:bg-gray-900 dark:text-gray-400 text-gray-100"
+      x-data="{showSidebar : true}">
 
-<div class="w-full flex flex-col h-screen overflow-y-hidden">
-    <div class="w-full overflow-x-hidden flex flex-col" id="main-content">
-        {{ $slot }}
-
-        <footer class="flex justify-end">
-            <small class="text-xs font-bold my-5 mx-5 dark:text-gray-300 text-gray-700">
-                <i class="fa fa-copyright"></i> {{date('Y')}} {{ config('setting.app_name.value') }}
-            </small>
-        </footer>
-    </div>
-</div>
+{{ $slot }}
 
 @livewireScripts
-<script data-turbolinks-eval="false" data-turbo-eval="false" src="{{ asset('js/after.js') }}"></script>
-{{--<script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>--}}
 
 
 @stack("scripts")

@@ -1,4 +1,6 @@
-require('./bootstrap');
+window._ = require('lodash');
+
+window.$ = window.jQuery = require("jquery");
 
 // import Echo from 'laravel-echo';
 

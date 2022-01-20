@@ -1,47 +1,69 @@
-<!-- modal tailwind {!! $attributes->get('id') !!} -->
+@props(['id', 'maxWidth', 'title'])
 
-<div role="dialog"
-     aria-labelledby="{!! $attributes->get('id') !!}_label"
-     aria-modal="true"
-     tabindex="0"
-     x-cloak
-     x-data="{open:@entangle($attributes->wire('model'))}"
-     x-show="open"
-     x-init="$wire.on('{!! $attributes->get('modal-show-event') !!}', ()=>{
-                  open = true;
-              });"
-     @click="open = false"
-{{--     @click.away="open = false"--}}
-     class="fixed top-0 left-0
-            w-full h-screen flex justify-center items-center">
-    <div aria-hidden="true"
-         class="absolute top-0 left-0 w-full h-screen bg-black transition duration-300"
-         :class="{ 'opacity-60': open, 'opacity-0': !open }"
-         x-show="open"
-         x-transition:leave="delay-150"></div>
-    <div data-modal-document
-         @click.stop=""
-         x-show="open"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="transform scale-50 opacity-0"
-         x-transition:enter-end="transform scale-100 opacity-100"
-         x-transition:leave="transition ease-out duration-300"
-         x-transition:leave-start="transform scale-100 opacity-100"
-         x-transition:leave-end="transform scale-50 opacity-0"
-         class="bg-gray-100 dark:bg-gray-800
-                flex flex-col rounded-lg shadow-lg overflow-x-hidden bg-white w-4/5 lg:w-3/5 h-4/5 z-10">
-        <div class="px-6 py-3 border-b flex justify-between items-center">
-            <h2 class="text-gray-700 dark:text-gray-300 font-semibold tracking-wider uppercase" id="{!! $attributes->get('id') !!}_label">{{$title}}</h2>
-            <div>
-                <x-ui.button x-on:click="open=false" type="button"
-                    variant="circle" class="bg-red-500">
-                    <span class="flex items-center justify-center fi-rr-cross"></span>
-                </x-ui.button>
-            </div>
-        </div>
-        <div class="p-6">
-            <input type="hidden" x-model="open">
-            {{$slot}}
-        </div>
+@php
+    $id = $id ?? $attributes->wire('model')->value();
+    $maxWidth = [
+        'sm' => 'sm:max-w-sm',
+        'md' => 'sm:max-w-md',
+        'lg' => 'sm:max-w-lg',
+        'xl' => 'sm:max-w-xl',
+        '2xl' => 'sm:max-w-2xl',
+    ][$maxWidth ?? '2xl'];
+@endphp
+
+<div wire:ignore.self
+     x-data="{
+        show: @entangle($attributes->wire('model')).defer,
+        focusables() {
+            // All focusable element types...
+            let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+            return [...$el.querySelectorAll(selector)]
+                // All non-disabled elements...
+                .filter(el => ! el.hasAttribute('disabled'))
+        },
+        firstFocusable() { return this.focusables()[0] },
+        lastFocusable() { return this.focusables().slice(-1)[0] },
+        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
+        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
+        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
+        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
+    }"
+     x-init="$watch('show', value => {
+        if (value) {
+            document.body.classList.add('overflow-y-hidden');
+            {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}
+         } else {
+             document.body.classList.remove('overflow-y-hidden');
+         }
+     })"
+     x-on:close.stop="show = false"
+     x-on:keydown.escape.window="show = false"
+     x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
+     x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
+     x-show="show"
+     id="{{ $id }}"
+     class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
+     style="display: none;"
+>
+    <div x-show="show" class="fixed inset-0 transform transition-all" x-on:click="show = false" x-transition:enter="ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <div x-show="show" class="mb-6 bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full {{ $maxWidth }} sm:mx-auto"
+         x-transition:enter="ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+         x-transition:leave="ease-in duration-200"
+         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+
+        <h4 class="heading px-3 pt-3">{{$title}}</h4>
+
+        {{ $slot }}
     </div>
 </div>

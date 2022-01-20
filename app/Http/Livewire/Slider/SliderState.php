@@ -14,13 +14,12 @@ trait SliderState
     public $showModalForm = false;
 
     public array $slider = [
-    "slider_id" => "",
-    "slider_title" => "",
-    "slider_desc" => "",
-    "slider_image" => "",
-    "slider_active" => "",
-]
-;
+        "slider_id" => "",
+        "slider_title" => "",
+        "slider_desc" => "",
+        "slider_image" => "",
+        "slider_active" => 1,
+    ];
 
     public array $breadcrumbs = [
         ["link" => "#", "title" => "Admin"],
@@ -32,35 +31,35 @@ trait SliderState
         $this->updateMode ? $this->update() : $this->store();
     }
 
-     public function hydrate()
-     {
-            $this->resetErrorBag();
-            $this->resetValidation();
-      }
+    public function hydrate()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
+    }
 
-        public function create()
-        {
-            $this->reset();
-            $this->showModalForm = true;
-        }
+    public function create()
+    {
+        $this->reset();
+        $this->showModalForm = true;
+    }
 
     public function store()
     {
-       $rules = [
-    "slider.slider_title" => [
-        "required"
-    ],
-    "slider.slider_desc" => [
-        "required"
-    ],
-    "slider.slider_image" => [
-        "required"
-    ],
-    "slider.slider_active" => [
-        "required"
-    ],
-];
-$this->validate($rules);
+        $rules = [
+            "slider.slider_title" => [
+                "required"
+            ],
+            "slider.slider_desc" => [
+                "required"
+            ],
+            "slider.slider_image" => [
+                "required"
+            ],
+            "slider.slider_active" => [
+                "required"
+            ],
+        ];
+        $this->validate($rules);
 
 
         $this->updateMode = false;
@@ -69,9 +68,9 @@ $this->validate($rules);
 
         if ($save) {
             $this->reset("slider");
-            $this->emit('showToast', ["message" => "Slider berhasil ditambahkan", "type" => "success", "reload"=>false]);
+            $this->emit('showToast', ["message" => "Slider berhasil ditambahkan", "type" => "success", "reload" => false]);
             $this->emitTo('slider.slider-page', 'refreshDt');
-        }else{
+        } else {
             abort('403', 'Slider gagal ditambahkan');
         }
     }
@@ -86,21 +85,21 @@ $this->validate($rules);
 
     public function update()
     {
-       $rules = [
-    "slider.slider_title" => [
-        "required"
-    ],
-    "slider.slider_desc" => [
-        "required"
-    ],
-    "slider.slider_image" => [
-        "required"
-    ],
-    "slider.slider_active" => [
-        "required"
-    ],
-];
-$this->validate($rules);
+        $rules = [
+            "slider.slider_title" => [
+                "required"
+            ],
+            "slider.slider_desc" => [
+                "required"
+            ],
+            "slider.slider_image" => [
+                "required"
+            ],
+            "slider.slider_active" => [
+                "required"
+            ],
+        ];
+        $this->validate($rules);
 
 
         $save = false;
@@ -113,9 +112,9 @@ $this->validate($rules);
         }
 
         if ($save) {
-             $this->reset("slider");
-             $this->emit('showToast', ["message" => "Slider berhasil diupdate", "type" => "success", "reload"=>false]);
-             $this->emitTo('slider.slider-page', 'refreshDt');
+            $this->reset("slider");
+            $this->emit('showToast', ["message" => "Slider berhasil diupdate", "type" => "success", "reload" => false]);
+            $this->emitTo('slider.slider-page', 'refreshDt');
         }
     }
 
@@ -135,16 +134,16 @@ $this->validate($rules);
     {
         try {
             $db->slider_title = $this->slider['slider_title'];
-                $db->slider_desc = $this->slider['slider_desc'];
-                if($this->myFile){
-            $filename = Str::random().".".$this->myFile->getClientOriginalExtension();
-            $this->myFile->storeAs('uploads', $filename, 'public');
-            $db->slider_image = $filename;
-        }
-                $db->slider_active = $this->slider['slider_active'];
-    
+            $db->slider_desc = $this->slider['slider_desc'];
+            if ($this->myFile) {
+                $filename = Str::random() . "." . $this->myFile->getClientOriginalExtension();
+                $this->myFile->storeAs('uploads', $filename, 'public');
+                $db->slider_image = $filename;
+            }
+            $db->slider_active = $this->slider['slider_active'];
+
             return $db->save();
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return $e->getTraceAsString();
         }
     }

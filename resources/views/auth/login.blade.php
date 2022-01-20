@@ -1,25 +1,23 @@
 <x-guest-layout>
-    <x-auth.auth-card>
+    <x-auth.auth-card
+        class="backdrop-filter backdrop-blur-xl backdrop-sepia-0 bg-white/70
+                        flex flex-col w-full mx-12 px-12 py-6 rounded-tl-3xl rounded-br-3xl">
         <x-slot name="logo">
-           <h4 class="text-center font-display font-bold text-lg uppercase tracking-wider text-gray-700 dark:text-gray-300">
-              {{ config('setting.app_name.value')?? config('app.name')}}
-           </h4>
+            LOGIN
         </x-slot>
 
-        <!-- Session Status -->
-        <x-auth.auth-session-status class="mb-4" :status="session('status')"></x-auth.auth-session-status>
-
-        <!-- Validation Errors -->
-        <x-auth.auth-validation-errors class="mb-4" :errors="$errors"></x-auth.auth-validation-errors>
-
         <form method="POST" action="{{ route('login') }}">
-            @csrf
+        @csrf
 
-            <!-- Email Address -->
+        <!-- Email Address -->
             <div>
                 <x-auth.label for="username" :value="__('Username')"></x-auth.label>
 
-                <x-auth.input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus></x-auth.input>
+                <x-auth.input id="username" class="block mt-1 w-full" type="text" name="username"
+                              :value="old('username')" required autofocus></x-auth.input>
+                @error("username")
+                <div class="text-red-500 font-normal text-sm py-1">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Password -->
@@ -27,9 +25,12 @@
                 <x-auth.label for="password" :value="__('Password')"></x-auth.label>
 
                 <x-auth.input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password"></x-auth.input>
+                              type="password"
+                              name="password"
+                              required autocomplete="current-password"></x-auth.input>
+                @error("password")
+                <div class="text-red-500 font-normal text-sm py-1">{{ $message }}</div>
+                @enderror
             </div>
 
             <!-- Remember Me -->

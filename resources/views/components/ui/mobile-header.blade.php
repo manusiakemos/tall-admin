@@ -1,4 +1,4 @@
-<header x-data="{ isOpen: false }" x-transition.duration.500ms class="w-full bg-gray-900 py-5 px-6 md:block lg:hidden">
+<header x-data="{ isOpen: false }" x-transition.duration.500ms class="w-full bg-gray-900 py-5 px-6 block md:hidden">
     <div class="flex items-center justify-between relative">
         <a href="#" class="text-white dark:text-yellow-400 text-2xl font-semibold font-display uppercase text-center">
             {{config('setting.app_name.value')?? config('app.name')}}

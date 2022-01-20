@@ -12,7 +12,7 @@
                    Tutup
                </x-ui.button>
                <x-ui.button type="submit" class="bg-indigo-500 hover:bg-indigo-400 text-white hover:bg-blue-400"
-                            wire:click="save">
+                           >
                    {{$updateMode ? "Simpan Perubahan" : "Simpan"}}
                </x-ui.button>
            </div>

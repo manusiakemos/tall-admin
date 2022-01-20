@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 
 trait UserState
@@ -87,8 +88,10 @@ trait UserState
             'user.name' => 'required',
             'user.username' => 'required',
             'user.role' => 'required',
-            'user.email' => 'required|email',
-            'user.village_id' => 'required',
+            'user.email'=> [
+                'email',
+                Rule::unique('users', 'email')
+            ]
         ];
 
         $this->validate($rules);
@@ -99,9 +102,10 @@ trait UserState
         $this->reset("user");
 
         if ($save) {
-            $this->emit('showToast', ["message" => "User berhasil ditambahkan", "type" => "success", "reload"=>false]);
-            $this->emitTo('user.user-page', 'refreshDt');
-            $this->back();
+            $this->showModalForm = false;
+            $this->reset("user");
+            $this->emit('showToast', ["message" => "User berhasil diupdate", "type" => "success", "reload"=>false]);
+            $this->emit( 'refreshDt');
         }else{
             abort('403', 'User gagal ditambahkan');
         }
@@ -113,7 +117,11 @@ trait UserState
             'user.name' => 'required',
             'user.username' => 'required',
             'user.role' => 'required',
-            'user.email' => 'required|email',
+            'user.email' => [
+                'nullable',
+                Rule::unique('users', 'email')
+                    ->ignore($this->user['user_id'], 'user_id'),
+            ]
         ];
 
         $this->validate($rules);
@@ -138,15 +146,15 @@ trait UserState
     private function handleFormRequest(User $db): bool
     {
         $db->username = $this->user['username'];
-        $db->email = $this->user['email'];
+//        $db->email = $this->user['email'];
         $db->name = $this->user['name'];
         $db->role = $this->user['role'];
         $db->active = $this->user['active'];
-        $db->address = $this->user['address'];
-        $db->birthdate = $this->user['birthdate'];
-        $db->birthplace = $this->user['birthplace'];
-        $db->about = $this->user['about'];
-        $db->village_id = $this->user['village_id'];
+//        $db->address = $this->user['address'];
+//        $db->birthdate = $this->user['birthdate'];
+//        $db->birthplace = $this->user['birthplace'];
+//        $db->about = $this->user['about'];
+//        $db->village_id = $this->user['village_id'];
         if (!$this->updateMode) {
             $db->password = bcrypt("password");
             $db->api_token = Str::random(100);
@@ -165,9 +173,9 @@ trait UserState
         $delete = User::destroy($id);
         if ($delete) {
             $this->emit("refreshDt");
-            $this->emit("showToast", ["message" => "Users Deleted Successfully", "type" => "success"]);
+            $this->emit("showToast", ["message" => "Users berhasil dihapus", "type" => "success"]);
         } else {
-            $this->emit("showToast", ["message" => "Delete Failed", "type" => "success"]);
+            $this->emit("showToast", ["message" => "User gagal dihapus", "type" => "success"]);
         }
         $this->reset();
     }
