@@ -2,7 +2,7 @@
     <div class="items-center">
         <button @click="isOpen = !isOpen"
                 class="rounded-full overflow-hidden
-                               border-4 border-gray-1O0 hover:border-red-400 focus:border-gray-500 focus:outline-none">
+                               border-4 border-gray-1O0 hover:border-danger-400 focus:border-gray-500 focus:outline-none">
             <img class="w-10"
                  src="{{ auth()->user()->getMedia("avatar")->first()
                                 ? asset(auth()->user()->getMedia("avatar")->first()->getUrl())
@@ -21,8 +21,8 @@
                     border-2 border-gray-100 dark:border-gray-800
                     shadow-lg py-4 mt-16 z-50">
     <a href="{{route('profile')}}"
-       class="rounded-tl-lg rounded-br-lg block px-4 py-2 account-link hover:text-blue-500">Account</a>
+       class="rounded-tl-lg rounded-br-lg block px-4 py-2 account-link hover:text-primary-500">Account</a>
     <a href="{{url('/login')}}"
-       class="rounded-tl-lg rounded-br-lg block px-4 py-2 account-link hover:text-blue-500 btn-logout">Sign
+       class="rounded-tl-lg rounded-br-lg block px-4 py-2 account-link hover:text-primary-500 btn-logout">Sign
         Out</a>
 </div>

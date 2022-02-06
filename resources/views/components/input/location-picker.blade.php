@@ -7,7 +7,7 @@
         <x-input.text wire:model="location.radius" type="text" id="us3-radius"></x-input.text>
     </x-input.form-group>
 
-    <div id="us3" class="w-full rounded-xl border-2 border-red-400 h-72"></div>
+    <div id="us3" class="w-full rounded-xl border-2 border-danger-400 h-72"></div>
 
     <x-input.form-group label="Lat" key="lat" model="location.lat">
         <x-input.text wire:model="location.lat" type="text" class="w-auto" id="us3-lat"></x-input.text>

@@ -136,7 +136,7 @@
             return item.url;
           }).join(',');
 
-          // set the value of the desired input to image url
+          // set the value of the desidanger input to image url
           target_input.value = file_path;
           target_input.dispatchEvent(new Event('change'));
 

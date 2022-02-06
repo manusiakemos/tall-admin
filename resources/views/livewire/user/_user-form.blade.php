@@ -59,10 +59,10 @@
            <div class="md:flex place-content-end py-4">
                <x-ui.button
                    x-on:click="$wire.showModalForm = false"
-                   class="bg-red-500 hover:bg-red-400 text-white hover:bg-blue-400">
+                   class="bg-danger-500 hover:bg-danger-400 text-white hover:bg-primary-400">
                    Tutup
                </x-ui.button>
-               <x-ui.button type="submit" class="bg-indigo-500 hover:bg-indigo-400 text-white hover:bg-blue-400">
+               <x-ui.button type="submit" class="bg-secondary-500 hover:bg-secondary-400 text-white hover:bg-primary-400">
                    {{$updateMode ? "Simpan Perubahan" : "Simpan"}}
                </x-ui.button>
            </div>

@@ -21,8 +21,8 @@
                                 flex flex-1 justify-center
                                 rounded-tl-xl border-gray-300 border-l-2 border-b-2 border-t-2 p-3 border-collapse"
                         :class="tab === '{{$header['key']}}'
-                            ? 'bg-indigo-500 dark:bg-blue-400 hover:bg-indigo-400 text-gray-100 dark:text-gray-700'
-                            : 'bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-100 hover:bg-indigo-100 text-gray-800'"
+                            ? 'bg-secondary-500 dark:bg-primary-400 hover:bg-secondary-400 text-gray-100 dark:text-gray-700'
+                            : 'bg-white dark:bg-gray-800 text-primary-700 dark:text-primary-100 hover:bg-secondary-100 text-gray-800'"
                         @click.prevent="tab = '{{$header['key']}}'; window.location.hash = '{{$header['key']}}'">
                         <span class="hidden md:block">{{$header['title']}}</span>
                         @isset($header['icon'])
@@ -39,8 +39,8 @@
                                 flex flex-1 justify-center
                                 rounded-tr-xl border-gray-300 border-r-2 border-b-2 border-t-2 p-3 border-collapse"
                         :class="tab === '{{$header['key']}}'
-                            ? 'bg-indigo-500 dark:bg-blue-400 hover:bg-indigo-400 text-gray-100 dark:text-gray-700'
-                            : 'bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-100 hover:bg-indigo-100 text-gray-800'"
+                            ? 'bg-secondary-500 dark:bg-primary-400 hover:bg-secondary-400 text-gray-100 dark:text-gray-700'
+                            : 'bg-white dark:bg-gray-800 text-primary-700 dark:text-primary-100 hover:bg-secondary-100 text-gray-800'"
                         @click.prevent="tab = '{{$header['key']}}'; window.location.hash = '{{$header['key']}}'">
                         <span class="hidden md:block">{{$header['title']}}</span>
                         @isset($header['icon'])
@@ -54,8 +54,8 @@
                         class="uppercase font-semibold"
                         {{$disabledTabs ? "disabled" : ""}}
                         :class=" tab === '{{$header['key']}}'
-                            ? 'flex flex-1 justify-center border-top border-r-2 border-t-2 border-gray-300 bg-indigo-500 dark:bg-blue-400 text-white p-3 hover:bg-indigo-600 text-white dark:text-gray-900'
-                            : 'flex flex-1 justify-center border-top border-r-2 border-t-2 p-3 border-gray-300 hover:text-indigo-500 text-gray-700 dark:text-gray-500'"
+                            ? 'flex flex-1 justify-center border-top border-r-2 border-t-2 border-gray-300 bg-secondary-500 dark:bg-primary-400 text-white p-3 hover:bg-secondary-600 text-white dark:text-gray-900'
+                            : 'flex flex-1 justify-center border-top border-r-2 border-t-2 p-3 border-gray-300 hover:text-secondary-500 text-gray-700 dark:text-gray-500'"
                         @click.prevent="tab = '{{$header['key']}}'; window.location.hash = '{{$header['key']}}'">
                         <span class="hidden md:block">{{$header['title']}}</span>
                         @isset($header['icon'])

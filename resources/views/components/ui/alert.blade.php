@@ -14,7 +14,7 @@
         @endif
         {{$attributes->merge(
                 [
-                    'class'=>'text-sm text-left text-white bg-blue-500 h-12 mb-4 p-4 w-full flex items-center justify-between rounded-md'
+                    'class'=>'text-sm text-left text-white bg-primary-500 h-12 mb-4 p-4 w-full flex items-center justify-between rounded-md'
                 ]
                )}}
     >

@@ -14,9 +14,9 @@
                 <x-auth.label for="username" :value="__('Username')"></x-auth.label>
 
                 <x-auth.input id="username" class="block mt-1 w-full" type="text" name="username"
-                              :value="old('username')" required autofocus></x-auth.input>
+                              :value="old('username')" requidanger autofocus></x-auth.input>
                 @error("username")
-                <div class="text-red-500 font-normal text-sm py-1">{{ $message }}</div>
+                <div class="text-danger-500 font-normal text-sm py-1">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -27,16 +27,16 @@
                 <x-auth.input id="password" class="block mt-1 w-full"
                               type="password"
                               name="password"
-                              required autocomplete="current-password"></x-auth.input>
+                              requidanger autocomplete="current-password"></x-auth.input>
                 @error("password")
-                <div class="text-red-500 font-normal text-sm py-1">{{ $message }}</div>
+                <div class="text-danger-500 font-normal text-sm py-1">{{ $message }}</div>
                 @enderror
             </div>
 
             <!-- Remember Me -->
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-secondary-600 shadow-sm focus:border-secondary-300 focus:ring focus:ring-secondary-200 focus:ring-opacity-50" name="remember">
                     <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">{{ __('Remember me') }}</span>
                 </label>
             </div>

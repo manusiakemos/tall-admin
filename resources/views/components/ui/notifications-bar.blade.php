@@ -9,8 +9,8 @@
                      </span>
                       <span class="absolute top-0 right-7
                                     inline-flex items-center justify-center px-2 py-1
-                                    text-xs font-bold leading-none text-red-100
-                                    transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">46</span>
+                                    text-xs font-bold leading-none text-danger-100
+                                    transform translate-x-1/2 -translate-y-1/2 bg-danger-500 rounded-full">46</span>
                 </span>
             </button>
         </div>
@@ -25,7 +25,7 @@
                      w-72 md:w-2/3 h-72
                      overflow-y-scroll">
                 @for($i=0; $i<10; $i++)
-                    <div class="p-3 text-gray-700 dark:text-gray-300 hover:text-blue-500">
+                    <div class="p-3 text-gray-700 dark:text-gray-300 hover:text-primary-500">
                         <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda cupiditate eaque
                             impedit inventore ipsa, ipsam nulla possimus provident quisquam quod rem saepe sint
                             voluptatum. Cum dolorum itaque libero magni optio.</a>

@@ -4,8 +4,8 @@
             <li class="flex items-center">
                 <a href="{{$item['link']}}"
                    class="{{!$loop->last
-                        ? 'hover:text-white hover:bg-blue-500 dark:hover:bg-yellow-500 rounded-xl border-gray-700 dark:border-gray-300 border-2 p-1 px-2 text-sm mr-2'
-                        : 'hover:text-white hover:bg-blue-500 dark:hover:bg-yellow-500 rounded-xl border-blue-700 dark:border-yellow-500 border-2 p-1 px-2 text-sm'
+                        ? 'hover:text-white hover:bg-primary-500 dark:hover:bg-warning-500 rounded-xl border-gray-700 dark:border-gray-300 border-2 p-1 px-2 text-sm mr-2'
+                        : 'hover:text-white hover:bg-primary-500 dark:hover:bg-warning-500 rounded-xl border-primary-700 dark:border-warning-500 border-2 p-1 px-2 text-sm'
                         }}">
                     {{$item['title']}}
                 </a>

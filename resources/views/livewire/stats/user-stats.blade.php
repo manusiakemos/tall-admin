@@ -4,7 +4,7 @@
             <ul class="flex">
                 @foreach($rolesOptions as $role)
                     <div>
-                        <input class="focus:border-indigo-400 rounded text-red-500" type="checkbox" value="{{$role}}"
+                        <input class="focus:border-secondary-400 rounded text-danger-500" type="checkbox" value="{{$role}}"
                                wire:model="roles"/>
                         <span class="text-gray-700">{{$role}}</span>
                     </div>

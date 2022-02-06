@@ -37,12 +37,12 @@ git clone https://github.com/manusiakemos/tall-admin.git
 ```bash
 cd tall-admin
 
+composer i
+
 cp .env.example .env
 #configure .env variables
 
 php artisan key:generate
-
-composer i
 
 npm i
 
@@ -398,6 +398,29 @@ view('')
 ```vue
 <x-ui.navigation selector="foo"></x-ui.navigation>
 ```
+
+##### Navigation Item
+
+```vue
+<x-ui.navigation-item class="ml-5" session-active="user" link="{{route('user')}}">
+	Menu Item
+</x-ui.navigation-item>
+```
+
+##### Navigation Dropdown
+
+```vue
+<x-ui.navigation-dropdown session-expanded="admin">
+	<x-slot name="drop">
+			<i class="text-xl flex items-center fi-rr-settings"></i>
+			<span class="ml-3"> Admin </span>
+	</x-slot>
+  
+  <!-- slot for nav item -->
+</x-ui.navigation-dropdown>
+```
+
+
 
 #### Blank Page
 

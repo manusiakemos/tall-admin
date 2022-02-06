@@ -5,11 +5,11 @@
             layout: 'center',
             text: 'Do you want to continue?',
             buttons: [
-                Noty.button('YES', 'btn bg-blue-500 text-white :hover mr-1', function () {
+                Noty.button('YES', 'btn bg-primary-500 text-white :hover mr-1', function () {
                     @this.destroy(id);
                     n.close();
                 }),
-                Noty.button('NO', 'btn bg-red-500 text-white :hover mr-1 mx-1', function () {
+                Noty.button('NO', 'btn bg-danger-500 text-white :hover mr-1 mx-1', function () {
                     n.close();
                 })
             ]

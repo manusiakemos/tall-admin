@@ -48,7 +48,7 @@ trait {@className}State
         if ($save) {
             $this->reset("{@classNameLower}");
             $this->emit('showToast', ["message" => "{@className} berhasil ditambahkan", "type" => "success", "reload"=>false]);
-            $this->emitTo('{@classNameLower}.{@classNameLower}-page', 'refreshDt');
+            $this->emit( 'refreshDt');
         }else{
             abort('403', '{@className} gagal ditambahkan');
         }
@@ -78,7 +78,7 @@ trait {@className}State
         if ($save) {
              $this->reset("{@classNameLower}");
              $this->emit('showToast', ["message" => "{@className} berhasil diupdate", "type" => "success", "reload"=>false]);
-             $this->emitTo('{@classNameLower}.{@classNameLower}-page', 'refreshDt');
+             $this->emit('refreshDt');
         }
     }
 

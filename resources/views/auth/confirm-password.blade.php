@@ -23,7 +23,7 @@
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
-                                required autocomplete="current-password" />
+                                requidanger autocomplete="current-password" />
             </div>
 
             <div class="flex justify-end mt-4">

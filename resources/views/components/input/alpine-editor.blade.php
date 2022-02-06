@@ -12,7 +12,7 @@
             <button
                 type="button"
                 data-command="strong"
-                data-active-class="bg-blue-400"
+                data-active-class="bg-primary-400"
                 class="bg-gray-500"
             >
                 Bold
@@ -20,7 +20,7 @@
             <button
                 type="button"
                 data-command="em"
-                data-active-class="bg-blue-400"
+                data-active-class="bg-primary-400"
                 class="bg-gray-500"
             >
                 Emphasize
@@ -28,7 +28,7 @@
             <button
                 type="button"
                 data-command="code"
-                data-active-class="bg-blue-400"
+                data-active-class="bg-primary-400"
                 class="bg-gray-500"
             >
                 Code
@@ -37,7 +37,7 @@
                 type="button"
                 data-command="heading"
                 data-level="1"
-                data-active-class="bg-blue-400"
+                data-active-class="bg-primary-400"
                 class="bg-gray-500"
             >
                 H1

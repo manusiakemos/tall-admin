@@ -6,7 +6,7 @@
                             'fi-rr-sun' : theme_icon == 'light',
                             'fi-rr-computer' : theme_icon == 'system' || !theme_icon
                            }"
-                class="text-3xl flex items-center hover:text-yellow-400"></span>
+                class="text-3xl flex items-center hover:text-warning-400"></span>
         </button>
 
         <div x-show="showDarkMode"
@@ -15,18 +15,18 @@
                    rounded-xl px-6 py-3
                    h-auto w-auto
                    text-gray-300 dark:text-gray-100
-                   bg-blue-600 dark:bg-gray-900 z-50">
+                   bg-primary-600 dark:bg-gray-900 z-50">
             <ul class="w-full h-full">
                 <li x-on:click="theme = 'light'; theme_icon = 'light' ;showDarkMode = !showDarkMode"
-                    class="flex items-center justify-start cursor-pointer hover:text-yellow-400">
+                    class="flex items-center justify-start cursor-pointer hover:text-warning-400">
                     <span class="fi-rr-sun text-2xl mr-3"></span> Light
                 </li>
                 <li x-on:click="theme = 'dark'; theme_icon = 'dark' ;showDarkMode = !showDarkMode"
-                    class="flex items-center justify-start cursor-pointer hover:text-yellow-400">
+                    class="flex items-center justify-start cursor-pointer hover:text-warning-400">
                     <span class="fi-rr-moon text-2xl mr-3"></span> Dark
                 </li>
                 <li x-on:click="theme = 'system'; theme_icon = 'system' ;showDarkMode = !showDarkMode"
-                    class="flex items-center justify-start cursor-pointer hover:text-yellow-400">
+                    class="flex items-center justify-start cursor-pointer hover:text-warning-400">
                     <span class="fi-rr-computer text-2xl mr-3"></span> System
                 </li>
             </ul>

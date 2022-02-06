@@ -14,12 +14,12 @@
                       file:mr-4 file:py-2 file:px-4
                       file:rounded-full file:border-0 file:cursor-pointer
                       file:text-sm file:font-semibold
-                      file:bg-blue-300 file:text-blue-700
-                      hover:file:bg-blue-400"/>
+                      file:bg-primary-300 file:text-primary-700
+                      hover:file:bg-primary-400"/>
         </label>
     </div>
 
     @error($attributes->wire('model')->value())
-    <div class="text-red-500 font-normal text-sm py-1">{{ $message }}</div>
+    <div class="text-danger-500 font-normal text-sm py-1">{{ $message }}</div>
     @enderror
 </div>

@@ -3,6 +3,6 @@
     {{$slot}}
 
     @error($model)
-    <div class="text-red-500 font-normal text-sm py-1">{{ $message }}</div>
+    <div class="text-danger-500 font-normal text-sm py-1">{{ $message }}</div>
     @enderror
 </div>

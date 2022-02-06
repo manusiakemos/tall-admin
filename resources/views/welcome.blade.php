@@ -6,17 +6,17 @@
                     @if(\Illuminate\Support\Facades\Route::has('register'))
                         <a href="{{url('/register')}}"
                            class="text-gray-700 text-lg tracking-wider
-                          text-blue-100 hover:text-yellow-400 font-semibold">REGISTER</a>
+                          text-primary-100 hover:text-warning-400 font-semibold">REGISTER</a>
                     @endif
                     @if(\Illuminate\Support\Facades\Route::has('login'))
                         @if(!auth()->check())
                             <a href="{{url('/login')}}"
                                class="text-gray-700 text-lg tracking-wider ml-3
-                          text-blue-100 hover:text-yellow-400 font-semibold">LOGIN</a>
+                          text-primary-100 hover:text-warning-400 font-semibold">LOGIN</a>
                         @else
                             <a href="{{url('/home')}}"
                                class="text-gray-700 text-lg tracking-wider ml-3
-                          text-blue-100 hover:text-yellow-400 font-semibold">HOME</a>
+                          text-primary-100 hover:text-warning-400 font-semibold">HOME</a>
                         @endif
                     @endif
 
@@ -29,7 +29,7 @@
                 <div class="p-3 px-12">
                     <a href="{{url('/home')}}"
                        class="text-gray-700 text-lg tracking-wider
-                          text-blue-100 hover:text-yellow-400 font-semibold">HOME</a>
+                          text-primary-100 hover:text-warning-400 font-semibold">HOME</a>
                 </div>
             </nav>
         @endif
@@ -55,7 +55,7 @@
 
                 <div id="section-one-right"
                      class="col-span-4 flex justify-center items-center min-h-screen
-                            bg-gradient-to-br from-blue-700 to-indigo-700
+                            bg-gradient-to-br from-primary-700 to-secondary-700
                             dark:from-gray-800 dark:to-gray-900 px-12">
                     <img class="h-96 mx-12" src="{{ asset('images/welcome.svg') }}" alt="illustration">
                 </div>

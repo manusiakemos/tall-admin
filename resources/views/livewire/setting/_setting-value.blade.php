@@ -5,5 +5,5 @@
 @elseif($row->setting_input == 'file')
     <a href="{{ asset('storage/settings/'.$row->setting_value) }}"
        target="_blank"
-       class="underline hover:text-blue-500">Lihat Gambar</a>
+       class="underline hover:text-primary-500">Lihat Gambar</a>
 @endif

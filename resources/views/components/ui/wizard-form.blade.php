@@ -10,7 +10,7 @@
             <h4 class="text-gray-700 font-bold dark:text-gray-300 ml-3" x-text="headers[step - 1]['title']"></h4>
             <div class="flex items-center justify-center w-1/2 md:w-2/3 p-5">
                 <div class="w-full bg-gray-300 rounded-full mr-2">
-                    <div class="rounded-full bg-green-500 text-xs leading-none h-2 text-center text-white"
+                    <div class="rounded-full bg-success-500 text-xs leading-none h-2 text-center text-white"
                          :style="'width: '+ parseInt(step) / total * 100 +'%'"></div>
                 </div>
                 <div class="text-xs w-10 text-gray-600" x-text="parseInt(step / 3 * 100) +'%'"></div>

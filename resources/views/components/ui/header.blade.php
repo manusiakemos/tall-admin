@@ -1,6 +1,6 @@
 <header
     class="w-full
-        bg-gradient-to-r from-indigo-600 to-blue-500 dark:from-gray-600 dark:to-gray-800
+        bg-gradient-to-r from-secondary-600 to-primary-500 dark:from-gray-600 dark:to-gray-800
         flex justify-between items-center
         py-2 px-5">
 
@@ -12,22 +12,22 @@
                 class="hidden md:block
                 text-white text-2xl focus:outline-none relative">
             <i x-show.transition="!showSidebar" x.transition.duration.500ms
-               class="fi-rr-menu-burger text-white dark:text-yellow-400"></i>
+               class="fi-rr-menu-burger text-white dark:text-warning-400"></i>
             <i x-show.transition="showSidebar" x.transition.duration.500ms
-               class="fi-rr-cross text-white dark:text-yellow-400"></i>
+               class="fi-rr-cross text-white dark:text-warning-400"></i>
         </button>
     </div>
 
     <div id="header-right-part" x-data="{ isOpen: false }" x-cloak
          class="relative flex justify-end items-center w-full">
 
-        {{--        <x-ui.notifications-bar></x-ui.notifications-bar>--}}
+        {{--<x-ui.notifications-bar></x-ui.notifications-bar>--}}
 
         <div class="hidden md:block">
             <x-ui.darkmode/>
         </div>
 
-        <x-ui.fullscreen-button/>
+        {{--<x-ui.fullscreen-button/>--}}
 
         <x-ui.avatar/>
     </div>

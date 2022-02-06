@@ -15,7 +15,7 @@
     </button>
 
 @elseif($variant == "link")
-    <a{{ $attributes->merge(['class' => 'py-2 hover:text-red-500 text-red-400 flex justify-start uppercase tracking-wider font-sans']) }}>
+    <a{{ $attributes->merge(['class' => 'py-2 hover:text-danger-500 text-danger-400 flex justify-start uppercase tracking-wider font-sans']) }}>
         {{ $slot }}
     </a>
 @endif

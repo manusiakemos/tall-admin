@@ -9,7 +9,7 @@
                     {{$updateMode ? "Edit Slider" : "Tambah Slider"}}
                 </h4>
 
-                <x-ui.button class="bg-red-500 text-white hover:bg-red-400"
+                <x-ui.button class="bg-danger-500 text-white hover:bg-danger-400"
                              wire:click="back"
                              variant="circle">
                     <span class="flex justify-center items-center fi-rr-cross"></span>
@@ -39,11 +39,11 @@
                     <div class="flex place-content-end py-4">
                         <x-ui.button
                             wire:click="back"
-                            class="bg-red-500 hover:bg-red-400 text-white hover:bg-blue-400">
+                            class="bg-danger-500 hover:bg-danger-400 text-white hover:bg-primary-400">
                             Kembali
                         </x-ui.button>
                         <x-ui.button type="submit"
-                                     class="bg-indigo-500 hover:bg-indigo-400 text-white hover:bg-blue-400"
+                                     class="bg-secondary-500 hover:bg-secondary-400 text-white hover:bg-primary-400"
                                     >
                             {{$updateMode ? "Simpan Perubahan" : "Simpan"}}
                         </x-ui.button>

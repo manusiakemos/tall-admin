@@ -45,7 +45,7 @@
         search:'',
         selected: @entangle($attributes->wire('model')),
         disabled:false,
-        get filteredOptions() {
+        get filtedangerOptions() {
             if(this.search == '' || this.search == null){
                 return this.options;
             }
@@ -66,7 +66,7 @@
            x-on:click="show = true; search = '';"
            id="{!! $attributes->get('id') !!}"
            class="mt-1 block w-full rounded-md dark:bg-gray-600 bg-gray-200 border-transparent
-                      focus:border-indigo-400 focus:bg-gray-200 dark:focus:bg-gray-800 focus:ring-0
+                      focus:border-secondary-400 focus:bg-gray-200 dark:focus:bg-gray-800 focus:ring-0
                       text-sm text-gray-700 dark:text-gray-200">
 
     <input type="hidden"
@@ -86,7 +86,7 @@
         class="absolute inset-0 top-10 bg-gray-100 dark:bg-black z-50
                 cursor-pointer rounded-md min-h-[80px] max-h-[400px]
                 overflow-y-scroll overflow-x-hidden">
-        <template x-for="item in filteredOptions">
+        <template x-for="item in filtedangerOptions">
             <li class="text-xs text-gray-700 dark:text-gray-300 border-b border-gray-300 dark:border-gray-700
                        hover:bg-gray-100 dark:hover:bg-gray-900 shadow-sm z-20 p-3"
                 x-on:click="search = item.{!! $text !!};selected = item.{!! $value !!};show = false;"

@@ -84,29 +84,24 @@ class CrudController extends Controller
 
     private function handleRequest(Request $request)
     {
-        try {
+        if ($request->router) {
+            $this->generateRouter();
+        }
 
-            if ($request->router) {
-                $this->generateRouter();
-            }
+        if ($request->model) {
+            $this->generateModel();
+        }
 
-            if ($request->model) {
-                $this->generateModel();
-            }
+        if ($request->controller) {
+            $this->generateLivewire();
+        }
 
-            if ($request->controller) {
-                $this->generateLivewire();
-            }
+        if ($request->migration) {
+            $this->generateMigration();
+        }
 
-            if ($request->migration) {
-                $this->generateMigration();
-            }
-
-            if ($request->view) {
-                $this->generateView();
-            }
-        } catch (Exception $e) {
-            return $e;
+        if ($request->view) {
+            $this->generateView();
         }
 
         return true;
@@ -129,7 +124,7 @@ class CrudController extends Controller
             $primarykey
         ];
 
-        $stub_template = file_get_contents(base_path("stubs/model.stub"));
+        $stub_template = file_get_contents(base_path("stubs/custom-model.stub"));
         $modelTemplate = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
 
         $path = app_path("/Models");
@@ -180,14 +175,14 @@ class CrudController extends Controller
             $generatedProps,
         ];
 
-       if ($this->modal){
-           $stub_template = file_get_contents(base_path("stubs/custom_livewire_modal.stub"));
-       }else{
-           $stub_template = file_get_contents(base_path("stubs/custom_livewire.stub"));
-       }
+        if ($this->modal){
+            $stub_template = file_get_contents(base_path("stubs/custom_livewire_modal.stub"));
+        }else{
+            $stub_template = file_get_contents(base_path("stubs/custom_livewire.stub"));
+        }
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
         $path = app_path("/Http/Livewire/{$this->className}");
-        File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
+        File::isDirectory($path) or File::makeDirectory($path, 0775, true, true);
         file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}Page.php"), $template);
 
         if ($this->modal){
@@ -198,11 +193,11 @@ class CrudController extends Controller
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
         file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}State.php"), $template);
 
-       if (!$this->modal){
-           $stub_template = file_get_contents(base_path("stubs/custom_livewire_form.stub"));
-           $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
-           file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}Form.php"), $template);
-       }
+        if (!$this->modal){
+            $stub_template = file_get_contents(base_path("stubs/custom_livewire_form.stub"));
+            $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
+            file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}Form.php"), $template);
+        }
 
         $stub_template = file_get_contents(base_path("stubs/table_class.stub"));
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
@@ -289,13 +284,13 @@ class CrudController extends Controller
         ];
 
 
-       if ($this->modal){
-           $stub_template = file_get_contents(base_path("stubs/form_modal.stub"));
-           $pathToWrite = resource_path("views/livewire/{$this->classNameLower}/_{$this->classNameLower}-form.blade.php");
-       }else{
-           $stub_template = file_get_contents(base_path("stubs/form.stub"));
-           $pathToWrite = resource_path("views/livewire/{$this->classNameLower}/{$this->classNameLower}-form.blade.php");
-       }
+        if ($this->modal){
+            $stub_template = file_get_contents(base_path("stubs/form_modal.stub"));
+            $pathToWrite = resource_path("views/livewire/{$this->classNameLower}/_{$this->classNameLower}-form.blade.php");
+        }else{
+            $stub_template = file_get_contents(base_path("stubs/form.stub"));
+            $pathToWrite = resource_path("views/livewire/{$this->classNameLower}/{$this->classNameLower}-form.blade.php");
+        }
 
         $template = str_replace($search, $replace, $stub_template);
         $path = resource_path("views/livewire/{$this->classNameLower}");
@@ -316,11 +311,11 @@ class CrudController extends Controller
             $this->className,
             $this->classNameLower,
         ];
-       if ($this->modal){
-           $stub_template = file_get_contents(base_path("stubs/action_modal.stub"));
-       }else{
-           $stub_template = file_get_contents(base_path("stubs/action.stub"));
-       }
+        if ($this->modal){
+            $stub_template = file_get_contents(base_path("stubs/action_modal.stub"));
+        }else{
+            $stub_template = file_get_contents(base_path("stubs/action.stub"));
+        }
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
         $path = resource_path("views/livewire/{$this->classNameLower}");
         File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);

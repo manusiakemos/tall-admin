@@ -1,5 +1,5 @@
 <div class="grid md:grid-cols-2">
-    <div class="min-h-screen w-full bg-gradient-to-br from-indigo-600 to-blue-500
+    <div class="min-h-screen w-full bg-gradient-to-br from-secondary-600 to-primary-500
                 flex flex-col items-center justify-center px-12">
         <h1 class="text-4xl mb-12 font-serif uppercase tracking-wide">Welcome to {!! config('setting.app_name.value') ?? config('app.name') !!}</h1>
         <img class="max-h-[400px]" src="{{ asset('images/login.svg') }}" alt="">

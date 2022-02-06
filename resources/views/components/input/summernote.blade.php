@@ -6,7 +6,7 @@
         x-data="{
                 content : @entangle($attributes->wire('model'))
             }"
-       {!! $attributes->whereDoesntStartWith('wire:model') !!}
+       {!! $attributes->whedangeroesntStartWith('wire:model') !!}
     ></textarea>
 </div>
 
