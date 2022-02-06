@@ -16,13 +16,19 @@
             <x-ui.navigation-item class="ml-5" session-active="user" link="{{url('tinker')}}">
                 Web Tinker
             </x-ui.navigation-item>
+            @if(config('crud.enabled'))
+                <x-ui.navigation-item class="ml-5" session-active="user" link="{{url('crud')}}">
+                    Crud Generator
+                </x-ui.navigation-item>
+            @endif
             <x-ui.navigation-item class="ml-5" session-active="schematics" link="{{url('schematics')}}">
                 Schematics
             </x-ui.navigation-item>
             <x-ui.navigation-item class="ml-5" session-active="routes" link="{{url('routes')}}">
                 Pretty Routes
             </x-ui.navigation-item>
-            <x-ui.navigation-item class="ml-5" session-active="laravel-filemanager" link="{{url('laravel-filemanager')}}">
+            <x-ui.navigation-item class="ml-5" session-active="laravel-filemanager"
+                                  link="{{url('laravel-filemanager')}}">
                 File Manager
             </x-ui.navigation-item>
         </x-ui.navigation-dropdown>

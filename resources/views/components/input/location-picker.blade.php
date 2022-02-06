@@ -1,21 +1,18 @@
 <div wire:ignore>
-    <x-input.form-group label="Temukan Lokasi" key="address" model="location.address">
-        <x-input.text type="text" id="us3-address" placeholder="Masukkan Nama Lokasi"></x-input.text>
-    </x-input.form-group>
+    {{--    change to alpine and entangle--}}
+    <x-input.text type="text" id="{{  $attributes->get('id') }}-address" placeholder="Masukkan Nama Lokasi"></x-input.text>
 
-    <x-input.form-group class="form-group" label="Radius" key="radius" model="location.radius">
-        <x-input.text wire:model="location.radius" type="text" id="us3-radius"></x-input.text>
-    </x-input.form-group>
+    <div wire:ignore id="{{  $attributes->get('id') }}-map" class="w-full rounded-xl border-2 border-red-400 h-72 z-50 mt-4"></div>
 
-    <div id="us3" class="w-full rounded-xl border-2 border-danger-400 h-72"></div>
+    <div class="grid md:grid-cols-3 gap-4 mt-4">
 
-    <x-input.form-group label="Lat" key="lat" model="location.lat">
-        <x-input.text wire:model="location.lat" type="text" class="w-auto" id="us3-lat"></x-input.text>
-    </x-input.form-group>
+        <x-input.text wire:model="{{$radius}}" class="w-full" type="text" id="{{  $attributes->get('id') }}-radius"></x-input.text>
 
-    <x-input.form-group label="Lng" key="lng" model="location.lng">
-        <x-input.text wire:model="location.lng" type="text" class="w-auto" id="us3-lng"></x-input.text>
-    </x-input.form-group>
+        <x-input.text wire:model="{{$lat}}" type="text" class="w-full" id="{{  $attributes->get('id') }}-lat"></x-input.text>
+
+        <x-input.text wire:model="{{$lng}}" type="text" class="w-full" id="{{  $attributes->get('id') }}-lng"></x-input.text>
+
+    </div>
 </div>
 
 @push('styles')
@@ -34,24 +31,25 @@
              src="{{ asset("vendor/location-picker/location-picker.js") }}"></script>
     <script  data-turbolinks-eval="false"  data-turbo-eval="false">
         Livewire.on("set_map", function (event) {
-            $('#us3').locationpicker({
+            // console.log('emit set map')
+            $('#{{  $attributes->get('id') }}-map').locationpicker({
                 location: {
-                    latitude: event.location.lat,
-                    longitude: event.location.lng
+                    latitude: event.lat,
+                    longitude: event.lng
                 },
-                radius: event.location.radius,
+                radius: event.radius,
                 inputBinding: {
-                    latitudeInput: $('#us3-lat'),
-                    longitudeInput: $('#us3-lng'),
-                    radiusInput: $('#us3-radius'),
-                    locationNameInput: $('#us3-address')
+                    latitudeInput: $('#{{  $attributes->get('id') }}-lat'),
+                    longitudeInput: $('#{{  $attributes->get('id') }}-lng'),
+                    radiusInput: $('#{{  $attributes->get('id') }}-radius'),
+                    locationNameInput: $('#{{  $attributes->get('id') }}-address')
                 },
                 enableAutocomplete: true,
                 onchanged: function (currentLocation, radius, isMarkerDropped) {
-                    @this.set("location.lat", currentLocation.latitude);
-                    @this.set("location.lng", currentLocation.longitude);
-                    @this.set("location.radius", radius);
-                    console.log(`Current Location = ${currentLocation}`);
+                @this.set("{{$lat}}", currentLocation.latitude);
+                @this.set("{{$lng}}", currentLocation.longitude);
+                @this.set("{{$radius}}", radius);
+                    // console.log(`Current Location = ${currentLocation}`);
                 }
             });
         });

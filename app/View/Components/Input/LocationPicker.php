@@ -6,11 +6,17 @@ use Illuminate\View\Component;
 
 class LocationPicker extends Component
 {
-    public $location;
+    public $lat;
+    public $lng;
+    public $radius;
+    public $search;
 
-    public function __construct($location)
+    public function __construct($lat, $lng, $radius, $search)
     {
-        $this->location = $location;
+        $this->lat = $lat;
+        $this->lng = $lng;
+        $this->radius = $radius;
+        $this->search = $search;
     }
 
     public function render()
