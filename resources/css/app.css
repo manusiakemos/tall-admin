@@ -25,10 +25,6 @@
         @apply uppercase text-lg font-semibold dark:text-gray-400 text-gray-700 font-sans tracking-wide;
     }
 
-    label{
-        @apply dark:text-gray-400 text-gray-700 !important;
-    }
-
     .filepond--drop-label{
         @apply dark:bg-gray-700 dark:text-gray-300 !important;
     }
