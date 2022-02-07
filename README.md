@@ -146,11 +146,21 @@ $this->emit("showToast", ["message" => "", "type" => "success", "reload"=>false]
 </x-input.form-group>
 ```
 
-#### Filepond
+#### Filepond && File Input
+
+##### Filepond
 
 ```vue
 <x-input.filepond remove-file-event="removeFile" wire:model="image"></x-input.filepond>
 ```
+
+##### File Input
+
+```vue
+<x-input.file wire:model=""></x-input.filepond>
+```
+
+
 
 in php add this
 

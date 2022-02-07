@@ -7,6 +7,10 @@
             </div>
         </x-ui.navigation-item>
 
+        <x-ui.navigation-item class="ml-5" session-active="slider" link="{{route('slider')}}">
+           Sliders
+        </x-ui.navigation-item>
+
         @role('super-admin')
         <x-ui.navigation-dropdown session-expanded="utilities">
             <x-slot name="drop">
