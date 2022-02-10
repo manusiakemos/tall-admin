@@ -19,8 +19,7 @@
     @endif
 
     <a href="{{url('logout')}}"
-       id="logout-btn"
-       class="absolute left-0 right-0 bottom-0 w-full md:w-2/3
+       class="logout-btn absolute left-0 right-0 bottom-0 w-full md:w-2/3
             backdrop-filter backdrop-blur-xl backdrop-sepia-0
             bg-white/30 dark:bg-white/20 rounded-md
             text-white  hover:text-warning-400

@@ -82,7 +82,7 @@
     </form>
 
     <script>
-        $("#logout-btn").on("click", (e)=>{
+        $(".logout-btn").on("click", (e)=>{
             e.preventDefault();
             $("#logout-form").submit();
         })
