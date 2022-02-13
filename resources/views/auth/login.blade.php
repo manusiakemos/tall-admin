@@ -14,7 +14,7 @@
                 <x-auth.label for="username" :value="__('Username')"></x-auth.label>
 
                 <x-auth.input id="username" class="block mt-1 w-full" type="text" name="username"
-                              :value="old('username')" requidanger autofocus></x-auth.input>
+                              :value="old('username')" required autofocus></x-auth.input>
                 @error("username")
                 <div class="text-danger-500 font-normal text-sm py-1">{{ $message }}</div>
                 @enderror
@@ -27,7 +27,7 @@
                 <x-auth.input id="password" class="block mt-1 w-full"
                               type="password"
                               name="password"
-                              requidanger autocomplete="current-password"></x-auth.input>
+                              required autocomplete="current-password"></x-auth.input>
                 @error("password")
                 <div class="text-danger-500 font-normal text-sm py-1">{{ $message }}</div>
                 @enderror
