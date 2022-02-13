@@ -4,11 +4,13 @@
 namespace App\Http\Livewire\Slider;
 
 
+use App\Models\Slider;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class SliderPage extends Component
 {
-    use SliderState;
+    use SliderState, WithFileUploads;
 
     protected $listeners = ['create', 'edit'];
 
@@ -16,6 +18,8 @@ class SliderPage extends Component
     {
         session()->put('active', 'slider');
         session()->put('expanded', 'admin');
+
+        $this->options['slider_active'] = Slider::$slider_active_options;
     }
 
     public function render()

@@ -291,6 +291,7 @@ More info
 
  <x-input.custom-select2
                 id=""
+								placeholder="Pilih status"
                 wire:model=""
                 :options="$options['']"
                 text=""

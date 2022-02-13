@@ -62,6 +62,7 @@
      }">
     <input type="text"
            x-model="search"
+           placeholder="{{$placeholder ?? ''}}"
            autocomplete="off"
            x-on:click="show = true; search = '';"
            id="{!! $attributes->get('id') !!}"
@@ -81,14 +82,14 @@
         <span class="fi-rr-caret-down text-gray-700 dark:text-gray-300"></span>
     </button>
 
-    <ul x-show="show"
+    <ul x-show="show" x-trap="show"
         x-transition
-        class="absolute inset-0 top-10 bg-gray-100 dark:bg-black z-50
-                cursor-pointer rounded-md min-h-[80px] max-h-[400px]
+        class="relative inset-x-0 top-0 bg-gray-100 dark:bg-gray-900 z-50
+                cursor-pointer rounded-md min-h-[80px] max-h-[160px]
                 overflow-y-scroll overflow-x-hidden">
         <template x-for="item in filtedangerOptions">
-            <li class="text-xs text-gray-700 dark:text-gray-300 border-b border-gray-300 dark:border-gray-700
-                       hover:bg-gray-100 dark:hover:bg-gray-900 shadow-sm z-20 p-3"
+            <li class="text-xs text-gray-700 dark:text-gray-300 border-b border-gray-300 dark:border-gray-800
+                       hover:bg-gray-100 dark:hover:bg-gray-700 shadow-sm z-20 p-3"
                 x-on:click="search = item.{!! $text !!};selected = item.{!! $value !!};show = false;"
                 x-text="item.{{$text}}">
             </li>

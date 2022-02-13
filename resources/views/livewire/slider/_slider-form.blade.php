@@ -4,17 +4,25 @@
             <x-input.validation-error/>
 
             <x-input.form-group label="Title" key="slider_title" model="slider.slider_title">
-                <x-input.text id="Title" wire:model.defer="slider.slider_title"></x-input.text>
+                <x-input.text id="Title" wire:model.defer="slider.slider_title"/>
             </x-input.form-group>
+
             <x-input.form-group label="Desc" key="slider_desc" model="slider.slider_desc">
-                <x-input.text id="Desc" wire:model.defer="slider.slider_desc"></x-input.text>
+                <x-input.textarea id="Desc" wire:model.defer="slider.slider_desc"/>
             </x-input.form-group>
-            <x-input.form-group label="Image" key="slider_image" model="slider.slider_image">
-                <x-input.filepond data-event-name="resetFilePond" wire:model="image"></x-input.filepond>
+
+            <x-input.form-group label="Image" key="image" model="image">
+                <x-input.file id="image" wire:model="image"/>
             </x-input.form-group>
+
             <x-input.form-group label="Status" key="slider_active" model="slider.slider_active">
-                <x-input.radio method="select_slider_active" wire:model.defer="slider.slider_active"
-                               :select2="false"></x-input.radio>
+                <x-input.custom-select2
+                    placeholder="Pilih status"
+                    id="slider_active"
+                    wire:model="slider.slider_active"
+                    :options="$options['slider_active']"
+                    text="text"
+                    value="value"/>
             </x-input.form-group>
 
 

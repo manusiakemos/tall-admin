@@ -33,7 +33,7 @@ trait {@className}State
 
         public function create()
         {
-            $this->reset();
+            $this->reset(['${@classNameLower}', 'updateMode']);
             $this->showModalForm = true;
         }
 

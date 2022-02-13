@@ -2,23 +2,29 @@
     <xxx-input.form-group label="{{$field['label']}}" key="{{$field['name']}}" model="{{$model}}.{{$field['name']}}">
         @switch($field['htmlType'])
             @case("file")
-            <xxx-input.filepond remove-file-event="removeFile" wire:model="image"></xxx-input.filepond>
+            <xxx-input.file id="{{$field['name']}}" wire:model="image"></xxx-input.file>
             @break
 
             @case("date")
-            <xxx-input.text type="date" id="{{$field['label']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.text>
+            <xxx-input.text type="date" id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.text>
             @break
 
             @case("time")
-            <xxx-input.text type="datetime-local" id="{{$field['label']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.text>
+            <xxx-input.text type="datetime-local" id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.text>
             @break
 
             @case("summernote")
-            <xxx-input.summernote data-event-name="set_summernote_value" id="{{$field['label']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.summernote>
+            <xxx-input.summernote data-event-name="set_summernote_value" id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.summernote>
             @break
 
             @case("select")
-            <xxx-input.select method="select_{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}" :select2="false"></xxx-input.select>
+            <xxx-input.custom-select2
+                id="{{$field['name']}}"
+                placeholder="Pilih salah satu"
+                wire:model="{{$model}}.{{$field['name']}}"
+                :options="$options['{{$field['name']}}_options']"
+                text=""
+                value=""/>
             @break
 
             @case("radio")
@@ -26,7 +32,7 @@
             @break
 
             @default
-            <xxx-input.text id="{{$field['label']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.text>
+            <xxx-input.text id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.text>
             @break
         @endswitch
     </xxx-input.form-group>

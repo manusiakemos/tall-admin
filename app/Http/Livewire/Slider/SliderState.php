@@ -9,9 +9,15 @@ trait SliderState
 {
     public $previous;
 
+    public $image;
+
     public $updateMode = false;
 
     public $showModalForm = false;
+
+    public $options = [
+      "slider_active" => []
+    ];
 
     public array $slider = [
         "slider_id" => "",
@@ -39,20 +45,21 @@ trait SliderState
 
     public function create()
     {
-        $this->reset();
+        $this->reset(['slider', 'updateMode']);
+        $this->image = null;
         $this->showModalForm = true;
     }
 
     public function store()
     {
         $rules = [
+            "image" => [
+                "required", "image"
+            ],
             "slider.slider_title" => [
                 "required"
             ],
             "slider.slider_desc" => [
-                "required"
-            ],
-            "slider.slider_image" => [
                 "required"
             ],
             "slider.slider_active" => [
@@ -61,7 +68,6 @@ trait SliderState
         ];
         $this->validate($rules);
 
-
         $this->updateMode = false;
 
         $save = $this->handleFormRequest(new Slider);
@@ -69,7 +75,7 @@ trait SliderState
         if ($save) {
             $this->reset("slider");
             $this->emit('showToast', ["message" => "Slider berhasil ditambahkan", "type" => "success", "reload" => false]);
-            $this->emitTo('slider.slider-page', 'refreshDt');
+            $this->emit( 'refreshDt');
         } else {
             abort('403', 'Slider gagal ditambahkan');
         }
@@ -77,6 +83,7 @@ trait SliderState
 
     public function edit($id)
     {
+        $this->reset(['slider', 'updateMode', 'image']);
         $this->updateMode = true;
         $slider = Slider::where('slider_id', $id)->first();
         $this->slider = $slider->toArray();
@@ -92,11 +99,11 @@ trait SliderState
             "slider.slider_desc" => [
                 "required"
             ],
-            "slider.slider_image" => [
-                "required"
-            ],
             "slider.slider_active" => [
                 "required"
+            ],
+            "image" => [
+                "nullable", "image"
             ],
         ];
         $this->validate($rules);
@@ -114,7 +121,7 @@ trait SliderState
         if ($save) {
             $this->reset("slider");
             $this->emit('showToast', ["message" => "Slider berhasil diupdate", "type" => "success", "reload" => false]);
-            $this->emitTo('slider.slider-page', 'refreshDt');
+            $this->emit('refreshDt');
         }
     }
 
@@ -130,14 +137,14 @@ trait SliderState
         $this->reset();
     }
 
-    private function handleFormRequest($db): bool
+    private function handleFormRequest(Slider $db): bool
     {
         try {
             $db->slider_title = $this->slider['slider_title'];
             $db->slider_desc = $this->slider['slider_desc'];
-            if ($this->myFile) {
-                $filename = Str::random() . "." . $this->myFile->getClientOriginalExtension();
-                $this->myFile->storeAs('uploads', $filename, 'public');
+            if ($this->image) {
+                $filename = Str::random() . "." . $this->image->getClientOriginalExtension();
+                $this->image->storeAs('uploads', $filename, 'public');
                 $db->slider_image = $filename;
             }
             $db->slider_active = $this->slider['slider_active'];

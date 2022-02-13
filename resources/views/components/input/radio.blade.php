@@ -8,7 +8,7 @@
                    wire:model="{{ $attributes->whereStartsWith('wire:model')->first() }}"
                    id="{{$id}}"
                    value="{{$item[$value]}}">
-            <label for="{{$id}}">{{$item[$text]}}</label>
+            <label for="{{$id}}" class="text-gray-700 dark:text-gray-300">{{$item[$text]}}</label>
         </div>
     @endforeach
 </div>

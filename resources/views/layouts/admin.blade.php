@@ -43,9 +43,8 @@
     @stack("styles")
 
     @stack("scriptsBefore")
-
-    <script data-turbolinks-eval="false" data-turbo-eval="false" defer
-            src="{{ asset('vendor/alpine/alpine.js') }}"></script>
+    <script defer src="https://unpkg.com/@alpinejs/focus@3.9.0/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.9.0/dist/cdn.min.js"></script>
 
     <script data-turbolinks-eval="false" data-turbo-eval="false" src="{{ asset('js/admin.js') }}"></script>
 

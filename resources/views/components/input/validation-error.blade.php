@@ -1,5 +1,5 @@
 @if ($errors->any())
-    <div class="fixed top-5 right-5 md:w-1/4 p-6 z-50">
+    <div class="fixed top-5 right-5 w-full p-6 z-50">
         <div
             x-cloak
             x-on:click.self="show=false"
