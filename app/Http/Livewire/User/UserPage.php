@@ -16,7 +16,7 @@ class UserPage extends Component
     {
         session()->put('active', 'user');
         session()->put('expanded', 'admin');
-        $this->options['role'] = User::$role;
+        $this->options['role'] = User::$role_options;
     }
 
     public function render()

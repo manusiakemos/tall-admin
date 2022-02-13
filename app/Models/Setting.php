@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -34,6 +33,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Setting extends Model
 {
+
+    public static $setting_removable_options = [
+        [
+            "value" => "1",
+            "text" => "Ya",
+        ],
+        [
+            "value" => "0",
+            "text" => "Tidak",
+        ]
+    ];
 
     use HasFactory;
 

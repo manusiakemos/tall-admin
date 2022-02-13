@@ -2,13 +2,9 @@
 
 namespace App\View\Components\Traits;
 
+use App\Models\User;
+
 trait SelectOptionsTrait{
-
-
-    public function provinces()
-    {
-        return Indonesia::allProvinces();
-    }
 
     public function role()
     {
@@ -19,16 +15,7 @@ trait SelectOptionsTrait{
             "text" => "Select A Role"
         ];
         $this->placeholder = "Please Select A Role ...";
-        return [
-            [
-                "value" => "admin",
-                "text" => "Admin"
-            ],
-            [
-                "value" => "super-admin",
-                "text" => "Super Admin"
-            ]
-        ];
+        return User::$role_options;
     }
 
     public function select_setting_input()

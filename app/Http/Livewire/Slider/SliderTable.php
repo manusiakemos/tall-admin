@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire\Slider;
 
+use App\Models\Slider;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Slider;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class SliderTable extends DataTableComponent
 {
@@ -25,7 +24,7 @@ class SliderTable extends DataTableComponent
     public function destroySelected()
     {
         Slider::whereIn($this->primaryKey, $this->selectedRowsQuery()->pluck($this->primaryKey))->delete();
-        $this->emit("showToast", ["message" => "Sliders Deleted Successfully", "type"=>"success"]);
+        $this->emit("showToast", ["message" => "Sliders Deleted Successfully", "type" => "success"]);
     }
 
     public function columns(): array
@@ -42,17 +41,24 @@ class SliderTable extends DataTableComponent
             }),
 
             Column::make('Title', 'slider_title')
-    ->searchable()
-    ->sortable(),
-Column::make('Desc', 'slider_desc')
-    ->searchable()
-    ->sortable(),
-Column::make('Image', 'slider_image')
-    ->searchable()
-    ->sortable(),
-Column::make('Status', 'slider_active')
-    ->searchable()
-    ->sortable(),
+                ->searchable()
+                ->sortable(),
+            Column::make('Desc', 'slider_desc')
+                ->searchable()
+                ->sortable(),
+            Column::make('Image', 'slider_image')
+                ->format(function ($value){
+                    return '<img class="h-12" src="'.asset('uploads/'.$value).'"/>';
+                })
+                ->asHtml()
+                ->searchable()
+                ->sortable(),
+            Column::make('Status', 'slider_active')
+                ->format(function ($value){
+                    return boolean_text($value);
+                })
+                ->searchable()
+                ->sortable(),
 
 
             Column::make("Action")
@@ -65,6 +71,6 @@ Column::make('Status', 'slider_active')
 
     public function query(): Builder
     {
-       return Slider::query();
+        return Slider::query();
     }
 }
