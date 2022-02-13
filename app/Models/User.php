@@ -104,4 +104,15 @@ class User extends Authenticatable implements HasMedia
             ->singleFile()
             ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png', 'image/gif']);
     }
+
+    public static $role =  [
+        [
+            'text' => 'Admin',
+            'value' => 'admin',
+        ],
+        [
+            'text' => 'Super Admin',
+            'value' => 'super-admin'
+        ]
+    ];
 }

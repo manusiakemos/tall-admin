@@ -3,6 +3,7 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\User;
 use Livewire\Component;
 
 class UserPage extends Component
@@ -15,6 +16,7 @@ class UserPage extends Component
     {
         session()->put('active', 'user');
         session()->put('expanded', 'admin');
+        $this->options['role'] = User::$role;
     }
 
     public function render()

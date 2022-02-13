@@ -8,10 +8,21 @@
         </x-ui.navigation-item>
 
         <x-ui.navigation-item class="ml-5" session-active="slider" link="{{route('slider')}}">
-           Sliders
+           <div class="flex">
+               <i class="text-xl flex items-center fi-rr-picture mr-3"></i>
+               Sliders
+           </div>
         </x-ui.navigation-item>
 
         @role('super-admin')
+
+        <x-ui.navigation-item class="ml-5" session-active="user" link="{{route('user')}}">
+           <div class="flex">
+               <i class="text-xl flex items-center fi-rr-user mr-3"></i>
+               Users
+           </div>
+        </x-ui.navigation-item>
+
         <x-ui.navigation-dropdown session-expanded="utilities">
             <x-slot name="drop">
                 <i class="text-xl flex items-center fi-rr-box"></i>

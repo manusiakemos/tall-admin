@@ -44,16 +44,7 @@ trait UserState
     ];
 
     public $options = [
-        'role' => [
-            [
-                'text' => 'Admin',
-                'value' => 'admin',
-            ],
-            [
-                'text' => 'Super Admin',
-                'value' => 'super-admin'
-            ]
-        ],
+        'role' => []
     ];
 
     public function render()

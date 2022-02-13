@@ -55,7 +55,8 @@
 
                 <div id="section-one-right"
                      class="col-span-4 flex justify-center items-center min-h-screen
-                            bg-gradient-to-br from-primary-500 to-secondary-600
+                            bg-gradient-to-br
+                            from-primary-500 to-secondary-600
                             dark:from-gray-800 dark:to-gray-900 px-12">
                     <img class="h-96 mx-12" src="{{ asset('images/welcome.svg') }}" alt="illustration">
                 </div>
