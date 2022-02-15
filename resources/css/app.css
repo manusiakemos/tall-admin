@@ -37,7 +37,7 @@
         @apply w-full !important;
     }
 
-   .select2-selection__rendedanger{
+   .select2-selection__rendered{
         @apply rounded-lg h-full block w-full bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-100 border-transparent focus:border-primary-400 focus:bg-gray-200 dark:focus:bg-gray-800 focus:ring-0 text-sm !important;
     }
 

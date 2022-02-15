@@ -271,31 +271,10 @@ More info
 
 ```
 
-#### Select & Select2
+#### Select
 
 ```vue
-<!--select2 options should be defer and boolean-->
-<!--check method on  App\View\Components\Traits\SelectOptionsTrait File-->
-<x-input.select method="" wire:model.defer="" :select2="false"></x-input.select>
-```
-
-#### Custom Select & Custom Select2
-
-```vue
- <x-input.custom-select
-                id=""
-                wire:model=""
-                :options="$options['']"
-                text=""
-                value=""/>
-
- <x-input.custom-select2
-                id=""
-								placeholder="Pilih status"
-                wire:model=""
-                :options="$options['']"
-                text=""
-                value=""/>
+<x-input.select method="" wire:model.defer="" ></x-input.select>
 ```
 
 #### Summernote (WYSIWG)
