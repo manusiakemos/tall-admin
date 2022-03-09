@@ -17,9 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/turbolinks.js', 'public/js')
     // .js('resources/js/editor.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-        require('autoprefixer'),
+        require("tailwindcss"),
     ])
     .sass('resources/sass/base.scss', 'public/css');
 

@@ -17,7 +17,6 @@
         n.show();
     });
     Livewire.on("refreshDt", (showNoty = false) => {
-        console.log('refreshDt');
         Livewire.components.getComponentsByName('{{$table}}')[0].$wire.$refresh();
         if (showNoty) {
             new Noty(

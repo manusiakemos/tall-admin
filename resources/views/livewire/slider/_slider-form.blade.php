@@ -1,15 +1,13 @@
 <div>
     <x-ui.modal id="modal_form" wire:model="showModalForm" size="md" :title="$updateMode ? 'Edit' : 'Create'">
         <form action="#" wire:submit.prevent="save" class="p-3">
-            <x-input.validation-error/>
-
-            <x-input.form-group label="Title" key="slider_title" model="slider.slider_title">
+            <x-kit.form-group label="Title" key="slider_title" model="slider.slider_title">
                 <x-input.text id="Title" wire:model.defer="slider.slider_title"/>
-            </x-input.form-group>
+            </x-kit.form-group>
 
-            <x-input.form-group label="Desc" key="slider_desc" model="slider.slider_desc">
-                <x-input.textarea id="Desc" wire:model.defer="slider.slider_desc"/>
-            </x-input.form-group>
+            <x-kit.form-group label="Desc" key="slider_desc" model="slider.slider_desc">
+                <x-kit.textarea id="Desc" wire:model.defer="slider.slider_desc"/>
+            </x-kit.form-group>
 
             <x-input.form-group label="Image" key="image" model="image">
                 <x-input.file id="image" wire:model="image"/>

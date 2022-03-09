@@ -6,10 +6,11 @@
                             'fi-rr-sun' : theme_icon == 'light',
                             'fi-rr-computer' : theme_icon == 'system' || !theme_icon
                            }"
-                class="text-3xl flex items-center hover:text-warning-400"></span>
+                class="text-3xl flex items-center hover:text-gray-500"></span>
         </button>
 
         <div x-show="showDarkMode"
+             style="display: none"
              x-on:click.away="showDarkMode = !showDarkMode"
             class="absolute top-10 left-0 md:-left-12
                    rounded-xl px-6 py-3

@@ -1,37 +1,37 @@
 <main class="w-full flex-grow px-3 pb-5" xmlns:wire="http://www.w3.org/1999/xhtml" wire:ignore.self>
     <section class="content py-5 px-5 min-h-screen">
         <div class="pb-3">
-            <x-ui.breadcrumb :breadcrumbs="$breadcrumbs"></x-ui.breadcrumb>
+            <x-kit::breadcrumb :items="$breadcrumbs"/>
         </div>
         <div class="mb-3">
             <div class="mb-5 lg:flex lg:items-start lg:justify-between">
                 <h4 class="heading">Profile</h4>
             </div>
         </div>
-        <x-ui.tabs class="tabs" :headers="$tabHeaders">
+        <x-kit::tabs class="tabs" :tab-headers="$tabHeaders" wire:model="tabActive">
 
             <x-slot name="edit">
                 <form action="#" wire:submit.prevent="updateProfile">
-                    <x-input.form-group label="Name" key="id" model="user.name">
-                        <x-input.text type="text" id="name" placeholder="enter name"
-                                      wire:model.defer="user.name"></x-input.text>
-                    </x-input.form-group>
+                    <x-kit::form-group input-id="name" text-label="name" error-name="user.name">
+                        <x-kit::input type="text" id="name" placeholder="enter name"
+                                      wire:model.defer="user.name"/>
+                    </x-kit::form-group>
 
                     <x-input.form-group label="Username" key="username" model="user.username">
-                        <x-input.text type="text" id="username" placeholder="enter username"
-                                      wire:model.defer="user.username"></x-input.text>
+                        <x-kit::input type="text" id="username" placeholder="enter username"
+                                      wire:model.defer="user.username"/>
                     </x-input.form-group>
 
                     <x-input.form-group label="Email" key="email" model="user.email">
-                        <x-input.text type="email" id="email" placeholder="enter email"
-                                      wire:model.defer="user.email"></x-input.text>
+                        <x-kit::input type="email" id="email" placeholder="enter email"
+                                      wire:model.defer="user.email"/>
                     </x-input.form-group>
 
                     <div class="py-3 flex">
-                        <button class="btn bg-secondary-500 text-white ml-auto hover:bg-secondary-600 dark:bg-warning-400 dark:text-gray-700"
-                                type="submit">
+                        <x-kit::button variant="rounded" class="bg-primary-500 text-white"
+                            type="submit">
                             Save Changes
-                        </button>
+                        </x-kit::button>
                     </div>
                 </form>
             </x-slot>
@@ -42,11 +42,10 @@
                         <x-input.filepond wire:model="image"></x-input.filepond>
                     </x-input.form-group>
                     <div class="py-3 flex">
-                        <button class="btn bg-secondary-500 text-white ml-auto hover:bg-secondary-600 dark:bg-warning-400 dark:text-gray-700"
-                                type="submit">
-                            Save
-                            Changes
-                        </button>
+                        <x-kit::button variant="rounded" class="bg-primary-500 text-white"
+                                       type="submit">
+                            Save Changes
+                        </x-kit::button>
                     </div>
                 </form>
             </x-slot>
@@ -66,13 +65,15 @@
                     </x-input.form-group>
 
                     <div class="py-3 flex">
-                        <button class="btn bg-secondary-500 text-white ml-auto hover:bg-secondary-600 dark:bg-warning-400 dark:text-gray-700"
-                                type="submit">
-                            Save Changes</button>
+                        <x-kit::button variant="rounded" class="bg-primary-500 text-white"
+                                       type="submit">
+                            Save Changes
+                        </x-kit::button>
                     </div>
                 </form>
             </x-slot>
-        </x-ui.tabs>
+
+        </x-kit::tabs>
     </section>
 </main>
 

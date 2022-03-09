@@ -3,53 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-    .btn {
-        @apply font-bold py-2 px-4 rounded hover:shadow rounded-3xl transform hover:scale-110 transition-all;
-    }
-
-    .filepond--drop-label{
-        @apply border-dashed border-gray-500 border-2;
-    }
-
-    .nav-item{
-        @apply items-center text-gray-100 py-4 px-3;
-    }
-
-    .nav-active{
-        @apply hover:text-primary-400 rounded-2xl shadow-lg
-                shadow-primary-400/30 dark:shadow-gray-700/30 mx-4
-                text-primary-500 dark:text-warning-400 bg-gray-200 dark:bg-gray-700;
-    }
-
     .heading{
-        @apply uppercase text-lg font-semibold dark:text-gray-400 text-gray-700 font-sans tracking-wide;
-    }
-
-    .filepond--drop-label{
-        @apply dark:bg-gray-700 dark:text-gray-300 !important;
-    }
-
-    .filepond--item-panel {
-        @apply dark:bg-gray-700 dark:text-gray-300 !important;
-    }
-
-    .select2.select2-container.select2-container--default.select2-container--below.select2-container--focus{
-        @apply w-full !important;
-    }
-
-   .select2-selection__rendered{
-        @apply rounded-lg h-full block w-full bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-100 border-transparent focus:border-primary-400 focus:bg-gray-200 dark:focus:bg-gray-800 focus:ring-0 text-sm !important;
-    }
-
-    .select2-dropdown--below{
-        @apply bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 !important;
-    }
-
-    .select2-search__field, .select2-search--dropdown{
-        @apply bg-gray-300 dark:bg-gray-900 text-gray-700 dark:text-gray-100 !important;
-    }
-
-    .note-editable, .note-editor, .note-frame{
-        @apply text-gray-700 dark:text-gray-300 dark:bg-gray-600 rounded-lg !important;
+        @apply uppercase text-lg font-semibold dark:text-gray-400 text-gray-500 font-sans tracking-wide;
     }
 }

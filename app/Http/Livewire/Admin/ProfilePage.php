@@ -4,17 +4,17 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class ProfilePage extends Component
 {
+    public $tabActive = "edit";
     public array $user = [];
     public array $breadcrumbs = [
-        ["link" => "#", "title" => "Admin"],
-        ["link" => "#", "title" => "Profile"],
+        ["link" => "#", "title" => "Admin", "active" => false],
+        ["link" => "#", "title" => "Profile", "active" => true],
     ];
 
     public string $password = "";
@@ -25,9 +25,24 @@ class ProfilePage extends Component
     public $image;
 
     public array $tabHeaders = [
-        ['key' => 'edit', 'title' => 'Edit Profile', "icon" => "<span class='flex items-center fi-rr-user'></span>"],
-        ['key' => 'avatar', 'title' => 'Change Avatar', "icon" => "<span class='flex items-center fi-rr-picture'></span>"],
-        ['key' => 'password', 'title' => 'Change Password', "icon" => "<span class='flex items-center fi-rr-key'></span>"],
+        [
+            'key' => 'edit',
+            'title' => 'Edit Profile',
+            'icon' => '<span class="flex items-center fi-rr-user"></span>',
+            'disabled' => false,
+        ],
+        [
+            'key' => 'avatar',
+            'title' => 'Change Avatar',
+            'icon' => '<span class="flex items-center fi-rr-picture"></span>',
+            'disabled' => false,
+        ],
+        [
+            'key' => 'password',
+            'title' => 'Change Password',
+            'icon' => '<span class="flex items-center fi-rr-key"></span>',
+            'disabled' => false
+        ],
     ];
 
     public function mount()

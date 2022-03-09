@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire\User;
 
+use Livewire\WithFileUploads;
+
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Livewire\WithFileUploads;
+use Livewire\Component;
 
 trait UserState
 {
@@ -17,7 +19,17 @@ trait UserState
 
     public $type;
 
+    public $showAlert = false;
+
+    public $alertMessage = '';
+
+    public $showToast = false;
+
+    public $toastMessage = 'Table refreshed';
+
     public $showModalForm = false;
+
+    public $showModalConfirm = false;
 
     public array $user = [
         "user_id" => "",
@@ -39,19 +51,13 @@ trait UserState
     public $updateMode = false;
 
     public array $breadcrumbs = [
-        ["link" => "#", "title" => "Admin"],
-        ["link" => "#", "title" => "User Management"],
+        ["link" => "#", "title" => "Admin", "active" => false],
+        ["link" => "#", "title" => "User Management", "active" => true],
     ];
 
     public $options = [
         'role' => []
     ];
-
-    public function render()
-    {
-        return view('livewire.user.user-form')
-            ->layout('layouts.admin');
-    }
 
     public function hydrate()
     {
@@ -61,7 +67,7 @@ trait UserState
 
     public function create()
     {
-        $this->reset();
+        $this->reset(['updateMode', 'user']);
         $this->showModalForm = true;
     }
 
@@ -71,6 +77,11 @@ trait UserState
         $user = User::find($id)->first();
         $this->user = $user->toArray();
         $this->showModalForm = true;
+    }
+
+    public function back()
+    {
+        redirect($this->previous);
     }
 
     public function store()
@@ -153,7 +164,6 @@ trait UserState
         return $db->save();
     }
 
-
     public function save()
     {
         $this->updateMode ? $this->update() : $this->store();
@@ -162,19 +172,18 @@ trait UserState
     public function destroy($id)
     {
         $delete = User::destroy($id);
+
         if ($delete) {
-            $this->emit("refreshDt");
-            $this->emit("showToast", ["message" => "Users berhasil dihapus", "type" => "success"]);
+            $this->showToast = true;
+            $this->toastMessage = "User berhasil dihapus";
         } else {
-            $this->emit("showToast", ["message" => "User gagal dihapus", "type" => "success"]);
+            $this->showToast = true;
+            $this->toastMessage = "User gagal dihapus";
         }
-        $this->reset();
-    }
 
-    public function back()
-    {
-        redirect($this->previous);
-    }
+        $this->emit("refreshDt", false);
 
+        $this->reset(['user', 'updateMode', 'showModalConfirm']);
+    }
 
 }

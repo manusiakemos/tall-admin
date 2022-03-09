@@ -4,7 +4,7 @@ return [
 
     'enabled_setting' => env('ENABLED_SETTING', false),
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'TALL ADMIN'),
 
     'env' => env('APP_ENV', 'production'),
 

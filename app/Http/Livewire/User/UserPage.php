@@ -4,13 +4,14 @@
 namespace App\Http\Livewire\User;
 
 use App\Models\User;
+
 use Livewire\Component;
 
 class UserPage extends Component
 {
     use UserState;
 
-    protected $listeners = ['create', 'edit'];
+    protected $listeners = ['edit'];
 
     public function mount()
     {

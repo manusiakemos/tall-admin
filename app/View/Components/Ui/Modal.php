@@ -6,13 +6,10 @@ use Illuminate\View\Component;
 
 class Modal extends Component
 {
-    public string $size;
-
     public string $title;
 
-    public function __construct($size="md", $title="")
+    public function __construct($title="")
     {
-        $this->size= $size;
         $this->title = $title;
     }
 

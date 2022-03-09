@@ -1,6 +1,6 @@
-@props(['url' => null, 'reordering' => false, 'customAttributes' => []])
+@props(['url' => null, 'target' => '_self', 'reordering' => false, 'customAttributes' => []])
 
-@if (!$reordering && $attributes->has('wire:sortable.item'))
+@if (!$reordering && (method_exists($attributes, 'has') ? $attributes->has('wire:sortable.item') : array_key_exists('wire:sortable.item', $attributes->getAttributes())))
     @php
         $attributes = $attributes->filter(fn ($value, $key) => $key !== 'wire:sortable.item');
     @endphp
@@ -10,7 +10,7 @@
     {{ $attributes->merge($customAttributes) }}
 
     @if ($url)
-        onclick="window.location='{{ $url }}';"
+        onclick="window.open('{{ $url }}', '{{ $target }}')"
         style="cursor:pointer"
     @endif
 >

@@ -7,20 +7,20 @@
             </div>
         </x-ui.navigation-item>
 
-        <x-ui.navigation-item class="ml-5" session-active="slider" link="{{route('slider')}}">
-           <div class="flex">
-               <i class="text-xl flex items-center fi-rr-picture mr-3"></i>
-               Sliders
-           </div>
+        <x-ui.navigation-item session-active="slider" link="{{route('slider')}}">
+            <div class="flex">
+                <i class="text-xl flex items-center fi-rr-picture mr-3"></i>
+                Sliders
+            </div>
         </x-ui.navigation-item>
 
         @role('super-admin')
 
-        <x-ui.navigation-item class="ml-5" session-active="user" link="{{route('user')}}">
-           <div class="flex">
-               <i class="text-xl flex items-center fi-rr-user mr-3"></i>
-               Users
-           </div>
+        <x-ui.navigation-item session-active="user" link="{{route('user')}}">
+            <div class="flex">
+                <i class="text-xl flex items-center fi-rr-user mr-3"></i>
+                User Management
+            </div>
         </x-ui.navigation-item>
 
         <x-ui.navigation-dropdown session-expanded="utilities">
@@ -28,21 +28,21 @@
                 <i class="text-xl flex items-center fi-rr-box"></i>
                 <span class="ml-3"> Utilites </span>
             </x-slot>
-            <x-ui.navigation-item class="ml-5" session-active="user" link="{{url('tinker')}}">
+            <x-ui.navigation-item session-active="tinker" link="{{url('tinker')}}">
                 Web Tinker
             </x-ui.navigation-item>
             @if(config('crud.enabled'))
-                <x-ui.navigation-item class="ml-5" session-active="user" link="{{url('crud')}}">
+                <x-ui.navigation-item session-active="crud" link="{{url('crud')}}">
                     Crud Generator
                 </x-ui.navigation-item>
             @endif
-            <x-ui.navigation-item class="ml-5" session-active="schematics" link="{{url('schematics')}}">
+            <x-ui.navigation-item session-active="schematics" link="{{url('schematics')}}">
                 Schematics
             </x-ui.navigation-item>
-            <x-ui.navigation-item class="ml-5" session-active="routes" link="{{url('routes')}}">
+            <x-ui.navigation-item session-active="routes" link="{{url('routes')}}">
                 Pretty Routes
             </x-ui.navigation-item>
-            <x-ui.navigation-item class="ml-5" session-active="laravel-filemanager"
+            <x-ui.navigation-item session-active="laravel-filemanager"
                                   link="{{url('laravel-filemanager')}}">
                 File Manager
             </x-ui.navigation-item>

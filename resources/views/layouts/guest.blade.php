@@ -1,8 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-      x-data="{ darkMode: localStorage.getItem('dark') === 'true'} "
-      x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
-      :class="{ 'dark': darkMode }">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include("includes._meta")
 
@@ -29,7 +26,7 @@
 
 
 </head>
-<body class="bg-gray-200 dark:bg-gray-900 dark:text-gray-400 text-gray-100"
+<body class="bg-gray-200 dark:bg-gray-900 dark:text-gray-300 text-gray-700 relative"
       x-data="{showSidebar : true}">
 
 {{ $slot }}

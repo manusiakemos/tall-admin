@@ -8,7 +8,7 @@
         <div>
             <button
                 type="button"
-                class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:border-secondary-300 focus:ring focus:ring-secondary-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
+                class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
                 id="filters-menu"
                 x-on:click="open = !open"
                 aria-haspopup="true"
@@ -18,7 +18,7 @@
                 @lang('Filters')
 
                 @if (count($this->getFiltersWithoutSearch()))
-                    <span class="ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-secondary-100 text-secondary-800 capitalize dark:bg-secondary-200 dark:text-secondary-900">
+                    <span class="ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900">
                        {{ count($this->getFiltersWithoutSearch()) }}
                     </span>
                 @endif
@@ -58,8 +58,12 @@
 
                             @if ($filter->isSelect())
                                 @include('livewire-tables::tailwind.includes.filter-type-select')
+                            @elseif($filter->isMultiSelect())
+                                @include('livewire-tables::tailwind.includes.filter-type-multiselect')
                             @elseif($filter->isDate())
                                 @include('livewire-tables::tailwind.includes.filter-type-date')
+                            @elseif($filter->isDatetime())
+                                @include('livewire-tables::tailwind.includes.filter-type-datetime')    
                             @endif
                         </div>
                     </div>
@@ -73,7 +77,7 @@
                             wire:click.prevent="resetFilters"
                             x-on:click="open = false"
                             type="button"
-                            class="w-full inline-flex items-center justify-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:border-secondary-300 focus:ring focus:ring-secondary-200 focus:ring-opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:hover:border-gray-500"
+                            class="w-full inline-flex items-center justify-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:hover:border-gray-500"
                         >
                             @lang('Clear')
                         </button>

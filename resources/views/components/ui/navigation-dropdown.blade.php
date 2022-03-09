@@ -1,5 +1,5 @@
 @props(['sessionExpanded'])
-<li class="nav-item ml-3"
+<li class="nav-item px-6 py-3"
     x-data="{show:{{ session('expanded') == $sessionExpanded ? 'true' : 'false'}} }">
     <a href="javascript:void(0)" x-on:click="show = !show"
        class="text-sm flex justify-between items-center">

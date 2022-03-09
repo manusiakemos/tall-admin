@@ -1,8 +1,14 @@
-<aside x-show.transition="showSidebar"
-       x-transition.duration.100ms
-       class="absolute min-h-screen md:w-60 hidden md:block z-50
+<aside x-show="showSidebar"
+       x-transition:enter-start="opacity-0 transform scale-x-0 -translate-x-1/2"
+       x-transition:enter-end="opacity-100 transform scale-x-100 translate-x-0"
+       x-transition:enter="transition ease-in duration-100"
+       x-transition:leave="transition ease-out duration-100"
+       x-transition:leave-start="opacity-100 transform scale-x-100 translate-x-0"
+       x-transition:leave-end="opacity-0 transform scale-x-0 -translate-x-1/2"
+       class="fixed min-h-screen md:w-60 hidden md:block z-50
+              w-full min-h-screen h-full overflow-y-scroll inset-0
               overflow-y-scroll overflow-x-hidden
-              bg-gradient-to-t from-primary-500 to-secondary-500 dark:from-gray-800 dark:to-gray-800"
+              bg-gradient-to-br from-primary-500 to-primary-600 dark:from-gray-800 dark:to-gray-800"
        id="sidebar">
     <div class="p-6 flex">
         <a href="{{url('/home')}}"

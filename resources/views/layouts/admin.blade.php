@@ -2,28 +2,26 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
       x-data="{
                 theme: localStorage.getItem('theme') ?? 'dark',
-                theme_icon : localStorage.getItem('theme-icon')
-              } "
+                theme_icon : localStorage.getItem('theme-icon'),
+                setTheme(val){
+                    console.log(val)
+                    localStorage.setItem('theme-icon', val);
+                    if (val != 'system'){
+                        localStorage.setItem('theme', val)
+                    }else{
+                        let x = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                        theme = x;
+                        localStorage.setItem('theme', x);
+                    }
+                }
+              }"
       x-init="
-        $watch('theme_icon', val => {
-           console.log(val);
-           localStorage.setItem('theme-icon', val)
-
-           if (val != 'system'){
-                localStorage.setItem('theme', val)
-           }else{
-                let x = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-                theme = x;
-                localStorage.setItem('theme', x);
-           }
-        });
-
-        if (theme_icon == 'system'){
-            let x = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-            theme = x;
-            localStorage.setItem('theme', x);
-        }
-      "
+            setTheme(theme_icon);
+            $watch('theme_icon', (value) => {
+                localStorage.setItem('theme-icon', value);
+                setTheme(value);
+            })
+        "
       :class="theme ? theme : ''">
 <head>
     @include("includes._meta")
@@ -57,7 +55,7 @@
 <x-ui.sidebar></x-ui.sidebar>
 
 <div :class="showSidebar ? 'ml-0 md:ml-60' : ''"
-    class="w-full flex flex-col h-screen overflow-y-hidden">
+    class="w-full flex flex-col min-h-screen overflow-y-hidden">
 
    <div class="flex flex-col-reverse lg:flex-col">
        <x-ui.mobile-header></x-ui.mobile-header>
@@ -66,12 +64,6 @@
 
     <div class="w-full overflow-x-hidden flex flex-col" id="main-content">
         {{ $slot }}
-
-        <footer class="flex justify-end">
-            <small class="text-xs font-bold my-5 mx-5 dark:text-gray-300 text-gray-700">
-                <i class="fa fa-copyright"></i> {{date('Y')}} {{ config('setting.app_name.value') }}
-            </small>
-        </footer>
     </div>
 </div>
 
