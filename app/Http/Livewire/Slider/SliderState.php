@@ -4,32 +4,45 @@ namespace App\Http\Livewire\Slider;
 
 use App\Models\Slider;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 
 trait SliderState
 {
-    public $previous;
+    use WithFileUploads;
 
-    public $image;
+    public $previous;
 
     public $updateMode = false;
 
-    public $showModalForm = false;
-
-    public $options = [
-      "slider_active" => []
-    ];
+    public $myFile;
 
     public array $slider = [
         "slider_id" => "",
         "slider_title" => "",
         "slider_desc" => "",
         "slider_image" => "",
-        "slider_active" => 1,
+        "slider_active" => "0",
     ];
 
+    public $showAlert = false;
+
+    public $alertMessage = '';
+
+    public $showToast = false;
+
+    public $toastMessage = 'Table refreshed';
+
+    public $showModalForm = false;
+
+    public $showModalConfirm = false;
+
     public array $breadcrumbs = [
-        ["link" => "#", "title" => "Admin"],
-        ["link" => "#", "title" => "Slider"],
+        ["link" => "#", "title" => "Admin", "active" => false],
+        ["link" => "#", "title" => "Slider", "active" => true],
+    ];
+
+    public $options = [
+        "slider_active" => []
     ];
 
     public function save()
@@ -46,20 +59,19 @@ trait SliderState
     public function create()
     {
         $this->reset(['slider', 'updateMode']);
-        $this->image = null;
         $this->showModalForm = true;
     }
 
     public function store()
     {
         $rules = [
-            "image" => [
-                "required", "image"
-            ],
             "slider.slider_title" => [
                 "required"
             ],
             "slider.slider_desc" => [
+                "required"
+            ],
+            "slider.slider_image" => [
                 "required"
             ],
             "slider.slider_active" => [
@@ -68,14 +80,16 @@ trait SliderState
         ];
         $this->validate($rules);
 
+
         $this->updateMode = false;
 
         $save = $this->handleFormRequest(new Slider);
 
         if ($save) {
             $this->reset("slider");
-            $this->emit('showToast', ["message" => "Slider berhasil ditambahkan", "type" => "success", "reload" => false]);
-            $this->emit( 'refreshDt');
+            $this->showToast = true;
+            $this->toastMessage = "Slider berhasil ditambahkan";
+            $this->emit('refreshDt');
         } else {
             abort('403', 'Slider gagal ditambahkan');
         }
@@ -83,7 +97,6 @@ trait SliderState
 
     public function edit($id)
     {
-        $this->reset(['slider', 'updateMode', 'image']);
         $this->updateMode = true;
         $slider = Slider::where('slider_id', $id)->first();
         $this->slider = $slider->toArray();
@@ -99,11 +112,11 @@ trait SliderState
             "slider.slider_desc" => [
                 "required"
             ],
-            "slider.slider_active" => [
+            "slider.slider_image" => [
                 "required"
             ],
-            "image" => [
-                "nullable", "image"
+            "slider.slider_active" => [
+                "required"
             ],
         ];
         $this->validate($rules);
@@ -120,7 +133,8 @@ trait SliderState
 
         if ($save) {
             $this->reset("slider");
-            $this->emit('showToast', ["message" => "Slider berhasil diupdate", "type" => "success", "reload" => false]);
+            $this->showToast = true;
+            $this->toastMessage = "Slider berhasil diupdate";
             $this->emit('refreshDt');
         }
     }
@@ -129,22 +143,25 @@ trait SliderState
     {
         $delete = Slider::destroy($id);
         if ($delete) {
-            $this->emit("refreshDt");
-            $this->emit("showToast", ["message" => "Sliders Deleted Successfully", "type" => "success"]);
+            $this->showToast = true;
+            $this->toastMessage = "Slider berhasil dihapus";
         } else {
-            $this->emit("showToast", ["message" => "Delete Failed", "type" => "success"]);
+            $this->showToast = true;
+            $this->toastMessage = "Slider gagal dihapus";
         }
-        $this->reset();
+
+        $this->emit("refreshDt", false);
+        $this->reset(['slider', 'updateMode', 'showModalConfirm']);
     }
 
-    private function handleFormRequest(Slider $db): bool
+    private function handleFormRequest($db): bool
     {
         try {
             $db->slider_title = $this->slider['slider_title'];
             $db->slider_desc = $this->slider['slider_desc'];
-            if ($this->image) {
-                $filename = Str::random() . "." . $this->image->getClientOriginalExtension();
-                $this->image->storeAs('uploads', $filename, 'public');
+            if ($this->myFile) {
+                $filename = Str::random() . "." . $this->myFile->getClientOriginalExtension();
+                $this->myFile->storeAs('uploads', $filename, 'public');
                 $db->slider_image = $filename;
             }
             $db->slider_active = $this->slider['slider_active'];

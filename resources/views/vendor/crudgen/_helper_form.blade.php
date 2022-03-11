@@ -1,39 +1,42 @@
 @foreach($fields as $field)
-    <xxx-input.form-group label="{{$field['label']}}" key="{{$field['name']}}" model="{{$model}}.{{$field['name']}}">
+    <xxx-kit::form-group text-label="{{$field['label']}}" input-id="{{$field['name']}}" error-name="{{$model}}.{{$field['name']}}">
         @switch($field['htmlType'])
             @case("file")
-            <xxx-input.file id="{{$field['name']}}" wire:model="image"></xxx-input.file>
+            <xxx-kit::file-upload id="{{$field['name']}}" wire:model="myFile"/>
             @break
 
             @case("date")
-            <xxx-input.text type="date" id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.text>
+            <xxx-kit::input type="date" id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"/>
             @break
 
             @case("time")
-            <xxx-input.text type="datetime-local" id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.text>
+            <xxx-kit::input type="datetime-local" id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"/>
             @break
 
             @case("summernote")
-            <xxx-input.summernote data-event-name="set_summernote_value" id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.summernote>
+            <xxx-input::input data-event-name="set_summernote_value" id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"/>
             @break
 
             @case("select")
-            <xxx-input.custom-select2
-                id="{{$field['name']}}"
-                placeholder="Pilih salah satu"
-                wire:model="{{$model}}.{{$field['name']}}"
-                :options="$options['{{$field['name']}}_options']"
-                text=""
-                value=""/>
+            <xxx-kit::select-search  placeholder="Pilih salah satu"
+                                   id="{{ $field['name'] }}"
+                                   wire:model="{{$model}}.{{$field['name']}}"
+                                  :options="{{__('$options')}}['{{$field['name']}}']"
+                                  option-value="value"
+                                  option-text="text"/>
             @break
 
             @case("radio")
-                <xxx-input.radio method="select_{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}" :select2="false"></xxx-input.radio>
+            <xxx-kit::radio  wire:model.defer="{{$model}}.{{$field['name']}}"
+                             :options="{{__('$options')}}['{{$field['name']}}']"
+                             option-value="value"
+                             option-text="text"/>
             @break
 
             @default
-            <xxx-input.text id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"></xxx-input.text>
+            <xxx-kit::input id="{{$field['name']}}" wire:model.defer="{{$model}}.{{$field['name']}}"/>
             @break
         @endswitch
-    </xxx-input.form-group>
+    </xxx-kit::form-group>
+
 @endforeach

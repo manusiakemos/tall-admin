@@ -8,29 +8,44 @@
                 <h4 class="heading mb-3 md:mb-0">Slider</h4>
 
                 <div>
-                    <x-ui.button wire:click="$emit('create')"
-                                 variant="normal" class="mb-3 bg-secondary-500 hover:bg-secondary-400">Create
-                    </x-ui.button>
-                    <x-ui.button variant="normal" class="btn bg-secondary-500 hover:bg-secondary-400 text-white mb-3 mx-1"
-                                 wire:click="$emit('refreshDt', true)">Refresh
-                    </x-ui.button>
+                    <x-kit::button wire:click="$emit('create')"
+                                 variant="rounded" class="mb-3 bg-primary-500 hover:bg-primary-400">Create
+                    </x-kit::button>
+                    <x-kit::button variant="rounded" class="btn bg-primary-500 hover:bg-primary-400 text-white mb-3 mx-1"
+                                    wire:click="$emit('refreshDt', true)">Refresh
+                    </x-kit::button>
                 </div>
             </div>
 
-            <div>
+           <div>
+               {{-- livewire table data --}}
+               <livewire:slider.slider-table/>
 
-                @livewire("slider.slider-table")
+               {{-- modal form --}}
+               @include('livewire.slider._slider-form')
 
-                @include('livewire.slider._slider-form')
-            </div>
+               {{-- confirm delete --}}
+               @include('livewire.slider._slider-confirm')
+           </div>
 
         </div>
     </section>
 </main>
 
-@push("scripts")
-    @include("includes._toast-scripts")
 
-    @include("includes._dt-scripts",['table' => 'slider.slider-table'])
+@push("scripts")
+    <script>
+        Livewire.on("confirmDestroy", (id) => {
+            @this.set('showModalConfirm', true);
+            @this.set('slider.slider_id', id);
+        });
+        Livewire.on("refreshDt", (showNoty = false) => {
+            Livewire.components.getComponentsByName('slider.slider-table')[0].$wire.$refresh();
+            if (showNoty) {
+                @this.set('showToast', true);
+                @this.set('toastMessage', 'Data berhasil di refresh');
+            }
+        });
+    </script>
 @endpush
 

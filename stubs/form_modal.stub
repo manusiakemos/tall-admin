@@ -1,17 +1,15 @@
 <div>
    <x-ui.modal id="modal_form" wire:model="showModalForm" size="md" :title="$updateMode ? 'Edit' : 'Create'">
        <form action="#" wire:submit.prevent="save" class="p-3">
-            <x-input.validation-error/>
-
             {@forms}
 
            <div class="md:flex place-content-end py-4">
                <x-ui.button
                    x-on:click="$wire.showModalForm = false"
-                   class="bg-red-500 hover:bg-red-400 text-white hover:bg-blue-400">
+                   class="bg-danger-500 hover:bg-danger-400 text-white">
                    Tutup
                </x-ui.button>
-               <x-ui.button type="submit" class="bg-indigo-500 hover:bg-indigo-400 text-white hover:bg-blue-400"
+               <x-ui.button type="submit" class="bg-primary-500 hover:bg-primary-400 text-white"
                            >
                    {{$updateMode ? "Simpan Perubahan" : "Simpan"}}
                </x-ui.button>

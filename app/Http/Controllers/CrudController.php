@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
@@ -18,6 +17,7 @@ class CrudController extends Controller
     public string $classNameLower;
     public string $table;
     public string $classNameSlug;
+    public bool $upload;
     public $modal;
 
     public function index()
@@ -48,10 +48,11 @@ class CrudController extends Controller
         $this->fields = $fields_all->where("primary", false);
         $this->pk = $fields_all->where('primary', true)->first();
         $this->className = $request->class;
-        $this->classNameLower = Str::slug($request->class, "_");
+        $this->classNameLower = Str::snake($request->class, "_");
         $this->classNameSlug = strtolower(Str::snake($request->class, "-"));
         $this->table = $request->table;
         $this->modal = $request->modal;
+        $this->upload = $request->upload;
 
         $this->handleRequest($request);
         if ($request->migrate) {
@@ -75,8 +76,6 @@ class CrudController extends Controller
             $json = $collection;
         }
         $save = file_put_contents(base_path("/database/json/crudgen.json"), $json);
-
-        Artisan::call("ide-helper:models", ['--write' => 'true']);
 
         return response()
             ->json(['status' => $save ? '200' : '403', 'message' => $save ? 'Successfully Generated' : 'Something Wrong Happend']);
@@ -103,6 +102,8 @@ class CrudController extends Controller
         if ($request->view) {
             $this->generateView();
         }
+
+        Artisan::call("ide-helper:models", ['--write' => 'true']);
 
         return true;
     }
@@ -131,8 +132,16 @@ class CrudController extends Controller
         File::isDirectory($path) or File::makeDirectory($path, 0777, true, true);
 
         file_put_contents(app_path("Models/{$this->className}.php"), $modelTemplate);
-
     }
+
+    /*
+   |--------------------------------------------------------------------------
+   | Generated Livewire class
+   |--------------------------------------------------------------------------
+   |
+   | generate livewire class function
+   |
+   */
 
     private function generateLivewire()
     {
@@ -163,7 +172,7 @@ class CrudController extends Controller
             '{@handleRequest}',
             '{@validate}',
             '{@columns}',
-            '{@generatedProps}'
+            '{@generatedProps}',
         ];
         $stubReplaceTemplate = [
             $this->pk['name'],
@@ -175,9 +184,9 @@ class CrudController extends Controller
             $generatedProps,
         ];
 
-        if ($this->modal){
+        if ($this->modal) {
             $stub_template = file_get_contents(base_path("stubs/custom_livewire_modal.stub"));
-        }else{
+        } else {
             $stub_template = file_get_contents(base_path("stubs/custom_livewire.stub"));
         }
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
@@ -185,15 +194,15 @@ class CrudController extends Controller
         File::isDirectory($path) or File::makeDirectory($path, 0775, true, true);
         file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}Page.php"), $template);
 
-        if ($this->modal){
+        if ($this->modal) {
             $stub_template = file_get_contents(base_path("stubs/custom_livewire_modal_trait.stub"));
-        }else{
+        } else {
             $stub_template = file_get_contents(base_path("stubs/custom_livewire_trait.stub"));
         }
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
         file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}State.php"), $template);
 
-        if (!$this->modal){
+        if (!$this->modal) {
             $stub_template = file_get_contents(base_path("stubs/custom_livewire_form.stub"));
             $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
             file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}Form.php"), $template);
@@ -204,16 +213,34 @@ class CrudController extends Controller
         file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}Table.php"), $template);
     }
 
+    /*
+   |--------------------------------------------------------------------------
+   | Generate Router
+   |--------------------------------------------------------------------------
+   |
+   | auto generate router function
+   |
+   */
+
     private function generateRouter()
     {
         $route = 'Route::get("/' . $this->classNameLower . '", App\Http\Livewire\\' . $this->className . '\\' . $this->className . 'Page::class)->name("' . $this->classNameLower . '");';
         File::append(base_path("routes/web.php"), $route);
 
-        if (!$this->modal){
-            $route2 = "\n".'Route::get("/' . $this->classNameLower . '/form/{'.$this->pk['name'].'?}", App\Http\Livewire\\' . $this->className . '\\' . $this->className . 'Form::class)->name("' . $this->classNameLower. '.form");';
+        if (!$this->modal) {
+            $route2 = "\n" . 'Route::get("/' . $this->classNameLower . '/form/{' . $this->pk['name'] . '?}", App\Http\Livewire\\' . $this->className . '\\' . $this->className . 'Form::class)->name("' . $this->classNameLower . '.form");';
             File::append(base_path("routes/web.php"), $route2);
         }
     }
+
+    /*
+  |--------------------------------------------------------------------------
+  | Generate Migration
+  |--------------------------------------------------------------------------
+  |
+  | auto generate migration function
+  |
+  */
 
     private function generateMigration()
     {
@@ -238,6 +265,21 @@ class CrudController extends Controller
         $this->generateViewPage();
         $this->generateFormView();
         $this->generateActionView();
+        $this->generateConfirmView();
+    }
+
+    private function generateConfirmView()
+    {
+        $search = [
+            '{@className}', '{@tableName}', '{@classNameSlug}', '{@classNameLower}', '{@primaryKey}',
+        ];
+        $replace = [
+            $this->className, $this->table, $this->classNameSlug, $this->classNameLower, $this->pk['name']
+        ];
+
+        $subject = file_get_contents(base_path("stubs/confirm.stub"));
+        $index_replace_template = str_replace($search, $replace, $subject);
+        file_put_contents(base_path("resources/views/livewire/{$this->classNameLower}/_{$this->classNameLower}-confirm.blade.php"), $index_replace_template);
     }
 
     private function generateViewPage()
@@ -254,9 +296,9 @@ class CrudController extends Controller
             $this->classNameSlug,
             $this->classNameLower,
         ];
-        if ($this->modal){
+        if ($this->modal) {
             $stub_template = file_get_contents(base_path("stubs/page_modal.stub"));
-        }else{
+        } else {
             $stub_template = file_get_contents(base_path("stubs/page.stub"));
         }
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
@@ -284,10 +326,10 @@ class CrudController extends Controller
         ];
 
 
-        if ($this->modal){
+        if ($this->modal) {
             $stub_template = file_get_contents(base_path("stubs/form_modal.stub"));
             $pathToWrite = resource_path("views/livewire/{$this->classNameLower}/_{$this->classNameLower}-form.blade.php");
-        }else{
+        } else {
             $stub_template = file_get_contents(base_path("stubs/form.stub"));
             $pathToWrite = resource_path("views/livewire/{$this->classNameLower}/{$this->classNameLower}-form.blade.php");
         }
@@ -311,9 +353,9 @@ class CrudController extends Controller
             $this->className,
             $this->classNameLower,
         ];
-        if ($this->modal){
+        if ($this->modal) {
             $stub_template = file_get_contents(base_path("stubs/action_modal.stub"));
-        }else{
+        } else {
             $stub_template = file_get_contents(base_path("stubs/action.stub"));
         }
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);

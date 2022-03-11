@@ -5,7 +5,7 @@
         <div class="mr-3 flex items-center justify-center">
             <input
                 class="form-checkbox rounded"
-                wire:model="{{$attributes->get('wire:model')}}"
+                wire:model="{{ $attributes->whereStartsWith('wire:model')->first() }}"
                 type="checkbox"
                 id="{{ $id }}"
                 value="{{ $item[$optionValue] }}">

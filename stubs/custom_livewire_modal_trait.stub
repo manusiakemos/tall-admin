@@ -11,14 +11,26 @@ trait {@className}State
 
     public $updateMode = false;
 
-    public $showModalForm = false;
-
     public array ${@classNameLower} = {@generatedProps};
 
+    public $showAlert = false;
+
+    public $alertMessage = '';
+
+    public $showToast = false;
+
+    public $toastMessage = 'Table refreshed';
+
+    public $showModalForm = false;
+
+    public $showModalConfirm = false;
+
     public array $breadcrumbs = [
-        ["link" => "#", "title" => "Admin"],
-        ["link" => "#", "title" => "{@className}"],
+        ["link" => "#", "title" => "Admin" , "active" => false],
+        ["link" => "#", "title" => "{@className}" , "active" => true],
     ];
+
+    public $options = [];
 
     public function save()
     {
@@ -33,7 +45,7 @@ trait {@className}State
 
         public function create()
         {
-            $this->reset(['${@classNameLower}', 'updateMode']);
+            $this->reset(['{@classNameLower}', 'updateMode']);
             $this->showModalForm = true;
         }
 
@@ -47,8 +59,9 @@ trait {@className}State
 
         if ($save) {
             $this->reset("{@classNameLower}");
-            $this->emit('showToast', ["message" => "{@className} berhasil ditambahkan", "type" => "success", "reload"=>false]);
-            $this->emit( 'refreshDt');
+             $this->showToast = true;
+             $this->toastMessage = "{@className} berhasil ditambahkan";
+             $this->emit('refreshDt');
         }else{
             abort('403', '{@className} gagal ditambahkan');
         }
@@ -77,7 +90,8 @@ trait {@className}State
 
         if ($save) {
              $this->reset("{@classNameLower}");
-             $this->emit('showToast', ["message" => "{@className} berhasil diupdate", "type" => "success", "reload"=>false]);
+             $this->showToast = true;
+             $this->toastMessage = "{@className} berhasil diupdate";
              $this->emit('refreshDt');
         }
     }
@@ -86,12 +100,15 @@ trait {@className}State
     {
         $delete = {@className}::destroy($id);
         if ($delete) {
-            $this->emit("refreshDt");
-            $this->emit("showToast", ["message" => "{@className}s Deleted Successfully", "type" => "success"]);
+            $this->showToast = true;
+            $this->toastMessage = "{@className} berhasil dihapus";
         } else {
-            $this->emit("showToast", ["message" => "Delete Failed", "type" => "success"]);
+            $this->showToast = true;
+            $this->toastMessage = "{@className} gagal dihapus";
         }
-        $this->reset();
+
+        $this->emit("refreshDt", false);
+        $this->reset(['{@classNameLower}', 'updateMode', 'showModalConfirm']);
     }
 
     private function handleFormRequest($db): bool

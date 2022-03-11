@@ -4,7 +4,7 @@
         @php($id = \Illuminate\Support\Str::random(8))
         <div class="mr-3">
             <input
-                wire:model="{{$attributes->get('wire:model')}}"
+                wire:model="{{ $attributes->whereStartsWith('wire:model')->first() }}"
                 type="radio"
                 id="{{ $id }}"
                 value="{{ $item[$optionValue] }}">

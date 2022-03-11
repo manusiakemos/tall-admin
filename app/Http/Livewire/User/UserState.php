@@ -106,7 +106,8 @@ trait UserState
         if ($save) {
             $this->showModalForm = false;
             $this->reset("user");
-            $this->emit('showToast', ["message" => "User berhasil diupdate", "type" => "success", "reload"=>false]);
+            $this->showToast = true;
+            $this->toastMessage = "User berhasil ditambahkan";
             $this->emit( 'refreshDt');
         }else{
             abort('403', 'User gagal ditambahkan');
@@ -140,7 +141,8 @@ trait UserState
         if ($save) {
             $this->showModalForm = false;
             $this->reset("user");
-            $this->emit('showToast', ["message" => "User berhasil diupdate", "type" => "success", "reload"=>false]);
+            $this->showToast = true;
+            $this->toastMessage = "User berhasil diupdate";
             $this->emit( 'refreshDt');
         }
     }

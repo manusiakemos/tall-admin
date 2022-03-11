@@ -43,14 +43,14 @@
 @push("scripts")
     <script>
         Livewire.on("confirmDestroy", (id) => {
-        @this.set('showModalConfirm', true);
-        @this.set('user.user_id', id);
+            @this.set('showModalConfirm', true);
+            @this.set('user.user_id', id);
         });
         Livewire.on("refreshDt", (showNoty = false) => {
             Livewire.components.getComponentsByName('user.user-table')[0].$wire.$refresh();
             if (showNoty) {
-            @this.set('showToast', true);
-            @this.set('toastMessage', 'Data berhasil di refresh');
+                @this.set('showToast', true);
+                @this.set('toastMessage', 'Data berhasil di refresh');
             }
         });
     </script>
