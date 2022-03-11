@@ -259,7 +259,15 @@ class CrudController extends Controller
         file_put_contents(database_path("/migrations/2020_01_01_000000_create_{$this->classNameLower}_table.php"), $index_replace_template);
     }
 
-
+    /*
+     |--------------------------------------------------------------------------
+     | Generate View
+     |--------------------------------------------------------------------------
+     |
+     | auto generate view file function
+     | main view, form view, table action view, confirm box view
+     |
+     */
     private function generateView()
     {
         $this->generateViewPage();

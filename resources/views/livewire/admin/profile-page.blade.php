@@ -13,19 +13,16 @@
             <x-slot name="edit">
                 <form action="#" wire:submit.prevent="updateProfile">
                     <x-kit::form-group input-id="name" text-label="name" error-name="user.name">
-                        <x-kit::input type="text" id="name" placeholder="enter name"
-                                      wire:model.defer="user.name"/>
+                        <x-kit::input id="name" wire:model.lazy="user.name" placeholder="your name"/>
                     </x-kit::form-group>
 
-                    <x-input.form-group label="Username" key="username" model="user.username">
-                        <x-kit::input type="text" id="username" placeholder="enter username"
-                                      wire:model.defer="user.username"/>
-                    </x-input.form-group>
+                    <x-kit::form-group input-id="username" text-label="username" error-name="user.username">
+                        <x-kit::input id="username" wire:model.lazy="user.username" placeholder="your username"/>
+                    </x-kit::form-group>
 
-                    <x-input.form-group label="Email" key="email" model="user.email">
-                        <x-kit::input type="email" id="email" placeholder="enter email"
-                                      wire:model.defer="user.email"/>
-                    </x-input.form-group>
+                    <x-kit::form-group input-id="email" text-label="email" error-name="user.email">
+                        <x-kit::input id="email" wire:model.lazy="user.email" placeholder="your email"/>
+                    </x-kit::form-group>
 
                     <div class="py-3 flex">
                         <x-kit::button variant="rounded" class="bg-primary-500 text-white"
@@ -38,9 +35,9 @@
 
             <x-slot name="avatar">
                 <form wire:submit.prevent="updateAvatar">
-                    <x-input.form-group label="" key="id" model="model.id">
-                        <x-input.filepond wire:model="image"></x-input.filepond>
-                    </x-input.form-group>
+                    <x-kit::form-group input-id="image" text-label="" error-name="image">
+                        <x-kit::file-upload id="image" wire:model.lazy="image"/>
+                    </x-kit::form-group>
                     <div class="py-3 flex">
                         <x-kit::button variant="rounded" class="bg-primary-500 text-white"
                                        type="submit">
@@ -52,17 +49,14 @@
 
             <x-slot name="password">
                 <form action="#" wire:submit.prevent="updatePassword">
-                    <x-input.form-group label="Password" key="password" model="password">
-                        <x-input.text type="password" id="password"
-                                      placeholder="enter password"
-                                      wire:model="password"></x-input.text>
-                    </x-input.form-group>
-                    <x-input.form-group label="Password Confirmation" key="password_confirmation"
-                                        model="password_confirmation">
-                        <x-input.text type="password" id="password_confirmation"
-                                      placeholder="enter password again"
-                                      wire:model="password_confirmation"></x-input.text>
-                    </x-input.form-group>
+
+                    <x-kit::form-group input-id="password" text-label="password" error-name="password">
+                        <x-kit::input type="password" id="password" wire:model.lazy="password" placeholder="password"/>
+                    </x-kit::form-group>
+
+                    <x-kit::form-group input-id="password_confirmation" text-label="password confirmation" error-name="password_confirmation">
+                        <x-kit::input type="password" id="password_confirmation" wire:model.lazy="password_confirmation" placeholder="password confirmation"/>
+                    </x-kit::form-group>
 
                     <div class="py-3 flex">
                         <x-kit::button variant="rounded" class="bg-primary-500 text-white"

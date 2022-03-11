@@ -32,17 +32,6 @@ trait {@className}State
 
     public $options = [];
 
-    public function save()
-    {
-        $this->updateMode ? $this->update() : $this->store();
-    }
-
-     public function hydrate()
-     {
-            $this->resetErrorBag();
-            $this->resetValidation();
-      }
-
         public function create()
         {
             $this->reset(['{@classNameLower}', 'updateMode']);

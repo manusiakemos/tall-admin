@@ -24,4 +24,15 @@ class {@className}Page extends Component
             ->layout('layouts.admin', ['htmlTitle'=>'{@classNameLower}']);
     }
 
+     public function save()
+        {
+            $this->updateMode ? $this->update() : $this->store();
+        }
+
+         public function hydrate()
+         {
+                $this->resetErrorBag();
+                $this->resetValidation();
+          }
+
 }
