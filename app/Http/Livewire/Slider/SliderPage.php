@@ -23,7 +23,7 @@ class SliderPage extends Component
     public function render()
     {
         return view('livewire.slider.slider-page')
-            ->layout('layouts.admin', ['htmlTitle'=>'slider']);
+            ->layout('layouts.admin');
     }
 
 }

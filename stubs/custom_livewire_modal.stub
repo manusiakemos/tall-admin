@@ -21,7 +21,7 @@ class {@className}Page extends Component
     public function render()
     {
         return view('livewire.{@classNameLower}.{@classNameLower}-page')
-            ->layout('layouts.admin', ['htmlTitle'=>'{@classNameLower}']);
+            ->layout('layouts.admin');
     }
 
      public function save()

@@ -1,3 +1,7 @@
+<x-slot name="htmlTitle">
+    <title>Dashboard</title>
+</x-slot>
+
 <main class="w-full flex-grow px-3 pb-5" xmlns:wire="http://www.w3.org/1999/xhtml">
     <section class="content mx-auto py-5 px-5 min-h-screen">
         <div class="pb-3">

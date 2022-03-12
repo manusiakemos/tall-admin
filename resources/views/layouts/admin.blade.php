@@ -27,7 +27,7 @@
     @include("includes._meta")
 
     @if(isset($htmlTitle))
-        <title>{{$htmlTitle}}</title>
+       {{$htmlTitle}}
     @else
         <title>{{config('setting.app_name.value') ?? config('app.name')}}</title>
     @endif

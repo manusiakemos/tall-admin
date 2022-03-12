@@ -1,3 +1,7 @@
+<x-slot name="htmlTitle">
+    <title>User Management</title>
+</x-slot>
+
 <main class="w-full flex-grow px-3">
     <section class="content overflow-x-scroll rounded-lg overflow-y-scroll h-full mx-auto py-5 px-5">
         <div class="pb-3">

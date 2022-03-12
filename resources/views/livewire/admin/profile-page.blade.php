@@ -1,3 +1,7 @@
+<x-slot name="htmlTitle">
+    <title>Profile Page</title>
+</x-slot>
+
 <main class="w-full flex-grow px-3 pb-5" xmlns:wire="http://www.w3.org/1999/xhtml" wire:ignore.self>
     <section class="content py-5 px-5 min-h-screen">
         <div class="pb-3">
