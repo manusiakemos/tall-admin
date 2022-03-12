@@ -39,9 +39,3 @@
         </div>
     </section>
 </main>
-
-@push("scripts")
-
-    @include("includes._toast-scripts")
-
-@endpush

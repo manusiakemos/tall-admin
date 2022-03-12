@@ -1,5 +1,5 @@
 <div>
-   <x-ui.modal id="modal_form" wire:model="showModalForm" size="md" :title="$updateMode ? 'Edit' : 'Create'">
+   <x-kit::modal id="modal_form" wire:model="showModalForm" size="md" :title="$updateMode ? 'Edit' : 'Create'">
        <form action="#" wire:submit.prevent="save" class="p-3">
             <x-kit::form-group text-label="Title" input-id="slider_title" error-name="slider.slider_title">
                     <x-kit::input id="slider_title" wire:model.defer="slider.slider_title"/>
@@ -34,6 +34,6 @@
                </x-ui.button>
            </div>
        </form>
-   </x-ui.modal>
+   </x-kit::modal>
 </div>
 
