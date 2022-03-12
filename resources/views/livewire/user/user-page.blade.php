@@ -14,7 +14,7 @@
                 <div>
                     <x-kit::button wire:click="create"
                                    variant="rounded"
-                                   class="font-semibold uppercase bg-primary-500 hover:bg-primary-400 text-white">Tambah
+                                   class="font-semibold uppercase bg-primary-500 hover:bg-primary-400 text-white">Add
                         User
                     </x-kit::button>
                     <x-kit::button variant="rounded"
