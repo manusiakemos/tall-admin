@@ -13,10 +13,12 @@
 
                 <div>
                     <x-kit::button wire:click="$emit('create')"
-                                 variant="rounded" class="mb-3 bg-primary-500 hover:bg-primary-400 text-white font-semibold uppercase">Add Slider
+                                 variant="rounded" class="mb-3 bg-primary-500 hover:bg-primary-400 text-white font-semibold uppercase">
+                        {{__('messages.add')}} Slider
                     </x-kit::button>
                     <x-kit::button variant="rounded" class="btn bg-primary-500 hover:bg-primary-400 text-white font-semibold uppercase mb-3 mx-1"
-                                    wire:click="$emit('refreshDt', true)">Refresh
+                                    wire:click="$emit('refreshDt', true)">
+                        Refresh
                     </x-kit::button>
                 </div>
             </div>
@@ -30,6 +32,9 @@
 
                {{-- confirm delete --}}
                @include('livewire.slider._slider-confirm')
+
+               <x-kit::toast class="text-white bg-primary-500 mb-3 border-2 border-white" duration="3000"
+                             wire:model="showToast">{{$toastMessage}}</x-kit::toast>
            </div>
 
         </div>
@@ -47,7 +52,7 @@
             Livewire.components.getComponentsByName('slider.slider-table')[0].$wire.$refresh();
             if (showNoty) {
                 @this.set('showToast', true);
-                @this.set('toastMessage', 'Data berhasil di refresh');
+                @this.set('toastMessage', '{{__('messages.table_refreshed')}}');
             }
         });
     </script>

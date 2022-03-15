@@ -4,13 +4,14 @@
                 theme: localStorage.getItem('theme') ?? 'dark',
                 theme_icon : localStorage.getItem('theme-icon'),
                 setTheme(val){
-                    console.log(val)
+                    console.log('theme-icon : ' + val)
                     localStorage.setItem('theme-icon', val);
                     if (val != 'system'){
                         localStorage.setItem('theme', val)
                     }else{
                         let x = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
                         theme = x;
+                        console.log('theme : ' + theme)
                         localStorage.setItem('theme', x);
                     }
                 }
@@ -41,8 +42,7 @@
     @stack("styles")
 
     @stack("scriptsBefore")
-    <script defer src="https://unpkg.com/@alpinejs/focus@3.9.0/dist/cdn.min.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.9.0/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.9.1/dist/cdn.min.js"></script>
 
     <script data-turbolinks-eval="false" data-turbo-eval="false" src="{{ asset('js/admin.js') }}"></script>
 

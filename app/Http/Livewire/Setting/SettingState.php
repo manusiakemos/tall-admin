@@ -4,33 +4,50 @@ namespace App\Http\Livewire\Setting;
 
 use App\Models\Setting;
 use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\Facades\Image;
 
 trait SettingState
 {
-
     public $previous;
-
-    public array $setting = [
-        "setting_id" => "",
-        "setting_name" => "",
-        "setting_order" => "",
-        "setting_input" => "",
-        "setting_value" => "",
-        "setting_removable" => "1",
-    ];
 
     public $updateMode = false;
 
-    public array $breadcrumbs = [
-        ["link" => "#", "title" => "Admin"],
-        ["link" => "#", "title" => "Setting Management"],
+    public array $setting = [
+        "setting_id" => "",
+        "setting_key" => "",
+        "setting_name" => "",
+        "setting_value" => "",
+        "setting_input" => "",
+        "setting_order" => "",
+        "setting_removable" => "",
     ];
 
+    public $showAlert = false;
 
-    public function save()
+    public $alertMessage = '';
+
+    public $showToast = false;
+
+    public $toastMessage = 'Table refreshed';
+
+    public $showModalForm = false;
+
+    public $showModalConfirm = false;
+
+    public array $breadcrumbs = [
+        ["link" => "#", "title" => "Admin", "active" => false],
+        ["link" => "#", "title" => "Setting", "active" => true],
+    ];
+
+    public $options = [
+        'input_types' => [],
+        'boolean' => [],
+    ];
+
+    public function create()
     {
-        $this->updateMode ? $this->update() : $this->store();
+        $this->reset(['setting', 'updateMode']);
+        $this->showModalForm = true;
     }
 
     public function store()
@@ -50,12 +67,16 @@ trait SettingState
 
         $this->updateMode = false;
 
-        $db = new Setting;
-        $this->handleFormRequest($db);
-        $this->reset("setting");
+        $save = $this->handleFormRequest(new Setting);
 
-        session()->flash('message', 'Setting berhasil ditambahkan.');
-        $this->back();
+        if ($save) {
+            $this->reset("setting");
+            $this->showToast = true;
+            $this->toastMessage = "Setting berhasil ditambahkan";
+            $this->emit('refreshDt');
+        } else {
+            abort('403', 'Setting gagal ditambahkan');
+        }
     }
 
     public function edit($id)
@@ -63,6 +84,7 @@ trait SettingState
         $this->updateMode = true;
         $setting = Setting::where('setting_id', $id)->first();
         $this->setting = $setting->toArray();
+        $this->showModalForm = true;
     }
 
     public function update()
@@ -86,14 +108,15 @@ trait SettingState
         if ($this->setting["setting_id"]) {
             $db = Setting::find($this->setting["setting_id"]);
             $save = $this->handleFormRequest($db);
-            $this->reset("setting");
         } else {
             abort('403', 'Setting Not Found');
         }
 
         if ($save) {
-            session()->flash('message', 'Setting berhasil diupdate.');
-            $this->back();
+            $this->reset("setting");
+            $this->showToast = true;
+            $this->toastMessage = "Setting berhasil diupdate";
+            $this->emit('refreshDt');
         }
     }
 
@@ -101,20 +124,23 @@ trait SettingState
     {
         $delete = Setting::destroy($id);
         if ($delete) {
-            $this->emit("refreshDt");
-            $this->emit("showToast", ["message" => "Settings Deleted Successfully", "type" => "success"]);
+            $this->showToast = true;
+            $this->toastMessage = "Setting berhasil dihapus";
         } else {
-            $this->emit("showToast", ["message" => "Delete Failed", "type" => "success"]);
+            $this->showToast = true;
+            $this->toastMessage = "Setting gagal dihapus";
         }
-        $this->reset();
+
+        $this->emit("refreshDt", false);
+        $this->reset(['setting', 'updateMode', 'showModalConfirm']);
     }
 
-    private function handleFormRequest(Setting $db): bool
+    private function handleFormRequest($db): bool
     {
         try {
             $db->setting_name = $this->setting['setting_name'];
             if (!$this->updateMode){
-                $db->setting_key = Str::slug($this->setting['setting_name'],"_");
+                $db->setting_key = Str::snake($this->setting['setting_name'],"_");
                 $db->setting_order = Setting::max("setting_order")+1;
             }
             $db->setting_input = $this->setting['setting_input'];

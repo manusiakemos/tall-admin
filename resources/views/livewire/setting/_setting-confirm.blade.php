@@ -10,7 +10,7 @@
                        </p>
                    </x-slot>
                    <x-slot name="yes">
-                       <x-kit::button wire:click="destroy('{{ ${@classNameLower}['{@primaryKey}'] }}')"
+                       <x-kit::button wire:click="destroy('{{ $setting['setting_id'] }}')"
                                       variant="rounded"
                                       class="font-semibold uppercase bg-primary-500 hover:bg-primary-400 text-white grow w-full">
                            Ya

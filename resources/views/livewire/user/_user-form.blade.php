@@ -21,12 +21,12 @@
                    variant="rounded"
                    x-on:click="$wire.showModalForm = false"
                    class="bg-danger-500 hover:bg-danger-400 text-white hover:bg-primary-400">
-                   Tutup
+                  {{ __('messages.close') }}
                </x-kit::button>
                <x-kit::button
                    variant="rounded"
                    type="submit" class="bg-primary-500 hover:bg-secondary-400 text-white hover:bg-primary-400">
-                   {{$updateMode ? "Simpan Perubahan" : "Simpan"}}
+                   {{$updateMode ? __('messages.save_changes') : __('messages.save')}}
                </x-kit::button>
            </div>
        </form>

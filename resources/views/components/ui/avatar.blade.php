@@ -25,8 +25,11 @@
      class="absolute w-40 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-100 rounded-lg
             border-2 shadow-lg py-4 mt-16 z-50">
     <a href="{{route('profile')}}"
-       class="rounded-tl-lg rounded-br-lg block px-4 py-2 account-link hover:text-primary-500">Account</a>
-    <a href="{{url('/login')}}"
-       class="rounded-tl-lg rounded-br-lg block px-4 py-2 account-link hover:text-primary-500 btn-logout">Sign
-        Out</a>
+       class="rounded-tl-lg rounded-br-lg block px-4 py-2 account-link hover:text-primary-500">
+        {{__('messages.account')}}
+    </a>
+    <a href="{{url('/logout')}}"
+       class="rounded-tl-lg rounded-br-lg block px-4 py-2 account-link hover:text-primary-500 btn-logout">
+        {{__('messages.logout')}}
+    </a>
 </div>

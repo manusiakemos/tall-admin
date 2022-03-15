@@ -56,3 +56,8 @@ php artisan db:seed
 
 [Tall Stack Kit](https://manusiakemos.my.id/kit/installation)
 
+- [x] Crud Generator
+- [x] Datatable
+- [x] Form Modal
+- [x] Authentication
+- [x] Privacy Policy

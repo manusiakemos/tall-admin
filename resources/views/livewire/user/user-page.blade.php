@@ -14,12 +14,13 @@
                 <div>
                     <x-kit::button wire:click="create"
                                    variant="rounded"
-                                   class="font-semibold uppercase bg-primary-500 hover:bg-primary-400 text-white">Add
-                        User
+                                   class="font-semibold uppercase bg-primary-500 hover:bg-primary-400 text-white">
+                        {{__('messages.add')}} User
                     </x-kit::button>
                     <x-kit::button variant="rounded"
                                    class="font-semibold uppercase bg-primary-500 hover:bg-primary-400 text-white"
-                                   wire:click="$emit('refreshDt', true)">Refresh Table
+                                   wire:click="$emit('refreshDt', true)">
+                        {{__('messages.refresh_table')}}
                     </x-kit::button>
                 </div>
             </div>

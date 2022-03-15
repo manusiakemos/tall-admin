@@ -2248,16 +2248,16 @@
         },
         {
             "name": "manusiakemos/tall-stack-kit",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/manusiakemos/tall-stack-kit.git",
-                "reference": "2b67753ba9b0cff5ea6a03fbd9149a79826e8cfb"
+                "reference": "b1cf71b42691ac4ebf31ab22d048b65916976be8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manusiakemos/tall-stack-kit/zipball/2b67753ba9b0cff5ea6a03fbd9149a79826e8cfb",
-                "reference": "2b67753ba9b0cff5ea6a03fbd9149a79826e8cfb",
+                "url": "https://api.github.com/repos/manusiakemos/tall-stack-kit/zipball/b1cf71b42691ac4ebf31ab22d048b65916976be8",
+                "reference": "b1cf71b42691ac4ebf31ab22d048b65916976be8",
                 "shasum": ""
             },
             "require": {
@@ -2308,9 +2308,9 @@
             ],
             "support": {
                 "issues": "https://github.com/manusiakemos/tall-stack-kit/issues",
-                "source": "https://github.com/manusiakemos/tall-stack-kit/tree/1.1.3"
+                "source": "https://github.com/manusiakemos/tall-stack-kit/tree/1.1.4"
             },
-            "time": "2022-03-11T06:43:38+00:00"
+            "time": "2022-03-15T04:11:57+00:00"
         },
         {
             "name": "markbaker/complex",
@@ -2421,16 +2421,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "2.3.5",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "fd4380d6fc37626e2f799f29d91195040137eba9"
+                "reference": "d7fd7450628561ba697b7097d86db72662f54aef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/fd4380d6fc37626e2f799f29d91195040137eba9",
-                "reference": "fd4380d6fc37626e2f799f29d91195040137eba9",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d7fd7450628561ba697b7097d86db72662f54aef",
+                "reference": "d7fd7450628561ba697b7097d86db72662f54aef",
                 "shasum": ""
             },
             "require": {
@@ -2452,7 +2452,7 @@
                 "phpstan/phpstan": "^0.12.91",
                 "phpunit/phpunit": "^8.5",
                 "predis/predis": "^1.1",
-                "rollbar/rollbar": "^1.3",
+                "rollbar/rollbar": "^1.3 || ^2 || ^3",
                 "ruflin/elastica": ">=0.90@dev",
                 "swiftmailer/swiftmailer": "^5.3|^6.0"
             },
@@ -2504,7 +2504,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/2.3.5"
+                "source": "https://github.com/Seldaek/monolog/tree/2.4.0"
             },
             "funding": [
                 {
@@ -2516,7 +2516,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-01T21:08:31+00:00"
+            "time": "2022-03-14T12:44:37+00:00"
         },
         {
             "name": "myclabs/php-enum",
@@ -4138,16 +4138,16 @@
         },
         {
             "name": "spatie/temporary-directory",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/temporary-directory.git",
-                "reference": "06fe0f10d068fdf145c9b2235030e568c913bb61"
+                "reference": "79f138f2b81adae583d04d3727a4538dd394023f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/06fe0f10d068fdf145c9b2235030e568c913bb61",
-                "reference": "06fe0f10d068fdf145c9b2235030e568c913bb61",
+                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/79f138f2b81adae583d04d3727a4538dd394023f",
+                "reference": "79f138f2b81adae583d04d3727a4538dd394023f",
                 "shasum": ""
             },
             "require": {
@@ -4183,7 +4183,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/temporary-directory/issues",
-                "source": "https://github.com/spatie/temporary-directory/tree/2.0.0"
+                "source": "https://github.com/spatie/temporary-directory/tree/2.1.0"
             },
             "funding": [
                 {
@@ -4195,7 +4195,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-30T19:46:13+00:00"
+            "time": "2022-03-11T08:16:01+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

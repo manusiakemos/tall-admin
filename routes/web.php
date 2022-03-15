@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/crud.php';
 
+Route::view('/privacy', 'privacy')->name('privacy');
+
 Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {
     Route::get('/home', App\Http\Livewire\Admin\Home::class)->name('home');
     Route::get('/profile', App\Http\Livewire\Admin\ProfilePage::class)->name('profile');
@@ -26,7 +28,6 @@ Route::middleware(['auth', 'role:super-admin'])->group(function () {
     Route::get('/user/form/{user_id?}', App\Http\Livewire\User\UserForm::class)->name('user.form');
 
     Route::get("/setting", App\Http\Livewire\Setting\SettingPage::class)->name("setting");
-    Route::get("/setting/form/{setting_id?}", App\Http\Livewire\Setting\SettingForm::class)->name("setting.form");
 
     Route::get("/slider", App\Http\Livewire\Slider\SliderPage::class)->name("slider");
 });

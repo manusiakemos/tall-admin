@@ -23,6 +23,13 @@
             </div>
         </x-ui.navigation-item>
 
+        <x-ui.navigation-item session-active="user" link="{{route('setting')}}">
+            <div class="flex">
+                <i class="text-xl flex items-center fi-rr-settings mr-3"></i>
+                Setting
+            </div>
+        </x-ui.navigation-item>
+
         <x-ui.navigation-dropdown session-expanded="utilities">
             <x-slot name="drop">
                 <i class="text-xl flex items-center fi-rr-box"></i>
