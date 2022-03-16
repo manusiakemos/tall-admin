@@ -23,7 +23,7 @@
             </div>
         </x-ui.navigation-item>
 
-        <x-ui.navigation-item session-active="user" link="{{route('setting')}}">
+        <x-ui.navigation-item session-active="setting" link="{{route('setting')}}">
             <div class="flex">
                 <i class="text-xl flex items-center fi-rr-settings mr-3"></i>
                 Setting

@@ -5,14 +5,19 @@ namespace App\Http\Livewire\Setting;
 use App\Models\Setting;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use Livewire\WithFileUploads;
 
 trait SettingState
 {
+    use WithFileUploads;
+
     public $previous;
 
     public $updateMode = false;
 
-    public array $setting = [
+    public $image;
+
+    public $setting = [
         "setting_id" => "",
         "setting_key" => "",
         "setting_name" => "",

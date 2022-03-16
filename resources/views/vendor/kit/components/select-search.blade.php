@@ -4,8 +4,30 @@
      wire:ignore
      wire:key="{!! $attributes->get('id') !!}"
      x-on:click.outside="show = false"
-     x-on:click.away="show = false" x-init="
-
+     x-on:click.away="show = false"
+     x-data="{
+        options: @js($options),
+        show:false,
+        search:'',
+        selected: @entangle($attributes->wire('model')),
+        selectedText:'',
+        disabled:false,
+        filteredOptions() {
+            if(this.search == '' || this.search == null){
+                return this.options;
+            }
+            if (this.options.length > 0){
+               return this.options.filter((item) => {
+                  if (this.search === '') {
+                    return this.options;
+                  }else{
+                    return item.{{ $optionText }}.toString().toLowerCase().includes(this.search.toString().toLowerCase());
+                  }
+               });
+            }
+        }
+     }"
+     x-init="
         $nextTick(() => {
             let x = options.filter((item)=>{
                 return item.{!! $optionValue !!} == selected;
@@ -42,28 +64,8 @@
              }else{
                  search = '';
              }
-        }" x-data="{
-        options: @js($options),
-        show:false,
-        search:'',
-        selected: @entangle($attributes->wire('model')),
-        selectedText:'',
-        disabled:false,
-        filteredOptions() {
-            if(this.search == '' || this.search == null){
-                return this.options;
-            }
-            if (this.options.length > 0){
-               return this.options.filter((item) => {
-                  if (this.search === '') {
-                    return this.options;
-                  }else{
-                    return item.{{ $optionText }}.toString().toLowerCase().includes(this.search.toString().toLowerCase());
-                  }
-               });
-            }
-        }
-     }">
+        }"
+     >
     <div class="relative flex items-center h-full">
         <div x-text="selectedText" placeholder="{{ $placeholder ?? '' }}" autocomplete="off"
              x-on:click="show = true; search = '';" id="selected-{!! $attributes->get('id') !!}"

@@ -5,21 +5,29 @@
                 <x-kit::input id="setting_name" wire:model.defer="setting.setting_name"/>
             </x-kit::form-group>
 
-            <x-kit::form-group text-label="Value" input-id="setting_value" error-name="setting.setting_value">
-                @if($setting['setting_input'] == 'text')
-                    <x-kit::input type="text" id="setting_value" wire:model="setting.setting_value"/>
-                @else
-                  {{$setting['setting_input']}}
-                @endif
-            </x-kit::form-group>
-
-            <x-kit::form-group text-label="Input type" input-id="setting_input" error-name="setting.setting_input">
+            <x-kit::form-group text-label="Setting Input type" input-id="setting_input"
+                               error-name="setting.setting_input">
                 <x-kit::select-search wire:model="setting.setting_input"
                                       :options="$options['input_types']"
                                       placeholder="select an input type"
                                       option-value="value"
                                       option-text="text"/>
             </x-kit::form-group>
+
+
+            @if($updateMode)
+                <x-kit::form-group text-label="Value" input-id="setting_value" error-name="setting.setting_value">
+                    @if($setting['setting_input'] == 'text')
+                        <x-kit::input type="text" id="setting_value" wire:model="setting.setting_value"/>
+                    @elseif($setting['setting_input'] == 'file')
+                        <x-kit::file-upload id="image" wire:model="image"></x-kit::file-upload>
+                    @elseif($setting['setting_input'] == 'textarea')
+                        <x-kit::textarea id="setting_value" wire:model="setting.setting_value"></x-kit::textarea>
+                    @elseif($setting['setting_input'] == 'switch')
+                        <x-kit::toggle wire:model="setting.setting_value"/>
+                    @endif
+                </x-kit::form-group>
+            @endif
 
             @role('super-admin')
             <x-kit::form-group text-label="Removable" input-id="setting_removable"

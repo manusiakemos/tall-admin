@@ -23,14 +23,6 @@ class Setting extends Model
                 'text' => 'text',
             ],
             [
-                'value' => 'radio',
-                'text' => 'radio',
-            ],
-            [
-                'value' => 'select',
-                'text' => 'select',
-            ],
-            [
                 'value' => 'textarea',
                 'text' => 'textarea',
             ],

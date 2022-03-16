@@ -9,21 +9,20 @@
                     if (val != 'system'){
                         localStorage.setItem('theme', val)
                     }else{
-                        let x = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-                        theme = x;
-                        console.log('theme : ' + theme)
-                        localStorage.setItem('theme', x);
+                        this.theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                        console.log('theme : ' + this.theme)
+                        localStorage.setItem('theme', this.theme);
                     }
                 }
               }"
       x-init="
-            setTheme(theme_icon);
             $watch('theme_icon', (value) => {
                 localStorage.setItem('theme-icon', value);
                 setTheme(value);
             })
+            setTheme(theme_icon);
         "
-      :class="theme ? theme : ''">
+      :class="theme ? theme : 'light'">
 <head>
     @include("includes._meta")
 
