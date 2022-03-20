@@ -6,4 +6,18 @@
     .heading{
         @apply uppercase text-lg font-semibold dark:text-gray-400 text-gray-500 font-sans tracking-wide;
     }
+    .ProseMirror{
+        @apply border-2 prose dark:prose-invert prose-sm min-w-full w-full bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 px-6 py-3 min-h-[300px];
+    }
+
+    .is-active{
+        @apply bg-primary-500;
+    }
+
+    .tableWrapper{
+        @apply table-auto w-full;
+    }
+    .tableWrapper table tr td, .tableWrapper table tr th{
+        @apply border-collapse border px-3;
+    }
 }

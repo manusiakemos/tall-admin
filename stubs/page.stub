@@ -1,3 +1,7 @@
+<x-slot name="htmlTitle">
+    <title>{@className}</title>
+</x-slot>
+
 <main class="w-full flex-grow px-3">
     <section class="content overflow-x-scroll rounded-lg overflow-y-scroll h-full mx-auto py-5 px-5">
         <div class="pb-3">
@@ -5,17 +9,19 @@
         </div>
         <div class="mb-3">
             <div class="mb-5 flex flex-grow flex-col md:flex-row items-center justify-center md:justify-between">
-                <h4 class="heading mb-3 md:mb-0">{@className} Management</h4>
+                <h4 class="heading mb-3 md:mb-0">{@className}</h4>
 
                 <div>
-                    <x-kit::button wire:click="create"
-                                   variant="rounded"
-                                   class="font-semibold uppercase bg-primary-500 hover:bg-primary-400 text-white">Tambah
+                    <x-kit::button href="{{ route('{@classNameLower}.form') }}"
+                                   variant="link"
+                                   class="font-semibold uppercase bg-primary-500 hover:bg-primary-400 text-white rounded inline-block">
+                                   {{ __('messages.add')}}
                         {@className}
                     </x-kit::button>
                     <x-kit::button variant="rounded"
                                    class="font-semibold uppercase bg-primary-500 hover:bg-primary-400 text-white"
-                                   wire:click="$emit('refreshDt', true)">Refresh Table
+                                   wire:click="$emit('refreshDt', true)">
+                                   {{ __('messages.refresh_table')}}
                     </x-kit::button>
                 </div>
             </div>
@@ -30,8 +36,6 @@
                 </x-kit::toast>
 
                 <livewire:{@classNameLower}.{@classNameLower}-table/>
-
-                @include('livewire.{@classNameLower}._{@classNameLower}-form')
 
                 @include('livewire.{@classNameLower}._{@classNameLower}-confirm')
             </div>
@@ -49,8 +53,8 @@
         Livewire.on("refreshDt", (showNoty = false) => {
             Livewire.components.getComponentsByName('{@classNameLower}.{@classNameLower}-table')[0].$wire.$refresh();
             if (showNoty) {
-            @this.set('showToast', true);
-            @this.set('toastMessage', 'Data berhasil di refresh');
+                @this.set('showToast', true);
+                @this.set('toastMessage', 'Data berhasil di refresh');
             }
         });
     </script>

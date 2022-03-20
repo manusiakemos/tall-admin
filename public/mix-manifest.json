@@ -1,8 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/admin.js": "/js/admin.js",
-    "/js/admin_after.js": "/js/admin_after.js",
     "/js/turbolinks.js": "/js/turbolinks.js",
-    "/css/app.css": "/css/app.css",
-    "/css/base.css": "/css/base.css"
+    "/js/alpine-editor.js": "/js/alpine-editor.js",
+    "/css/app.css": "/css/app.css"
 }

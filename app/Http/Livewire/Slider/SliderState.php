@@ -4,25 +4,22 @@ namespace App\Http\Livewire\Slider;
 
 use App\Models\Slider;
 use Illuminate\Support\Str;
-use Livewire\WithFileUploads;
 
 trait SliderState
 {
-    use WithFileUploads;
-
     public $previous;
 
     public $updateMode = false;
-
-    public $myFile;
 
     public array $slider = [
         "slider_id" => "",
         "slider_title" => "",
         "slider_desc" => "",
         "slider_image" => "",
-        "slider_active" => "0",
+        "slider_active" => true,
     ];
+
+    public $myFile;
 
     public $showAlert = false;
 
@@ -41,20 +38,7 @@ trait SliderState
         ["link" => "#", "title" => "Slider", "active" => true],
     ];
 
-    public $options = [
-        "slider_active" => []
-    ];
-
-    public function save()
-    {
-        $this->updateMode ? $this->update() : $this->store();
-    }
-
-    public function hydrate()
-    {
-        $this->resetErrorBag();
-        $this->resetValidation();
-    }
+    public $options = [];
 
     public function create()
     {
@@ -71,8 +55,8 @@ trait SliderState
             "slider.slider_desc" => [
                 "required"
             ],
-            "slider.slider_image" => [
-                "required"
+            "myFile" => [
+                "required","image","max:2000"
             ],
             "slider.slider_active" => [
                 "required"
@@ -86,7 +70,7 @@ trait SliderState
         $save = $this->handleFormRequest(new Slider);
 
         if ($save) {
-            $this->reset("slider");
+            $this->reset(["slider", "myFile"]);
             $this->showToast = true;
             $this->toastMessage = "Slider berhasil ditambahkan";
             $this->emit('refreshDt');
@@ -97,6 +81,7 @@ trait SliderState
 
     public function edit($id)
     {
+        $this->reset(["myFile"]);
         $this->updateMode = true;
         $slider = Slider::where('slider_id', $id)->first();
         $this->slider = $slider->toArray();
@@ -109,10 +94,10 @@ trait SliderState
             "slider.slider_title" => [
                 "required"
             ],
-            "slider.slider_desc" => [
-                "required"
+            "myFile" => [
+                "nullable","image","max:2000"
             ],
-            "slider.slider_image" => [
+            "slider.slider_desc" => [
                 "required"
             ],
             "slider.slider_active" => [
@@ -161,7 +146,7 @@ trait SliderState
             $db->slider_desc = $this->slider['slider_desc'];
             if ($this->myFile) {
                 $filename = Str::random() . "." . $this->myFile->getClientOriginalExtension();
-                $this->myFile->storeAs('uploads', $filename, 'public');
+                $this->myFile->storeAs('uploads/slider', $filename, 'public');
                 $db->slider_image = $filename;
             }
             $db->slider_active = $this->slider['slider_active'];

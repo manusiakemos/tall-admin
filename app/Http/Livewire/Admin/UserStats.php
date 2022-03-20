@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Stats;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\User;
 use Asantibanez\LivewireCharts\Facades\LivewireCharts;
@@ -38,6 +38,6 @@ class UserStats extends Component
 
         }
 
-        return view('livewire.stats.user-stats', compact('pieChartModel'));
+        return view('livewire.admin.user-stats', compact('pieChartModel'));
     }
 }

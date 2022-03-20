@@ -47,9 +47,16 @@ class SliderTable extends DataTableComponent
                 ->searchable()
                 ->sortable(),
             Column::make('Image', 'slider_image')
+                ->format(function ($image) {
+                    return "<img src='" . asset('/uploads/slider/' . $image) ."' class='h-12'>";
+                })
+                ->asHtml()
                 ->searchable()
                 ->sortable(),
             Column::make('Status', 'slider_active')
+                ->format(function ($value) {
+                    return $value == 1 ? 'Active' : 'Inactive';
+                })
                 ->searchable()
                 ->sortable(),
 

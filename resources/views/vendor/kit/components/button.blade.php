@@ -1,10 +1,10 @@
 @props(['variant'])
 @if ($variant == 'rounded')
     <button
-        {{ $attributes->merge([
+        {!! $attributes->merge([
             'type' => 'button',
-            'class' => 'm-1 py-2 px-4 rounded hover:shadow rounded transform hover:scale-105 transition-all',
-        ]) }}>
+            'class' => 'm-1 py-2 px-4 rounded hover:shadow rounded transform hover:scale-105 transition-all flex flex-nowrap justify-center items-center',
+        ]) !!}>
         {{ $slot }}
     </button>
 @elseif($variant == 'dropdown')
@@ -45,7 +45,7 @@
     </button>
 
 @elseif($variant == 'link')
-    <a {{ $attributes->merge(['class' => 'py-2']) }}>
+    <a {{ $attributes->merge(['class' => 'm-1 py-2 px-4 transform hover:scale-105 transition-all']) }}>
         {{ $slot }}
     </a>
 @endif

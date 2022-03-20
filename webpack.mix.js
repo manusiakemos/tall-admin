@@ -13,14 +13,11 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/admin.js', 'public/js')
-    .js('resources/js/admin_after.js', 'public/js')
     .js('resources/js/turbolinks.js', 'public/js')
-    // .js('resources/js/editor.js', 'public/js')
+    .js('resources/js/alpine-editor.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require("tailwindcss"),
-    ])
-    .sass('resources/sass/base.scss', 'public/css');
-
+    ]);
 // mix.browserSync('tall-admin.test').options({
 //     reloadDelay: 1000,
 // });

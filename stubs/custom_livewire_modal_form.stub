@@ -26,9 +26,9 @@ class {@className}Form extends Component
         }
 
         $this->breadcrumbs = [
-            ["link" => "#", "title" => "Admin"],
-            ["link" => route('{@classNameLower}'), "title" => "{@className}"],
-            ["link" => url('/'), "title" => "{@className} Form"],
+            ["link" => "#", "title" => "Admin" , "active"=> false],
+            ["link" => route('{@classNameLower}'), "title" => "{@className}" , "active"=> false],
+            ["link" => url('/'), "title" => "{@className} Form", "active"=> truez] ,
         ];
 
         session()->put('active', '{@classNameLower}');
@@ -38,7 +38,8 @@ class {@className}Form extends Component
     public function render()
     {
         if(count($this->getErrorBag()->all()) > 0){
-            $this->emit('showToast',["message" => "Mohon lengkapi form", "type" => "error", "reload"=>false]);
+            $this->toastMessage = 'Please fix the errors below.';
+            $this->showToast = true;
         }
         return view('livewire.{@classNameLower}.{@classNameLower}-form')
             ->layout('layouts.admin');

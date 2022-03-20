@@ -201,7 +201,6 @@ class CrudController extends Controller
         }
         $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
         file_put_contents(app_path("/Http/Livewire/{$this->className}/{$this->className}State.php"), $template);
-
         if (!$this->modal) {
             $stub_template = file_get_contents(base_path("stubs/custom_livewire_form.stub"));
             $template = str_replace($stubTemplate, $stubReplaceTemplate, $stub_template);
