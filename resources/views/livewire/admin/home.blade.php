@@ -16,6 +16,8 @@
         </div>
 
         {{-- dummy stats --}}
-        <livewire:admin.user-stats/>
+{{--        <livewire:admin.user-stats/>--}}
+
+{{--        <livewire:admin.editor/>--}}
     </section>
 </main>

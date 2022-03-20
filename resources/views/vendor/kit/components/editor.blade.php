@@ -269,3 +269,8 @@
              class="prose prose-sm max-w-none dark:prose-invert w-full bg-white dark:bg-gray-900"></div>
     </div>
 </div>
+
+
+@push('styles')
+    <link rel="stylesheet" href=" {{ asset('vendor/kit/alpine-editor/alpine-editor.css') }} ">
+@endpush

@@ -8,22 +8,19 @@
                 @if(!auth()->check())
                     @if(\Illuminate\Support\Facades\Route::has('register'))
                         <a href="{{url('/register')}}"
-                           class="text-primary-500 text-lg
-                          text-primary-100 hover:text-primary-500 font-semibold uppercase">register</a>
+                           class="text-lg text-gray-700 hover:text-primary-500 font-semibold uppercase">register</a>
                     @endif
                     @if(\Illuminate\Support\Facades\Route::has('login'))
                         <a href="{{url('/login')}}"
-                           class="text-lg tracking-wider ml-3 hover:text-primary-500 font-semibold uppercase">login</a>
+                           class="text-lg tracking-wider ml-3 text-gray-700 hover:text-primary-500 font-semibold uppercase">login</a>
                     @endif
                 @else
                     <a href="{{url('/home')}}"
-                       class="text-gray-700 text-lg
-                          text-primary-100 hover:text-primary-500 font-semibold uppercase">home</a>
+                       class="text-gray-700 text-lg hover:text-primary-500 font-semibold uppercase">home</a>
                 @endif
 
                     <a href="{{route('privacy')}}" target="_blank"
-                       class="text-gray-700 text-lg
-                          text-primary-100 hover:text-primary-500 font-semibold uppercase ml-3">privacy & policy</a>
+                       class="text-gray-700 text-lg hover:text-primary-500 font-semibold uppercase ml-3">privacy & policy</a>
             </div>
         </nav>
         <section>
