@@ -1,41 +1,29 @@
 <div>
 
-    <x-kit::editor
-        wire:model.defer="text"
-    ></x-kit::editor>
-
-    <div
-        class="py-6 text-gray-700 dark:text-gray-300"
-        x-data="
-        {
-            text : @entangle('text'),
-        }"
-        x-init="
-        $watch('text', function() {
-          Prism.highlightAll();
-        })"
-        wire:ignore
-    >
-        <h4 class="heading mb-3">Raw Result</h4>
-
-        <pre><code class="language-html" x-text="text"></code></pre>
-
+    <div class="py-3">
+        <x-kit::editor wire:model.defer="text"/>
     </div>
 
-    <div class="prose dark:prose-invert bg-white max-w-none dark:bg-gray-900 py-3 px-6">
-        {!! $text !!}
+    <div class="py-3">
+        <pre><code class="language-html">{{$text}}</code></pre>
     </div>
 
-
-    <x-kit::button
-        variant="rounded"
-        class="bg-primary-500 text-white"
-        wire:click="save">Save</x-kit::button>
+    <div class="py-3">
+        <x-kit::button
+            variant="rounded"
+            class="bg-primary-500 text-white w-full"
+            wire:click="save">Save</x-kit::button>
+    </div>
 
 </div>
 
 @push('scripts')
     <script src="{{ asset('vendor/prism/prism.js') }}"></script>
+    <script>
+        Livewire.on('prism', () => {
+            Prism.highlightAll();
+        });
+    </script>
 @endpush
 
 @push('styles')

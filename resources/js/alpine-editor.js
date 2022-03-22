@@ -1,4 +1,6 @@
 import Alpine from "alpinejs";
+import 'tippy.js/dist/tippy.css';
+
 import {Editor} from "@tiptap/core";
 import StarterKit from "@tiptap/starter-kit";
 import LinkExtension from "@tiptap/extension-link";
@@ -9,26 +11,49 @@ import Table from '@tiptap/extension-table';
 import TableRow from '@tiptap/extension-table-row';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
+import BubbleMenu from '@tiptap/extension-bubble-menu';
+import TextAlign from "@tiptap/extension-text-align";
 // Tiptap editor on alpine init
 document.addEventListener("alpine:init", () => {
     Alpine.data("editor", (content) => {
-        let editor;
         return {
-            activeMenu:[],
-            isActive(type) {
-                let active = editor.isActive(type);
-                return active ? 'bg-primary-500' : 'bg-gray-400';
+            editor: null,
+            content: content,
+            updatedAt: Date.now(),
+            active: {
+                undo:false,
+                redo:false,
+                heading1: false,
+                heading2: false,
+                heading3: false,
+                heading4: false,
+                bold: false,
+                italic: false,
+                underline: false,
+                highlight:false,
+                paragraph:false,
+                orderedList:false,
+                bulletList:false,
+                image:false,
+                link:false,
+                strike:false,
+                blockquote:false,
+                table:false,
+                alignLeft:false,
+                alignRight:false,
+                alignCenter:false,
+                alignJustify:false,
             },
             lfm(id, type, options) {
                 let route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
                 window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=700,height=600');
-                var vm = this;
+                const _this = this;
                 window.SetUrl = function (items) {
                     console.log(items);
                     let file_path = items.map(function (item) {
                         return item.url;
                     }).join(',');
-                    vm.setImage(file_path);
+                    _this.setImage(file_path);
                 };
             },
             uploadImage(route_prefix) {
@@ -37,12 +62,12 @@ document.addEventListener("alpine:init", () => {
             setImage(url) {
                 console.log(url);
                 if (url) {
-                    editor.chain().focus().setImage({src: url}).run();
+                    Alpine.raw(this.editor).chain().focus().setImage({src: url}).run();
                 } else {
                     console.log('image url not found');
                 }
             },
-            toggleClass(type){
+            toggleClass(type) {
                 if (this.activeMenu.includes(type)) {
                     this.activeMenu = this.activeMenu.filter(item => item !== type);
                 } else {
@@ -50,103 +75,118 @@ document.addEventListener("alpine:init", () => {
                 }
             },
             toggleHeading(level) {
-                editor.chain().toggleHeading({level}).focus().run();
+                Alpine.raw(this.editor).chain().toggleHeading({level}).focus().run();
             },
             toggleBold() {
                 // this.toggleClass('bold');
-                editor.chain().toggleBold().focus().run();
+                Alpine.raw(this.editor).chain().toggleBold().focus().run();
             },
             toggleItalic() {
-                editor.chain().toggleItalic().focus().run();
+                Alpine.raw(this.editor).chain().toggleItalic().focus().run();
             },
             toggleUnderline() {
-                editor.chain().toggleUnderline().focus().run();
+                Alpine.raw(this.editor).chain().toggleUnderline().focus().run();
             },
             toggleParagraph() {
-                editor.chain().setParagraph().focus().run();
+                Alpine.raw(this.editor).chain().setParagraph().focus().run();
             },
             toggleList(type) {
                 if (type === "bullet") {
-                    editor.chain().toggleBulletList().focus().run();
+                    Alpine.raw(this.editor).chain().toggleBulletList().focus().run();
                 } else {
-                    editor.chain().toggleOrderedList().focus().run();
+                    Alpine.raw(this.editor).chain().toggleOrderedList().focus().run();
                 }
             },
             addTable(rows, cols) {
-                editor.chain().focus().insertTable({rows: rows, cols: cols, withHeaderRow: true}).run();
+                Alpine.raw(this.editor).chain().focus().insertTable({
+                    rows: rows,
+                    cols: cols,
+                    withHeaderRow: true
+                }).run();
+            },
+            addColumnBefore() {
+                Alpine.raw(this.editor).chain().addColumnBefore().focus().run();
             },
             addColumnAfter() {
-                editor.chain().addColumnAfter().focus().run();
+                Alpine.raw(this.editor).chain().addColumnAfter().focus().run();
             },
             deleteColumn() {
-                editor.chain().deleteColumn().focus().run();
+                Alpine.raw(this.editor).chain().deleteColumn().focus().run();
             },
             addRowBefore() {
-                editor.chain().addRowBefore().focus().run();
+                Alpine.raw(this.editor).chain().addRowBefore().focus().run();
             },
             addRowAfter() {
-                editor.chain().addRowAfter().focus().run();
+                Alpine.raw(this.editor).chain().addRowAfter().focus().run();
             },
             deleteRow() {
-                editor.chain().deleteRow().focus().run();
+                Alpine.raw(this.editor).chain().deleteRow().focus().run();
             },
             deleteTable() {
-                editor.chain().deleteTable().focus().run();
+                Alpine.raw(this.editor).chain().deleteTable().focus().run();
             },
             mergeCells() {
-                editor.chain().mergeCells().focus().run();
+                Alpine.raw(this.editor).chain().mergeCells().focus().run();
             },
             splitCells() {
-                editor.chain().splitCell().focus().run();
+                Alpine.raw(this.editor).chain().splitCell().focus().run();
             },
             toggleHeaderColumn() {
-                editor.chain().toggleHeaderColumn().focus().run();
+                Alpine.raw(this.editor).chain().toggleHeaderColumn().focus().run();
             },
             toggleHeaderRow() {
-                editor.chain().toggleHeaderRow().focus().run();
+                Alpine.raw(this.editor).chain().toggleHeaderRow().focus().run();
             },
             toggleHeaderCell() {
-                editor.chain().toggleHeaderCell().focus().run();
+                Alpine.raw(this.editor).chain().toggleHeaderCell().focus().run();
             },
-            mergeOrSplit(){
-                editor.chain().mergeOrSplit().focus().run();
+            mergeOrSplit() {
+                Alpine.raw(this.editor).chain().mergeOrSplit().focus().run();
             },
-            fixTable(){
-                editor.chain().fixTables().focus().run();
+            fixTable() {
+                Alpine.raw(this.editor).chain().fixTables().focus().run();
             },
-            goToNextCell(){
-                editor.chain().goToNextCell().focus().run();
+            goToNextCell() {
+                Alpine.raw(this.editor).chain().goToNextCell().focus().run();
             },
-            goToPreviousCell(){
-                editor.chain().goToPreviousCell().focus().run();
+            goToPreviousCell() {
+                Alpine.raw(this.editor).chain().goToPreviousCell().focus().run();
             },
             addLink() {
-                editor.chain().setLink().focus().run();
+                Alpine.raw(this.editor).chain().setLink().focus().run();
             },
             toggleStrikeThrough() {
-                editor.chain().toggleStrike().focus().run();
+                Alpine.raw(this.editor).chain().toggleStrike().focus().run();
             },
             toggleHighlight(color) {
-                editor.chain().toggleHighlight().focus().run();
+                Alpine.raw(this.editor).chain().toggleHighlight().focus().run();
             },
             toggleBlockquote() {
-                editor.chain().toggleBlockquote().focus().run();
+                Alpine.raw(this.editor).chain().toggleBlockquote().focus().run();
             },
-            content: content,
+            undo() {
+                Alpine.raw(this.editor).chain().undo().focus().run();
+            },
+            redo() {
+                Alpine.raw(this.editor).chain().redo().focus().run();
+            },
+            toggleTextAlign(type){
+                Alpine.raw(this.editor).chain().focus().setTextAlign(type).run();
+            },
             init() {
                 const _this = this;
-                editor = new Editor({
-                    element: this.$refs.editorReference,
+                this.editor = new Editor({
+                    element: _this.$refs.editorReference,
                     extensions: [
                         LinkExtension,
                         StarterKit.configure({
-                            history: false,
+                            history: true,
                             dropcursor: true,
                         }),
                         Image.configure({
-                           HTMLAttributes:{
-                               class: 'img-responsive'
-                           }
+                            HTMLAttributes: {
+                                class: 'img-responsive'
+                            }
                         }),
                         Underline,
                         Highlight,
@@ -159,12 +199,44 @@ document.addEventListener("alpine:init", () => {
                         TableRow,
                         TableHeader,
                         TableCell,
+                        BubbleMenu.configure({
+                            element: document.querySelector('.menu'),
+                        }),
+                        TextAlign.configure({
+                            types: ['heading', 'paragraph'],
+                        })
                     ],
-                    content: this.content,
+                    content: _this.content,
+                    onTransaction: ({ editor }) => {
+                        _this.content = editor.getHTML();
+                        _this.active.bold = editor.isActive("bold");
+                        _this.active.italic = editor.isActive("italic");
+                        _this.active.underline = editor.isActive("underline");
+                        _this.active.highlight = editor.isActive("highlight");
+                        _this.active.marker = editor.isActive("marker");
+                        _this.active.orderedList = editor.isActive("orderedList");
+                        _this.active.bulletList = editor.isActive("bulletList");
+                        _this.active.image = editor.isActive("image");
+                        _this.active.link = editor.isActive("link");
+                        _this.active.strike = editor.isActive("strike");
+                        _this.active.blockquote = editor.isActive("blockquote");
+                        _this.active.table = editor.isActive("table");
+                        _this.active.heading1 = editor.isActive('heading', { level: 1 });
+                        _this.active.heading2 = editor.isActive('heading', { level: 2 });
+                        _this.active.heading3 = editor.isActive('heading', { level: 3 });
+                        _this.active.heading4 = editor.isActive('heading', { level: 4 });
+                        _this.active.alignLeft = editor.isActive({ textAlign: 'left' });
+                        _this.active.alignCenter = editor.isActive({ textAlign: 'center' });
+                        _this.active.alignRight = editor.isActive({ textAlign: 'right' });
+                        _this.active.alignJustify = editor.isActive({ textAlign: 'justify' });
+                    },
                     onUpdate({editor}) {
                         _this.updatedAt = Date.now();
                         _this.content = editor.getHTML();
-                    }
+                    },
+                    onSelectionUpdate: () => {
+                        _this.updatedAt = Date.now();
+                    },
                 });
             }
         };

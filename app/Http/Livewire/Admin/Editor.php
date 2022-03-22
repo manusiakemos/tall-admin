@@ -7,7 +7,7 @@ use Livewire\Component;
 class Editor extends Component
 {
 
-    public $text = '<p></p><img class="img-responsive" src="https://tall-admin.test/storage/files/1/css.png"><blockquote><p>my name is john doe</p></blockquote>';
+    public $text = '<p>hello world</p>';
 
     public function render()
     {
@@ -16,6 +16,10 @@ class Editor extends Component
 
     public function save()
     {
+        #you can dump output here
+
+        #emit prism js
+        $this->emit('prism');
     }
 
 }

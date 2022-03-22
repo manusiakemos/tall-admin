@@ -6,18 +6,38 @@
     .heading{
         @apply uppercase text-lg font-semibold dark:text-gray-400 text-gray-500 font-sans tracking-wide;
     }
+
     .ProseMirror{
-        @apply border-2 prose dark:prose-invert prose-sm min-w-full w-full bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 px-6 py-3 min-h-[300px];
+        @apply prose focus:outline-none dark:prose-invert prose-sm min-w-full w-full bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 px-6 py-3 min-h-[400px];
+    }
+
+    .selectedCell {
+       @apply bg-primary-100/30;
+    }
+
+    .column-resize-handle {
+        position: absolute;
+        right: -2px;
+        top: 0;
+        bottom: -2px;
+        width: 4px;
+        background-color: #adf;
+        pointer-events: none;
+    }
+
+    .resize-cursor{
+        @apply cursor-move;
     }
 
     .is-active{
-        @apply bg-primary-500;
+        @apply rounded-xl border-2 border-gray-500 dark:border-gray-300;
     }
 
     .tableWrapper{
         @apply table-auto w-full;
     }
+
     .tableWrapper table tr td, .tableWrapper table tr th{
-        @apply border-collapse border px-3;
+        @apply border-collapse border px-3 py-1;
     }
 }
