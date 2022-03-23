@@ -50,7 +50,7 @@
 
 </head>
 <body
-    class="bg-gray-200 dark:bg-gray-900 dark:text-gray-400 text-gray-100 flex text-sm font-body antialiased"
+    class="bg-gray-50 dark:bg-gray-900 dark:text-gray-400 text-gray-100 flex text-sm font-body antialiased"
     x-data="{showSidebar : false}"
     x-init="window.screen.width >= 1280 ? showSidebar = true : showSidebar = false">
 
@@ -59,7 +59,7 @@
 <div :class="showSidebar ? 'ml-0 md:ml-60' : ''"
      class="w-full flex flex-col min-h-screen overflow-y-hidden">
 
-    <div class="flex flex-col-reverse lg:flex-col">
+    <div class="flex flex-col-reverse lg:flex-col shadow-sm">
         {{-- header for mobile device--}}
         <x-ui.mobile-header/>
         {{-- header for desktop--}}

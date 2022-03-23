@@ -49,6 +49,7 @@
         "@tiptap/starter-kit": "^2.0.0-beta.101",
         "alpinejs": "^3.9.1",
         "bootstrap": "^5.1.0",
+        "codemirror": "^5.65.2",
         "feather-icons": "^4.28.0",
         "font-awesome": "^4.7.0",
         "izimodal": "^1.5.1",

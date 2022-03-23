@@ -4,6 +4,7 @@
     <div
         x-data="editor(@entangle($attributes->wire('model')))"
     >
+        {{-- buttons --}}
         <div class="bg-gray-100 dark:bg-gray-700 py-3 px-6 w-full border-b-2 border-gray-700 dark:border-gray-300">
             <div class="flex flex-wrap mb-3">
 
@@ -226,10 +227,11 @@
 
                 {{-- insert image --}}
                 <button
+                    id="image-btn"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.image}"
-                    x-on:click="uploadImage('{{ route('unisharp.lfm.show')}}')"
+                    x-on:click="uploadImage('{{ route('unisharp.lfm.show')}}', 'image')"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                         <path fill="none" d="M0 0h24v24H0z"/>
@@ -238,8 +240,33 @@
                     </svg>
                 </button>
 
+                {{-- insert iframe --}}
+                <button
+                    id="iframe-btn"
+                    data-title="insert iframe"
+                    type="button"
+                    class="p-3 m-1 text-gray-700 dark:text-gray-300"
+                    :class="{'border-2 border-gray-700 dark:border-gray-300' : active.iframe}"
+                    x-on:click="setIframe"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-2.29-2.333A17.9 17.9 0 0 1 8.027 13H4.062a8.008 8.008 0 0 0 5.648 6.667zM10.03 13c.151 2.439.848 4.73 1.97 6.752A15.905 15.905 0 0 0 13.97 13h-3.94zm9.908 0h-3.965a17.9 17.9 0 0 1-1.683 6.667A8.008 8.008 0 0 0 19.938 13zM4.062 11h3.965A17.9 17.9 0 0 1 9.71 4.333 8.008 8.008 0 0 0 4.062 11zm5.969 0h3.938A15.905 15.905 0 0 0 12 4.248 15.905 15.905 0 0 0 10.03 11zm4.259-6.667A17.9 17.9 0 0 1 15.973 11h3.965a8.008 8.008 0 0 0-5.648-6.667z"/></svg>
+                </button>
+
+                {{-- embed file --}}
+                <button
+                    id="embedFile-btn"
+                    data-title="embed file"
+                    type="button"
+                    class="p-3 m-1 text-gray-700 dark:text-gray-300"
+                    :class="{'border-2 border-gray-700 dark:border-gray-300' : active.iframe}"
+                    x-on:click="uploadFile('{{ route('unisharp.lfm.show')}}', 'file')"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M9 2.003V2h10.998C20.55 2 21 2.455 21 2.992v18.016a.993.993 0 0 1-.993.992H3.993A1 1 0 0 1 3 20.993V8l6-5.997zM5.83 8H9V4.83L5.83 8zM11 4v5a1 1 0 0 1-1 1H5v10h14V4h-8z"/></svg>
+                </button>
+
                 {{-- insert link --}}
                 <button
+                    id="link-btn"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.link}"
@@ -252,9 +279,10 @@
                     </svg>
                 </button>
 
-
                 {{-- table --}}
                 <button
+                    data-title="insert table"
+                    id="table-btn"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.table}"
@@ -271,7 +299,7 @@
             <div class="flex flex-wrap flex-col mb-3">
                 {{-- table --}}
 
-                <div class="flex flex-wrap">
+                <div class="flex flex-wrap" x-show="active.table">
                     {{-- add column before --}}
                     <x-kit::button variant="rounded" class="bg-gray-800 dark:bg-gray-600 text-white text-sm"
                                    x-on:click="addColumnBefore"
@@ -319,7 +347,9 @@
                     </x-kit::button>
                 </div>
 
-                <div class="flex flex-wrap">
+
+                {{-- table buttons --}}
+                <div class="flex flex-wrap" x-show="active.table">
                     {{-- delete column --}}
                     <x-kit::button variant="rounded"
                                    class="bg-danger-500 dark:bg-danger-600 text-white text-sm"
@@ -351,7 +381,6 @@
 
         <div
             x-ref="editorReference"
-            wire:ignore
-            class="w-full bg-white dark:bg-gray-900"></div>
+            wire:ignore></div>
     </div>
 </div>

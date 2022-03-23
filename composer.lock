@@ -2248,21 +2248,22 @@
         },
         {
             "name": "manusiakemos/tall-stack-kit",
-            "version": "1.1.7",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/manusiakemos/tall-stack-kit.git",
-                "reference": "94a1f05a9fd3a4433e1f3f46142ae2d00a8d22b4"
+                "reference": "68d86bfbc72234ae6ef8442fd248512d99c7c538"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manusiakemos/tall-stack-kit/zipball/94a1f05a9fd3a4433e1f3f46142ae2d00a8d22b4",
-                "reference": "94a1f05a9fd3a4433e1f3f46142ae2d00a8d22b4",
+                "url": "https://api.github.com/repos/manusiakemos/tall-stack-kit/zipball/68d86bfbc72234ae6ef8442fd248512d99c7c538",
+                "reference": "68d86bfbc72234ae6ef8442fd248512d99c7c538",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "^8.0",
-                "php": "^7.4|^8.0"
+                "php": "^7.4|^8.0",
+                "unisharp/laravel-filemanager": "^2.4"
             },
             "require-dev": {
                 "orchestra/testbench": "^6.0",
@@ -2308,9 +2309,9 @@
             ],
             "support": {
                 "issues": "https://github.com/manusiakemos/tall-stack-kit/issues",
-                "source": "https://github.com/manusiakemos/tall-stack-kit/tree/1.1.7"
+                "source": "https://github.com/manusiakemos/tall-stack-kit/tree/1.2.0"
             },
-            "time": "2022-03-18T14:09:30+00:00"
+            "time": "2022-03-23T02:43:58+00:00"
         },
         {
             "name": "markbaker/complex",

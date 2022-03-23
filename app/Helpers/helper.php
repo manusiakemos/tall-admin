@@ -3,7 +3,37 @@
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 
-function stringToColorCode($str) {
+function base64_to_jpeg($base64_string, $output_file)
+{
+    // open the output file for writing
+    $ifp = fopen($output_file, 'wb');
+
+    // split the string on commas
+    // $data[ 0 ] == "data:image/png;base64"
+    // $data[ 1 ] == <actual base64 string>
+    $data = explode(',', $base64_string);
+
+    // we could add validation here with ensuring count( $data ) > 1
+    if (count($data) > 1) {
+        fwrite($ifp, base64_decode($data[1]));
+    } else {
+        fwrite($ifp, base64_decode($data[0]));
+    }
+
+    // clean up the file resource
+    fclose($ifp);
+
+    return $output_file;
+}
+
+function save_base64_image($base64_string, $filename)
+{
+    $image = base64_to_jpeg($base64_string, $filename);
+    file_put_contents(public_path("images/$filename"), $image);
+}
+
+function stringToColorCode($str)
+{
     $code = dechex(crc32($str));
     $code = substr($code, 0, 6);
     return $code;
@@ -15,14 +45,14 @@ function replaceArrayString($x)
     return $y;
 }
 
-function my_upload_file($file, $path="uploads", $withpath=false)
+function my_upload_file($file, $path = "uploads", $withpath = false)
 {
     $ext = $file->getClientOriginalExtension();
-    $filename = Str::random().'.'.$ext;
+    $filename = Str::random() . '.' . $ext;
     $file->move($path, $filename);
-    if($withpath){
-        return asset($path."/".$filename);
-    }else{
+    if ($withpath) {
+        return asset($path . "/" . $filename);
+    } else {
         return $filename;
     }
 }
@@ -115,11 +145,11 @@ function waktu($timestamps): string
     return $dt->hour . ":" . $dt->minute;
 }
 
-function tanggal($timestamps, $isCarbon=false, $tampilkan_hari = true, $tampilkan_waktu = false, $hanyaHari = false): string
+function tanggal($timestamps, $isCarbon = false, $tampilkan_hari = true, $tampilkan_waktu = false, $hanyaHari = false): string
 {
-    if($isCarbon){
+    if ($isCarbon) {
         $dt = $timestamps;
-    }else{
+    } else {
         $dt = Carbon::parse($timestamps);
     }
     $dayOfWeek = $dt->dayOfWeek;
@@ -190,37 +220,37 @@ function tanggal($timestamps, $isCarbon=false, $tampilkan_hari = true, $tampilka
     return $tanggal;
 }
 
-function rupiah($angka, $tampilkanRupiah=true)
+function rupiah($angka, $tampilkanRupiah = true)
 {
     $hasil_rupiah = number_format($angka, 2, ',', '.');
     return $tampilkanRupiah ? "Rp." . $hasil_rupiah : $hasil_rupiah;
 }
 
-function generate_links($name, $id, $links_additional= [])
+function generate_links($name, $id, $links_additional = [])
 {
     $links = [
-        'store' => route($name.".store"),
-        'show' => route($name.'.show', $id),
-        'edit' => route($name.'.edit', $id),
-        'update' => route($name.'.update', $id),
-        'destroy' => route($name.'.destroy', $id),
+        'store' => route($name . ".store"),
+        'show' => route($name . '.show', $id),
+        'edit' => route($name . '.edit', $id),
+        'update' => route($name . '.update', $id),
+        'destroy' => route($name . '.destroy', $id),
     ];
-    if(count($links_additional) > 0){
+    if (count($links_additional) > 0) {
         array_push($links, $links_additional);
     }
     return auth()->check() ? $links : [];
 }
 
-function generate_links_api($name, $id, $links_additional= [])
+function generate_links_api($name, $id, $links_additional = [])
 {
     $links = [
-        'store' => route($name.".store"),
-        'show' => route($name.'.show', $id),
-        'update' => route($name.'.update', $id),
-        'destroy' => route($name.'.destroy', $id),
+        'store' => route($name . ".store"),
+        'show' => route($name . '.show', $id),
+        'update' => route($name . '.update', $id),
+        'destroy' => route($name . '.destroy', $id),
     ];
 
-    if(count($links_additional) > 0){
+    if (count($links_additional) > 0) {
         /*foreach($links_additional as $key => $link){
             array_merge($links, $link);
         }*/

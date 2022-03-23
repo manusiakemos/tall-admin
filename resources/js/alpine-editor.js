@@ -1,4 +1,6 @@
 import Alpine from "alpinejs";
+
+import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 
 import {Editor} from "@tiptap/core";
@@ -13,6 +15,8 @@ import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import BubbleMenu from '@tiptap/extension-bubble-menu';
 import TextAlign from "@tiptap/extension-text-align";
+import Iframe from "./editor/iframe";
+import EmbedFile from "./editor/embed-file";
 // Tiptap editor on alpine init
 document.addEventListener("alpine:init", () => {
     Alpine.data("editor", (content) => {
@@ -20,6 +24,11 @@ document.addEventListener("alpine:init", () => {
             editor: null,
             content: content,
             updatedAt: Date.now(),
+            iframe:{
+              src:'',
+              width: 500,
+              height: 500,
+            },
             active: {
                 undo:false,
                 redo:false,
@@ -43,26 +52,45 @@ document.addEventListener("alpine:init", () => {
                 alignRight:false,
                 alignCenter:false,
                 alignJustify:false,
+                iframe:false,
+                embedFile:false
             },
             lfm(id, type, options) {
+                if (type === 'file'){
+                   var width = window.prompt("width:", "500");
+                   var height = window.prompt("height:", "500");
+                }
                 let route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
-                window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=700,height=600');
+                window.open(route_prefix + '?type=' + type || 'file', 'FileManager', 'width=700,height=600');
                 const _this = this;
                 window.SetUrl = function (items) {
-                    console.log(items);
                     let file_path = items.map(function (item) {
                         return item.url;
                     }).join(',');
-                    _this.setImage(file_path);
+                    if (type === 'image'){
+                        _this.setImage(file_path);
+                    }else{
+                        _this.setEmbedFileUpload(file_path, width,height);
+                    }
                 };
             },
             uploadImage(route_prefix) {
                 this.lfm('lfm', 'image', {prefix: route_prefix});
             },
+            uploadFile(route_prefix){
+                this.lfm('lfm', 'file', {prefix: route_prefix});
+            },
             setImage(url) {
-                console.log(url);
                 if (url) {
                     Alpine.raw(this.editor).chain().focus().setImage({src: url}).run();
+                } else {
+                    console.log('image url not found');
+                }
+            },
+            setEmbedFileUpload(url, width, height){
+
+                if (url) {
+                    Alpine.raw(this.editor).chain().focus().setEmbedFile({ src: url, width:width, height:height}).run();
                 } else {
                     console.log('image url not found');
                 }
@@ -173,6 +201,28 @@ document.addEventListener("alpine:init", () => {
             toggleTextAlign(type){
                 Alpine.raw(this.editor).chain().focus().setTextAlign(type).run();
             },
+            setIframe(){
+                let url = window.prompt('URL');
+                let width = window.prompt('width');
+                let height = window.prompt('height');
+
+                Alpine.raw(this.editor).chain().focus().setIframe({ src: url, width:width, height:height}).run();
+            },
+            setTippy(){
+                Object.entries(this.active).forEach(item => {
+                    let title = null;
+                    let el = document.querySelector(`#${item[0]}-btn`);
+                    if (el){
+                       title = el.getAttribute('data-title');
+                    }
+                    if (title === null){
+                        title =  item[0];
+                    }
+                    tippy(`#${item[0]}-btn`, {
+                        content: title,
+                    });
+                });
+            },
             init() {
                 const _this = this;
                 this.editor = new Editor({
@@ -204,10 +254,13 @@ document.addEventListener("alpine:init", () => {
                         }),
                         TextAlign.configure({
                             types: ['heading', 'paragraph'],
-                        })
+                        }),
+                        Iframe,
+                        EmbedFile
                     ],
                     content: _this.content,
                     onTransaction: ({ editor }) => {
+                        _this.setTippy();
                         _this.content = editor.getHTML();
                         _this.active.bold = editor.isActive("bold");
                         _this.active.italic = editor.isActive("italic");
@@ -229,14 +282,18 @@ document.addEventListener("alpine:init", () => {
                         _this.active.alignCenter = editor.isActive({ textAlign: 'center' });
                         _this.active.alignRight = editor.isActive({ textAlign: 'right' });
                         _this.active.alignJustify = editor.isActive({ textAlign: 'justify' });
+                        _this.active.iframe = editor.isActive('iframe');
                     },
                     onUpdate({editor}) {
                         _this.updatedAt = Date.now();
                         _this.content = editor.getHTML();
                     },
-                    onSelectionUpdate: () => {
+                    onSelectionUpdate: ( {editor}) => {
                         _this.updatedAt = Date.now();
                     },
+                    onFocus : ({editor, event}) =>{
+
+                    }
                 });
             }
         };
