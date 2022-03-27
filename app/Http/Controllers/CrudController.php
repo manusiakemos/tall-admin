@@ -33,7 +33,7 @@ class CrudController extends Controller
 
     public function truncate(Request $request)
     {
-        $data = $request->data;
+        $data = json_encode($request->data);
         $save = file_put_contents(base_path("/database/json/crudgen.json"), $data);
         return response()->json(['status' => $save, 'message' => 'Successfully generated']);
     }

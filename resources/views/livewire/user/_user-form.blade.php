@@ -15,6 +15,16 @@
                <x-kit::form-group input-id="email" text-label="email" error-name="user.email">
                    <x-kit::input id="email" wire:model.lazy="user.email" placeholder="your email"/>
                </x-kit::form-group>
+
+               <x-kit::form-group input-id="role" text-label="role" error-name="user.role">
+
+                   <x-kit::select-search wire:model="user.role"
+                                         :options="$options['role']"
+                                         placeholder="select a role"
+                                         option-value="value"
+                                         option-text="text"/>
+
+               </x-kit::form-group>
            </div>
            <div class="flex justify-end py-4">
                <x-kit::button
