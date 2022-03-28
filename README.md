@@ -61,3 +61,18 @@ php artisan db:seed
 - [x] Form Modal
 - [x] Authentication
 - [x] Privacy Policy
+
+
+
+## Commands
+
+```bash
+#Generate crud from database to crudgen.json file
+
+php artisan generate:crud
+
+
+```
+
+
+
