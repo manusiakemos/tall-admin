@@ -4,10 +4,10 @@
     <div class="container-fluid py-5" id="app">
         <div class="row" v-cloak>
             <div class="col-md-12">
-                <div class="card border-light shadow-sm">
+                <div class="card bg-dark text-white border-light shadow-sm">
                     <div class="card-body">
                         <div class="d-md-flex">
-                            <h4 class="card-title mb-3">CrudGen GUI</h4>
+                            <h4 class="card-title mb-3 text-white">CrudGen GUI</h4>
                             <div class="ml-auto">
                                 <a @click.prevent="create"
                                    class="btn btn-primary btn-create mb-1">
@@ -16,7 +16,7 @@
                                 </a>
                                 <button
                                     @click="refresh"
-                                    class="btn btn-dark btn-refresh mb-1">
+                                    class="btn btn-primary btn-refresh mb-1">
                                     <span class="fa fa-recycle"></span>
                                     Refresh
                                 </button>
@@ -28,14 +28,14 @@
                             </div>
                         </div>
                         <div class="mt-3">
-                            <table class="table">
+                            <table class="table text-white">
                                 <tbody>
                                 <tr v-for="(v,i) in data_json" :key="i">
                                     <td>@{{ v.class }}</td>
                                     <td class="text-center w-25">
-                                        <button class="btn btn-primary" @click="edit(i)"><span
+                                        <button type="button" class="btn btn-primary" @click="edit(i)"><span
                                                 class="fa fa-pencil"></span></button>
-                                        <button class="btn btn-danger" @click="destroy(i)"><span class="fa fa-trash-o"></span></button>
+                                        <button type="button" class="btn btn-danger" @click="destroy(i)"><span class="fa fa-trash-o"></span></button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -47,7 +47,7 @@
         </div>
         <div class="modal fade" tabindex="-1" role="dialog" id="modalForm">
             <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
+                <div class="modal-content bg-dark text-white">
                     <div class="modal-header">
                         <h5 class="modal-title">Crud Form</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -245,9 +245,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <button class="btn btn-danger" @click="deleteField(index)"><span
+                                            <button type="button" class="btn btn-danger" @click="deleteField(index)"><span
                                                     class="fa fa-minus"></span></button>
-                                            <button class="btn btn-primary" @click="addField(index)"><span
+                                            <button type="button" class="btn btn-primary" @click="addField(index)"><span
                                                     class="fa fa-plus"></span></button>
                                         </div>
                                     </div>
@@ -429,7 +429,8 @@
                     $("#modalForm").modal("toggle");
                 },
                 destroy(index) {
-                    this.data_json.splice(index,1);
+                    console.log(this.data_json);
+                    this.data_json.splice(index, 1);
                     this.deleteAll(this.data_json);
                 },
                 getData() {

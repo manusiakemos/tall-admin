@@ -63,19 +63,22 @@ class CrudController extends Controller
         $array = json_decode($get_json, true);
         $collection = collect($array);
         $data = $collection->where("class", $request->class)->first();
+        $x = collect($request->all());
         if ($data) {
             $filtered = $collection->reject(function ($value, $key) use ($request) {
                 return $value['class'] == $request->class;
             });
-            $x = collect($request->all());
-            $filtered->push($x);
-            $json = $filtered;
+            $array = $filtered->toArray();
+            $json = [];
+            foreach ($array as $item){
+                $json[] = $item;
+            }
+            $json[] = $x;
         } else {
-            $x = collect($request->all());
             $collection->push($x);
-            $json = $collection;
+            $json = $collection->toArray();
         }
-        $save = file_put_contents(base_path("/database/json/crudgen.json"), $json);
+        $save = file_put_contents(base_path("/database/json/crudgen.json"), json_encode($json));
 
         return response()
             ->json(['status' => $save ? '200' : '403', 'message' => $save ? 'Successfully Generated' : 'Something Wrong Happend']);

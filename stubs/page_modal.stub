@@ -24,6 +24,10 @@
             </div>
 
            <div>
+            {{-- livewire alert --}}
+                <x-kit::alert class="text-white bg-primary-500 mb-3 border-2 border-white" duration="3000"
+                        wire:model="showAlert">{{$alertMessage}}</x-kit::alert>
+               {{-- livewire table data --}}
                {{-- livewire table data --}}
                <livewire:{@classNameLower}.{@classNameLower}-table/>
 

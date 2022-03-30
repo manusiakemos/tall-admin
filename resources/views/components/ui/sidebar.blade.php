@@ -11,7 +11,7 @@
        id="sidebar">
     <div class="relative w-full h-screen overflow-hidden flex flex-col">
         {{-- top section --}}
-        <div id="top" class="flex-none text-white w-full h-16 absolute top-0">
+        <div id="top" class="flex-none text-white w-full h-16 absolute top-0 bg-gray-100 dark:bg-gray-800">
             <div class="p-6 flex">
                 <a href="{{url('/home')}}"
                    class="tracking-wide
@@ -34,7 +34,9 @@
         </div>
 
         {{-- bottom section --}}
-        <div id="bottom" class="flex-none h-20 text-white w-full absolute left-0 right-0 bottom-0 flex items-center">
+        <div
+            id="bottom"
+            class="flex-none h-20 text-white w-full absolute left-0 right-0 bottom-0 flex items-center bg-gray-100 dark:bg-gray-800">
             <a href="{{url('logout')}}"
                class="logout-btn w-full md:w-2/3 rounded-md
                   text-white bg-primary-500 dark:bg-primary-800
