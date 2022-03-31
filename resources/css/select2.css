@@ -1,0 +1,29 @@
+.select2-container {
+    /* The container where the selectbox is housing*/
+    @apply align-middle inline-block m-0 mb-3 w-full text-gray-700 dark:text-gray-300 !important;
+}
+
+.select2-container .select2-selection--single {
+    /* Selection box itself */
+    @apply w-full bg-gray-200 border-0 h-9 mt-1
+    cursor-pointer block select-none shadow rounded select-none !important;
+}
+
+.select2-selection__rendered{
+    @apply flex items-center leading-10 !important;
+}
+
+.select2-selection__arrow{
+    position: absolute !important;
+    top: 8px !important;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    /* DIV inside Selection box with text, clear button and arrow down*/
+    @apply block h-12 pl-1 pr-6 truncate !important;
+}
+
+.select2-container .select2-selection--single .select2-selection__clear {
+    /* The DIV where the X is housing to clear the chosen option */
+    @apply relative -m-1 !important;
+}

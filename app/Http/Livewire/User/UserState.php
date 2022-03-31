@@ -34,12 +34,12 @@ trait UserState
     public array $user = [
         "user_id" => "",
         "village_id" => "",
-        "name" => "",
-        "username" => "",
+        "name" => "test",
+        "username" => "test",
         "birthplace" => "",
         "birthdate" => "",
         "address" => "",
-        "email" => "",
+        "email" => "test@gmail.com",
         "role" => "",
         "avatar" => "",
         "about" => "",
@@ -176,15 +176,14 @@ trait UserState
         $delete = User::destroy($id);
 
         if ($delete) {
-            $this->showToast = true;
-            $this->toastMessage = "User berhasil dihapus";
+            $this->showAlert = true;
+            $this->alertMessage = "User berhasil dihapus";
         } else {
-            $this->showToast = true;
-            $this->toastMessage = "User gagal dihapus";
+            $this->showAlert = true;
+            $this->alertMessage = "User gagal dihapus";
         }
 
         $this->emit("refreshDt", false);
-
         $this->reset(['user', 'updateMode', 'showModalConfirm']);
     }
 

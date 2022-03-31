@@ -10,6 +10,8 @@
 
                 {{-- undo --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="undo"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.undo}"
@@ -24,6 +26,8 @@
 
                 {{-- redo --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="redo"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.redo}"
@@ -51,6 +55,8 @@
 
                 {{-- bold --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="bold"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     x-bind:class="{'border-2 border-gray-700 dark:border-gray-300' : active.bold}"
@@ -65,6 +71,8 @@
 
                 {{-- italic --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="italic"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.italic}"
@@ -78,6 +86,8 @@
 
                 {{-- underline --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="underline"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.underline}"
@@ -92,6 +102,8 @@
 
                 {{-- text align left --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="align left"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     x-bind:class="{'border-2 border-gray-700 dark:border-gray-300' : active.alignLeft}"
@@ -105,6 +117,8 @@
 
                 {{-- text align center --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="align center"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     x-bind:class="{'border-2 border-gray-700 dark:border-gray-300' : active.alignCenter}"
@@ -118,6 +132,8 @@
 
                 {{-- text align right --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="align right"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     x-bind:class="{'border-2 border-gray-700 dark:border-gray-300' : active.alignRight}"
@@ -129,7 +145,10 @@
                     </svg>
                 </button>
 
+                {{-- align justify --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="align justify"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     x-bind:class="{'border-2 border-gray-700 dark:border-gray-300' : active.alignJustify}"
@@ -143,6 +162,8 @@
 
                 {{-- highlight --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="highlight"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.highlight}"
@@ -157,6 +178,8 @@
 
                 {{-- paragraph --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="paragraph"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.paragraph}"
@@ -171,6 +194,8 @@
 
                 {{-- orderded list --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="ordered list"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.orderedList}"
@@ -185,6 +210,8 @@
 
                 {{-- unorderded list --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="unorderded list"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.bulletList}"
@@ -199,6 +226,8 @@
 
                 {{-- strike through --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="strike"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.strike}"
@@ -213,6 +242,8 @@
 
                 {{-- blockquote --}}
                 <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="blockquote"
                     type="button"
                     class="p-3 m-1 text-gray-700 dark:text-gray-300"
                     :class="{'border-2 border-gray-700 dark:border-gray-300' : active.blockquote}"
@@ -222,6 +253,22 @@
                         <path fill="none" d="M0 0h24v24H0z"/>
                         <path class="dark:fill-white"
                               d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
+                    </svg>
+                </button>
+
+                {{-- code --}}
+                <button
+                    data-tippy-toggle="tippy"
+                    data-tippy-title="code"
+                    type="button"
+                    class="p-3 m-1 text-gray-700 dark:text-gray-300"
+                    :class="{'border-2 border-gray-700 dark:border-gray-300' : active.code}"
+                    x-on:click="toggleCode"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z"/>
+                        <path class="dark:fill-white"
+                              d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657L7.07 7.757 2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z"/>
                     </svg>
                 </button>
 

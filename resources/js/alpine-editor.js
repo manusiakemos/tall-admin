@@ -53,7 +53,8 @@ document.addEventListener("alpine:init", () => {
                 alignCenter:false,
                 alignJustify:false,
                 iframe:false,
-                embedFile:false
+                embedFile:false,
+                code:false,
             },
             lfm(id, type, options) {
                 if (type === 'file'){
@@ -201,6 +202,9 @@ document.addEventListener("alpine:init", () => {
             toggleTextAlign(type){
                 Alpine.raw(this.editor).chain().focus().setTextAlign(type).run();
             },
+            toggleCode(){
+                Alpine.raw(this.editor).chain().toggleCode().focus().run();
+            },
             setIframe(){
                 let url = window.prompt('URL');
                 let width = window.prompt('width');
@@ -283,6 +287,7 @@ document.addEventListener("alpine:init", () => {
                         _this.active.alignRight = editor.isActive({ textAlign: 'right' });
                         _this.active.alignJustify = editor.isActive({ textAlign: 'justify' });
                         _this.active.iframe = editor.isActive('iframe');
+                        _this.active.code = editor.isActive('code');
                     },
                     onUpdate({editor}) {
                         _this.updatedAt = Date.now();
@@ -297,6 +302,12 @@ document.addEventListener("alpine:init", () => {
                 });
             }
         };
+    });
+});
+document.querySelectorAll('[data-tippy-toggle="tippy"]').forEach((tippyEl)=>{
+    let title = tippyEl.getAttribute('data-tippy-title');
+    tippy(tippyEl, {
+        content: title,
     });
 });
 

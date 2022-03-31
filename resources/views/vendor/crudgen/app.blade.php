@@ -18,7 +18,7 @@
     <!-- Scripts -->
     @stack("style")
 </head>
-<body>
+<body style="background: #1f1f1f">
 
 <main>
     @yield('content')

@@ -48,7 +48,7 @@
     <script>
         Livewire.on("confirmDestroy", (id) => {
             @this.set('showModalConfirm', true);
-            @this.set('{@classNameLower}.user_id', id);
+            @this.set('{@classNameLower}.{@primaryKey}', id);
         });
         Livewire.on("refreshDt", (showNoty = false) => {
             Livewire.components.getComponentsByName('{@classNameLower}.{@classNameLower}-table')[0].$wire.$refresh();

@@ -1,5 +1,10 @@
+@import "./select2.css";
+
 @tailwind base;
 @tailwind components;
+
+/*select2*/
+
 @tailwind utilities;
 
 @layer base {
