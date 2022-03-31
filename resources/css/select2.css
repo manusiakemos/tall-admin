@@ -1,16 +1,16 @@
 .select2-container {
     /* The container where the selectbox is housing*/
-    @apply align-middle inline-block m-0 mb-3 w-full text-gray-700 dark:text-gray-300 !important;
+    @apply align-middle inline-block m-0 mb-3 w-full text-gray-700 dark:text-gray-300 border-0 mt-1 rounded-lg !important;
 }
 
 .select2-container .select2-selection--single {
     /* Selection box itself */
-    @apply w-full bg-gray-200 border-0 h-9 mt-1
-    cursor-pointer block select-none shadow rounded select-none !important;
+    @apply w-full bg-gray-200 dark:bg-gray-600  text-gray-700 dark:text-gray-300  border-0 h-9 mt-1
+    cursor-pointer block select-none shadow rounded select-none px-3 !important;
 }
 
 .select2-selection__rendered{
-    @apply flex items-center leading-10 !important;
+    @apply text-gray-700 dark:text-gray-300  flex items-center leading-10 !important;
 }
 
 .select2-selection__arrow{
@@ -20,10 +20,31 @@
 
 .select2-container .select2-selection--single .select2-selection__rendered {
     /* DIV inside Selection box with text, clear button and arrow down*/
-    @apply block h-12 pl-1 pr-6 truncate !important;
+    @apply block h-12 pl-1 pr-6 truncate border-0  !important;
 }
 
 .select2-container .select2-selection--single .select2-selection__clear {
     /* The DIV where the X is housing to clear the chosen option */
-    @apply relative -m-1 !important;
+    @apply relative -m-1 border-0  !important;
 }
+
+span.select2-search span.select2-search--dropdown, .select2-search__field, .select2-results{
+    @apply bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-0 focus:border-primary-500 focus:outline-none !important;
+}
+
+.select2-search--dropdown{
+    @apply bg-gray-200 dark:bg-gray-600 border-0 p-3 !important
+}
+
+.select2-results__option--selectable{
+    @apply bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-300 border-0 py-3 px-6  !important
+}
+
+.select2-dropdown--below{
+    @apply border-0 rounded-xl !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    @apply bg-primary-500 text-white !important;
+}
+

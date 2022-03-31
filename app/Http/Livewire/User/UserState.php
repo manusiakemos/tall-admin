@@ -106,8 +106,8 @@ trait UserState
         if ($save) {
             $this->showModalForm = false;
             $this->reset("user");
-            $this->showToast = true;
-            $this->toastMessage = "User berhasil ditambahkan";
+            $this->showAlert = true;
+            $this->alertMessage = "User berhasil ditambahkan";
             $this->emit( 'refreshDt');
         }else{
             abort('403', 'User gagal ditambahkan');
@@ -141,8 +141,8 @@ trait UserState
         if ($save) {
             $this->showModalForm = false;
             $this->reset("user");
-            $this->showToast = true;
-            $this->toastMessage = "User berhasil diupdate";
+            $this->showAlert = true;
+            $this->alertMessage = "User berhasil diupdate";
             $this->emit( 'refreshDt');
         }
     }
@@ -150,7 +150,7 @@ trait UserState
     private function handleFormRequest(User $db): bool
     {
         $db->username = $this->user['username'];
-//        $db->email = $this->user['email'];
+        $db->email = $this->user['email'];
         $db->name = $this->user['name'];
         $db->role = $this->user['role'];
         $db->active = $this->user['active'];

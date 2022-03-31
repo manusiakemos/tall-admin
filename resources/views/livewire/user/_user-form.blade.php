@@ -18,12 +18,11 @@
                         option-value="value"
                         option-text="text"
                     >
-                        <template x-for="item in options">
-                            <option
-                                x-text="item.text"
-                                :value="item.value">
+                        @foreach($options['role'] as $role)
+                            <option value="{{ $role['value'] }}">
+                                {{ $role['text'] }}
                             </option>
-                        </template>
+                        @endforeach
                     </x-kit::select2>
                 </x-kit::form-group>
 
