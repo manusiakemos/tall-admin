@@ -44,6 +44,7 @@ class {@className}Table extends DataTableComponent
             {@columns}
 
             Column::make("Action")
+                ->addClass('flex justify-center items-center h-16')
                 ->asHtml()
                 ->format(function ($value, $column, {@className} $row) {
                     return view('livewire.{@classNameLower}._{@classNameLower}-action', compact('row'));
