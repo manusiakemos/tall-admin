@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-auth.auth-card
-        class="backdrop-filter backdrop-blur-xl backdrop-sepia-0 bg-white/70
-                        flex flex-col w-full mx-12 px-12 py-6 rounded-tl-3xl rounded-br-3xl">
+        class="flex flex-col w-full mx-12 px-12 py-6 rounded-tl-3xl rounded-br-3xl">
+
         <x-slot name="logo">
             LOGIN
         </x-slot>
@@ -36,21 +36,26 @@
             <!-- Remember Me -->
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-secondary-600 shadow-sm focus:border-secondary-300 focus:ring focus:ring-secondary-200 focus:ring-opacity-50" name="remember">
+                    <input id="remember_me" type="checkbox"
+                           class="rounded border-gray-300 text-secondary-600 shadow-sm focus:border-secondary-300 focus:ring focus:ring-secondary-200 focus:ring-opacity-50"
+                           name="remember">
                     <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                       href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
 
-                <x-auth.button class="ml-3">
+                <x-kit::button variant="rounded"
+                               type="submit"
+                               class="ml-3 bg-primary-500 dark:bg-primary-700 uppercase text-sm text-white">
                     {{ __('Log in') }}
-                </x-auth.button>
+                </x-kit::button>
             </div>
         </form>
     </x-auth.auth-card>

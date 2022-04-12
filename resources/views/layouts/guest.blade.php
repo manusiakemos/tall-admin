@@ -1,5 +1,29 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html
+    x-data="{
+                theme: localStorage.getItem('theme') ?? 'dark',
+                theme_icon : localStorage.getItem('theme-icon'),
+                setTheme(val){
+                    console.log('theme-icon : ' + val)
+                    localStorage.setItem('theme-icon', val);
+                    if (val != 'system'){
+                        localStorage.setItem('theme', val)
+                    }else{
+                        this.theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                        console.log('theme : ' + this.theme)
+                        localStorage.setItem('theme', this.theme);
+                    }
+                }
+              }"
+    x-init="
+            $watch('theme_icon', (value) => {
+                localStorage.setItem('theme-icon', value);
+                setTheme(value);
+            })
+            setTheme(theme_icon);
+        "
+    :class="theme"
+    lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include("includes._meta")
 

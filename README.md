@@ -59,8 +59,8 @@ php artisan db:seed
 - [x] Crud Generator
 - [x] Datatable
 - [x] Form Modal
-- [x] Authentication
 - [x] Privacy Policy
+- [x] Laravel Breeze Auth
 
 
 
