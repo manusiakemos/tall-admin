@@ -15,7 +15,7 @@
 ### Clone Repo
 
 ```bash
-git clone https://github.com/manusiakemos/tall-admin.git
+git clone https://github.com/manusiakemos/tall-admin.git yourprojectname
 ```
 
 ### Run Command
