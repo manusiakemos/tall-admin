@@ -13,7 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-require __DIR__ . '/crud.php';
+/*
+| uncomment line below if you use next or nuxt frontend
+| auth with laravel breeze cookie based auth
+ */
+
+//require __DIR__ . '/auth-spa.php';
+
+require __DIR__ . '/auth.php';
 
 Route::view('/privacy', 'privacy')->name('privacy');
 
