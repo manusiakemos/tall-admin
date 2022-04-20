@@ -1,4 +1,4 @@
-<div {{$attributes->merge(['class'=>'bg-gradient-to-br from-gray-500 to-gray-700 text-gray-500 rounded-lg p-5 shadow-l'])}}>
+<div {{$attributes->merge(['class'=>'relative bg-gradient-to-br from-gray-500 to-gray-700 text-gray-500 rounded-lg p-5 shadow-l overflow-scroll'])}}>
    <div class="flex justify-between items-center">
        <div>
            <span class="text-sm capitalize text-warning-400">{{$title}}</span>

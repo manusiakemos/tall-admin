@@ -48,7 +48,7 @@
 
 </head>
 <body
-    class="bg-gray-50 dark:bg-gray-900 dark:text-gray-400 text-gray-100 flex text-sm font-body antialiased"
+    class="bg-gray-200 dark:bg-gray-900 dark:text-gray-400 text-gray-100 flex text-sm font-body antialiased"
     x-data="{showSidebar : false}"
     x-init="window.screen.width >= 1280 ? showSidebar = true : showSidebar = false">
 

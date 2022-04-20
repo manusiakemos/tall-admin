@@ -1,0 +1,7 @@
+.daterangepicker.ltr.show-ranges.opensright.show-calendar{
+    @apply bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300
+}
+
+.calendar-table > .table-condensed {
+    @apply text-gray-700
+}

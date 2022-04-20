@@ -1,4 +1,5 @@
 @import "./select2.css";
+@import "./datepicker.css";
 
 @tailwind base;
 @tailwind components;
@@ -9,7 +10,7 @@
 
 @layer base {
     .heading{
-        @apply uppercase text-lg font-semibold dark:text-gray-400 text-gray-500 font-sans tracking-wide;
+        @apply uppercase text-lg font-semibold dark:text-gray-400 text-gray-700 font-sans tracking-wide;
     }
 
     .ProseMirror{

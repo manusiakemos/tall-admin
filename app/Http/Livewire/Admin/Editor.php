@@ -7,7 +7,7 @@ use Livewire\Component;
 class Editor extends Component
 {
 
-    public $text = '<p>lorem</p> <p>ipsum</p>';
+    public $text = '<table> <tr><td>1</td> <td>2</td></tr> </table>';
 
     public function render()
     {
