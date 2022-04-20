@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
+require __DIR__ . '/crud.php';
+
 Route::view('/privacy', 'privacy')->name('privacy');
 
 Route::middleware(['auth', 'role:admin|super-admin'])->group(function () {
@@ -46,4 +48,3 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['auth', 'role:
 Route::get('/', function () {
     return view('welcome');
 });
-require __DIR__ . '/auth.php';
