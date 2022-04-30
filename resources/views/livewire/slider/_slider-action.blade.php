@@ -1,4 +1,4 @@
-<div class="flex justify-center items-center">
+<div class="flex lg:justify-center items-center">
     <x-kit::button class="bg-primary-500 text-white hover:bg-primary-400"
                  variant="circle"
                  data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"

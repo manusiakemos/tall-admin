@@ -39,7 +39,7 @@
             class="flex-none h-20 text-white w-full absolute left-0 right-0 bottom-0 flex items-center bg-gray-100 dark:bg-gray-800">
             <a href="{{url('logout')}}"
                class="logout-btn w-full md:w-2/3 rounded-md
-                  text-white bg-primary-500 dark:bg-primary-800
+                  text-white bg-primary-500 hover:bg-primary-400
                   flex items-center justify-center py-4 py-6 mx-auto">
                 <i class="flex items-center text-lg fi-rr-sign-out mr-3"></i>
                 <span class="text-sm font-bold">Sign Out</span>

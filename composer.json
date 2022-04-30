@@ -18,7 +18,7 @@
         "livewire/livewire": "^2.5",
         "maatwebsite/excel": "^3.1",
         "manusiakemos/tall-stack-kit": "^1.0",
-        "rappasoft/laravel-livewire-tables": "^1.12",
+        "rappasoft/laravel-livewire-tables": "^2.3",
         "spatie/laravel-medialibrary": "^9.0.0",
         "unisharp/laravel-filemanager": "^2.2"
     },
