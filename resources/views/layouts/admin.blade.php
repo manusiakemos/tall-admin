@@ -1,28 +1,28 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-      x-data="{
-                theme: localStorage.getItem('theme') ?? 'dark',
-                theme_icon : localStorage.getItem('theme-icon'),
-                setTheme(val){
-                    console.log('theme-icon : ' + val)
-                    localStorage.setItem('theme-icon', val);
-                    if (val != 'system'){
-                        localStorage.setItem('theme', val)
-                    }else{
-                        this.theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-                        console.log('theme : ' + this.theme)
-                        localStorage.setItem('theme', this.theme);
-                    }
+<html
+lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+x-data="{
+            theme: localStorage.getItem('theme') ?? 'dark',
+            theme_icon : localStorage.getItem('theme-icon') ?? 'system',
+            setTheme(val){
+                localStorage.setItem('theme-icon', val)
+                if (val == 'light' || val == 'dark'){
+                    this.theme = val;
+                    localStorage.setItem('theme', val)
+                }else{
+                    let x = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                    this.theme = x;
+                    localStorage.setItem('theme', x);
                 }
-              }"
-      x-init="
-            $watch('theme_icon', (value) => {
-                localStorage.setItem('theme-icon', value);
-                setTheme(value);
-            })
-            setTheme(theme_icon);
-        "
-      :class="theme">
+            }
+          }"
+x-init="
+        $watch('theme_icon', (value) => {
+            setTheme(value);
+        })
+        setTheme(theme_icon);
+    "
+:class="theme">
 <head>
     @if(isset($htmlTitle))
         {{$htmlTitle}}
