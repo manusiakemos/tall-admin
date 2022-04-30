@@ -43,7 +43,7 @@
                 </x-kit::button>
                 <x-kit::button
                     variant="rounded"
-                    type="submit" class="bg-primary-500 hover:bg-secondary-400 text-white hover:bg-primary-400">
+                    type="submit" class="bg-primary-500 text-white hover:bg-primary-400">
                     {{$updateMode ? __('messages.save_changes') : __('messages.save')}}
                 </x-kit::button>
             </div>

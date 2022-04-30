@@ -7,43 +7,43 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\User;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class UserTable extends DataTableComponent
 {
 
-    public string $defaultSortColumn = 'name';
-    public string $defaultSortDirection = 'asc';
-    public bool $perPageAll = true;
-//    public bool $reorderEnabled = true;
+    public function configure(): void
+    {
+        $this->setPrimaryKey("user_id")
+            ->setThAttributes(function (Column $column) {
+                if (in_array($column->getTitle(), ['Action'])) {
+                    return [
+                        'default' => true,
+                        'class' => 'text-center',
+                    ];
+                }
+                return ['default' => true];
+            });
+    }
 
     public array $bulkActions = [
-        'destroySelected' => 'Hapus Data Terpilih',
+        'destroySelected' => 'Hapus',
     ];
-
-//    public function reorder($items): void
-//    {
-//        foreach ($items as $item) {
-//            optional(User::find((int)$item['value']))->update(['sort' => (int)$item['order']]);
-//        }
-//    }
-
-    protected int $index = 0;
-    public string $primaryKey = "user_id";
 
     public function destroySelected()
     {
-        User::whereIn($this->primaryKey, $this->selectedRowsQuery()->pluck($this->primaryKey))->delete();
+        User::whereIn($this->primaryKey, $this->getSelected())->delete();
         $this->emit("showToast", ["message" => "Users Deleted Successfully", "type"=>"success"]);
     }
 
     public function filters(): array
     {
         return [
-            'role' => Filter::make('User Level')
-                ->select([
-                    '' => 'Any',
-                    "super-admin" => 'Super Admin',
-                    "admin" => 'Admin',
+            SelectFilter::make('Role')
+                ->options([
+                    '' => 'All',
+                    'super-admin' => 'Super Admin',
+                    'admin' => 'Admin',
                 ]),
         ];
     }
@@ -51,16 +51,7 @@ class UserTable extends DataTableComponent
 
     public function columns(): array
     {
-        if ($this->page > 1) {
-            $this->index = ($this->page - 1) * $this->perPage;
-        } else {
-            $this->index = 0;
-        }
-
         return [
-            Column::make(__('No.'))->format(function () {
-                return ++$this->index;
-            }),
             Column::make('Name','name')
                 ->searchable()
                 ->sortable(),
@@ -73,20 +64,17 @@ class UserTable extends DataTableComponent
             Column::make('Role', 'role')
                 ->searchable()
                 ->sortable(),
-            Column::make("Action")
-                ->asHtml()
-                ->addClass("text-center")
-                ->format(function ($value, $column, User $row) {
+            Column::make("Action", "user_id")
+                ->html()
+                ->format(function ($value, $row) {
                     return view('livewire.user._user-action', compact('row'));
                 }),
         ];
     }
 
-    public function query(): Builder
+    public function builder(): Builder
     {
         return User::query()
-            ->when($this->getFilter('role'), function ($query, $role) {
-                return $query->where('role', $role);
-            });
+            ->when($this->getAppliedFilterWithValue('role'), fn($query, $value) => $query->where('role', $value));
     }
 }

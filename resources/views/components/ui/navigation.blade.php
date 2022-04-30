@@ -1,5 +1,5 @@
 <div wire:ignore.self x-transition.duration.500ms class="py-6">
-    <ul id="{{ $selector }}" class="font-body text-sm capitalize">
+    <ul id="{{ $selector }}" class="font-body text-sm capitalize text-gray-700 dark:text-gray-300">
         {{-- home --}}
         <x-ui.navigation-item session-active="home" link="{{ route('home') }}">
             <div class="flex items-center">

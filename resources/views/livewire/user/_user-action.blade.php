@@ -2,7 +2,7 @@
     <x-kit::button class="bg-primary-500 text-white hover:bg-primary-400"
                    variant="circle"
                    data-tippy-toggle="tippy"
-                   data-tippy-title="Hapus"
+                   data-tippy-title="Edit"
                    wire:click="$emitTo('user.user-page', 'edit',[{{$row->user_id}}])">
         <span class="flex items-center fi-rr-pencil"></span>
     </x-kit::button>

@@ -11,15 +11,11 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class SliderTable extends DataTableComponent
 {
-
-    public bool $perPageAll = true;
-
-    protected int $index = 0;
-
     public function configure(): void
     {
         $this->setPrimaryKey("slider_id")
             ->setUseHeaderAsFooterEnabled()
+            ->setPerPageAccepted([-1, 10, 25, 50])
             ->setThAttributes(function (Column $column) {
                 if (in_array($column->getTitle(), ['Action'])) {
                     return [
@@ -86,10 +82,6 @@ class SliderTable extends DataTableComponent
             Column::make('Title', 'slider_title')
                 ->searchable()
                 ->sortable(),
-//            Column::make('Desc', 'slider_desc')
-//                ->collapseOnTablet()
-//                ->searchable()
-//                ->sortable(),
             Column::make('Image', 'slider_image')
                 ->format(function ($value) {
                     $path = asset('storage/uploads/slider/'.$value);

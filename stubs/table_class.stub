@@ -2,57 +2,54 @@
 
 namespace App\Http\Livewire\{@className};
 
+use App\Models\Slider;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\{@className};
-use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class {@className}Table extends DataTableComponent
 {
-
-    //public string $defaultSortColumn = '';
-    //public string $defaultSortDirection = 'asc';
-    public bool $perPageAll = true;
+    public function configure(): void
+    {
+            $this->setPrimaryKey({@primaryKey})
+            ->setUseHeaderAsFooterEnabled()
+            ->setPerPageAccepted([-1, 10, 25, 50])
+            ->setThAttributes(function (Column $column) {
+                if (in_array($column->getTitle(), ['Action'])) {
+                    return [
+                        'default' => true,
+                        'class' => 'text-center',
+                    ];
+                }
+                return ['default' => true];
+            });
+    }
 
     public array $bulkActions = [
-        'destroySelected' => 'Hapus Data Terpilih',
+        'destroySelected' => 'Hapus',
     ];
-
-    protected int $index = 0;
-    public string $primaryKey = "{@primaryKey}";
 
     public function destroySelected()
     {
-        {@className}::whereIn($this->primaryKey, $this->selectedRowsQuery()->pluck($this->primaryKey))->delete();
+        {@className}::whereIn($this->primaryKey, $this->getSelected())->delete();
         $this->emit("showToast", ["message" => "{@className}s Deleted Successfully", "type"=>"success"]);
     }
 
     public function columns(): array
     {
-        if ($this->page > 1) {
-            $this->index = ($this->page - 1) * $this->perPage;
-        } else {
-            $this->index = 0;
-        }
-
         return [
-            Column::make(__('No.'))->format(function () {
-                return ++$this->index;
-            }),
-
             {@columns}
-
             Column::make("Action")
-                ->addClass('flex justify-center items-center h-16')
-                ->asHtml()
-                ->format(function ($value, $column, {@className} $row) {
+                ->html()
+                ->format(function ($value, {@className} $row) {
                     return view('livewire.{@classNameLower}._{@classNameLower}-action', compact('row'));
                 }),
         ];
     }
 
-    public function query(): Builder
+    public function builder(): Builder
     {
        return {@className}::query();
     }
