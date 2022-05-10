@@ -3782,16 +3782,16 @@
         },
         {
             "name": "rappasoft/laravel-livewire-tables",
-            "version": "v2.3.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rappasoft/laravel-livewire-tables.git",
-                "reference": "099a2d71bd1d64cd4fbd80629477b239b318c3e1"
+                "reference": "46133d6dfd36667cf605ace423741bfc83f557b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rappasoft/laravel-livewire-tables/zipball/099a2d71bd1d64cd4fbd80629477b239b318c3e1",
-                "reference": "099a2d71bd1d64cd4fbd80629477b239b318c3e1",
+                "url": "https://api.github.com/repos/rappasoft/laravel-livewire-tables/zipball/46133d6dfd36667cf605ace423741bfc83f557b6",
+                "reference": "46133d6dfd36667cf605ace423741bfc83f557b6",
                 "shasum": ""
             },
             "require": {
@@ -3841,7 +3841,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rappasoft/laravel-livewire-tables/issues",
-                "source": "https://github.com/rappasoft/laravel-livewire-tables/tree/v2.3.0"
+                "source": "https://github.com/rappasoft/laravel-livewire-tables/tree/v2.4.0"
             },
             "funding": [
                 {
@@ -3849,7 +3849,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-04-28T19:53:24+00:00"
+            "time": "2022-04-30T19:01:35+00:00"
         },
         {
             "name": "spatie/image",
