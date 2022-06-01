@@ -14,9 +14,6 @@
             this.select2.on('select2:select', (event) => {
                 selected = event.target.value;
             });
-            $watch('selected', (value) => {
-                this.select2.val(value).trigger('change');
-            });
         });
     ">
     <select
