@@ -11,7 +11,7 @@
        id="sidebar">
     <div class="relative w-full h-screen overflow-hidden flex flex-col">
         {{-- top section --}}
-        <div id="top" class="flex-none text-white w-full h-16 absolute top-0 bg-gray-100 dark:bg-gray-800">
+        <section id="top" class="flex-none text-white w-full h-16 absolute top-0 bg-gray-100 dark:bg-gray-800">
             <div class="p-6 flex">
                 <a href="{{url('/home')}}"
                    class="tracking-wide
@@ -24,17 +24,17 @@
                     <img src="{{ asset('storage/settings/thumb_'.config('setting.app_logo.value')) }}" alt="app logo">
                 </div>
             @endif
-        </div>
+        </section>
 
         {{-- middle section navigation --}}
-        <div id="middle" class="text-white w-full grow overflow-scroll py-12">
+        <section id="middle" class="text-white w-full grow overflow-scroll py-12">
             <nav class="text-gray-700 dark:text-gray-300 text-base grow overflow-y-scroll">
                 <x-ui.navigation selector="sidebarnav"/>
             </nav>
-        </div>
+        </section>
 
         {{-- bottom section --}}
-        <div
+        <section
             id="bottom"
             class="flex-none h-20 text-white w-full absolute left-0 right-0 bottom-0 flex items-center bg-gray-100 dark:bg-gray-800">
             <a href="{{url('logout')}}"
@@ -44,7 +44,7 @@
                 <i class="flex items-center text-lg fi-rr-sign-out mr-3"></i>
                 <span class="text-sm font-bold">Sign Out</span>
             </a>
-        </div>
+        </section>
     </div>
 
 </aside>

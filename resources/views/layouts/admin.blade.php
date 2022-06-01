@@ -54,20 +54,21 @@ x-init="
 
 <x-ui.sidebar/>
 
-<div :class="showSidebar ? 'ml-0 md:ml-60' : ''"
+{{--main content--}}
+<main :class="showSidebar ? 'ml-0 md:ml-60' : ''"
      class="w-full flex flex-col min-h-screen overflow-y-hidden">
 
     <div class="flex flex-col-reverse lg:flex-col shadow-sm">
-        {{-- header for mobile device--}}
+        {{-- header for small device--}}
         <x-ui.mobile-header/>
-        {{-- header for desktop--}}
-        <x-ui.header/>
+        {{-- header for larger device--}}
+        <x-ui.main-header/>
     </div>
 
     <div class="w-full overflow-x-hidden flex flex-col" id="main-content">
         {{ $slot }}
     </div>
-</div>
+</main>
 
 @livewireScripts
 <script data-turbolinks-eval="false" data-turbo-eval="false" src="{{ asset('js/admin.js') }}"></script>
