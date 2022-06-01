@@ -2256,16 +2256,16 @@
         },
         {
             "name": "manusiakemos/tall-stack-kit",
-            "version": "1.2.7",
+            "version": "1.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/manusiakemos/tall-stack-kit.git",
-                "reference": "1d6e8b77b1cfc8d8972f9e5e744894d4bf63e48f"
+                "reference": "7d77149a1e02dfd47e1a9b38fee95f8ee42eb15b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/manusiakemos/tall-stack-kit/zipball/1d6e8b77b1cfc8d8972f9e5e744894d4bf63e48f",
-                "reference": "1d6e8b77b1cfc8d8972f9e5e744894d4bf63e48f",
+                "url": "https://api.github.com/repos/manusiakemos/tall-stack-kit/zipball/7d77149a1e02dfd47e1a9b38fee95f8ee42eb15b",
+                "reference": "7d77149a1e02dfd47e1a9b38fee95f8ee42eb15b",
                 "shasum": ""
             },
             "require": {
@@ -2317,9 +2317,9 @@
             ],
             "support": {
                 "issues": "https://github.com/manusiakemos/tall-stack-kit/issues",
-                "source": "https://github.com/manusiakemos/tall-stack-kit/tree/1.2.7"
+                "source": "https://github.com/manusiakemos/tall-stack-kit/tree/1.2.8"
             },
-            "time": "2022-04-17T09:15:13+00:00"
+            "time": "2022-06-01T09:26:04+00:00"
         },
         {
             "name": "markbaker/complex",

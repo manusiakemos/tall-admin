@@ -52,7 +52,9 @@ x-init="
 <body class="bg-gray-200 dark:bg-gray-900 dark:text-gray-300 text-gray-700 relative"
       x-data="{showSidebar : true}">
 
-{{ $slot }}
+<main>
+    {{ $slot }}
+</main>
 
 @livewireScripts
 

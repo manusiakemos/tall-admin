@@ -12,7 +12,6 @@
                     <x-kit::select2
                         id="role"
                         wire:model="user.role"
-                        :options="$options['role']"
                         dropdown-parent="modalForm"
                         placeholder="select a role"
                         option-value="value"
