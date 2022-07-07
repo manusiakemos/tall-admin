@@ -348,95 +348,49 @@
 
                 <div class="flex flex-wrap" x-show="active.table">
                     {{-- add column before --}}
-                    <x-kit::button variant="rounded"
-                                   data-tippy-toggle="tippy"
-                                   data-tippy-title="add column before"
-                                   class="bg-gray-800 dark:bg-gray-600 text-white text-sm"
+                    <x-kit::button variant="rounded" class="bg-gray-800 dark:bg-gray-600 text-white text-sm"
                                    x-on:click="addColumnBefore"
                     >
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1v0Z"></path>
-                            <path d="M5 12h4"></path>
-                            <path d="M7 10v4"></path>
-                        </svg>
+                        add column before
                     </x-kit::button>
 
                     {{-- add column after --}}
-                    <x-kit::button variant="rounded"
-                                   data-tippy-toggle="tippy"
-                                   data-tippy-title="add column after"
-                                   class="bg-gray-800 dark:bg-gray-600 text-white text-sm"
+                    <x-kit::button variant="rounded" class="bg-gray-800 dark:bg-gray-600 text-white text-sm"
                                    x-on:click="addColumnAfter"
                     >
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1v0Z"></path>
-                            <path d="M15 12h4"></path>
-                            <path d="M17 10v4"></path>
-                        </svg>
+                        add column after
                     </x-kit::button>
 
                     {{-- add row before --}}
-                    <x-kit::button variant="rounded"
-                                   data-tippy-toggle="tippy"
-                                   data-tippy-title="add row before"
-                                   class="bg-gray-800 dark:bg-gray-600 text-white text-sm"
+                    <x-kit::button variant="rounded" class="bg-gray-800 dark:bg-gray-600 text-white text-sm"
                                    x-on:click="addRowBefore"
                     >
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 18v-4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"></path>
-                            <path d="M12 9V5"></path>
-                            <path d="M10 7h4"></path>
-                        </svg>
+                        add row before
                     </x-kit::button>
 
                     {{-- add row after --}}
-                    <x-kit::button variant="rounded"
-                                   data-tippy-toggle="tippy"
-                                   data-tippy-title="add row after"
-                                   class="bg-gray-800 dark:bg-gray-600 text-white text-sm"
+                    <x-kit::button variant="rounded" class="bg-gray-800 dark:bg-gray-600 text-white text-sm"
                                    x-on:click="addRowAfter"
                     >
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 6v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1Z"></path>
-                            <path d="M12 15v4"></path>
-                            <path d="M14 17h-4"></path>
-                        </svg>
+                        add row after
                     </x-kit::button>
 
                     {{-- merge cell --}}
                     <x-kit::button
-                        data-tippy-toggle="tippy"
-                        data-tippy-title="merge cell"
                         variant="rounded"
                         class="bg-gray-800 dark:bg-gray-600 text-white text-sm"
                         x-on:click="mergeCells"
                     >
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 17H3"></path>
-                            <path d="M6 10 3 7l3-3"></path>
-                            <path d="M3 7h18"></path>
-                            <path d="m18 20 3-3-3-3"></path>
-                        </svg>
+                        merge cells
                     </x-kit::button>
 
                     {{-- split cell --}}
                     <x-kit::button
-                        data-tippy-toggle="tippy"
-                        data-tippy-title="split cell"
                         variant="rounded"
                         class="bg-gray-800 dark:bg-gray-600 text-white text-sm"
                         x-on:click="splitCells"
                     >
-                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 6h5.5"></path>
-                            <path d="M4 10h5.5"></path>
-                            <path d="M4 14h5.5"></path>
-                            <path d="M4 18h5.5"></path>
-                            <path d="M14.5 6H20"></path>
-                            <path d="M14.5 10H20"></path>
-                            <path d="M14.5 14H20"></path>
-                            <path d="M14.5 18H20"></path>
-                        </svg>
+                        split cells
                     </x-kit::button>
                 </div>
 

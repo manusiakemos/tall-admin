@@ -22,7 +22,9 @@
     <select
         x-model="selected"
         x-ref="select">
-        <option value="">{{ $attributes->get('placeholder') ?? 'choose one' }}</option>
+        <option value="">
+            {{ $attributes->get('placeholder') ?? 'choose one' }}
+        </option>
         {{$slot}}
     </select>
 </div>
