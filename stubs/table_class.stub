@@ -13,7 +13,7 @@ class {@className}Table extends DataTableComponent
 {
     public function configure(): void
     {
-            $this->setPrimaryKey({@primaryKey})
+            $this->setPrimaryKey("{@primaryKey}")
             ->setUseHeaderAsFooterEnabled()
             ->setPerPageAccepted([-1, 10, 25, 50])
             ->setThAttributes(function (Column $column) {
@@ -41,7 +41,7 @@ class {@className}Table extends DataTableComponent
     {
         return [
             {@columns}
-            Column::make("Action")
+            Column::make("Action", "{@primaryKey}")
                 ->html()
                 ->format(function ($value, {@className} $row) {
                     return view('livewire.{@classNameLower}._{@classNameLower}-action', compact('row'));
